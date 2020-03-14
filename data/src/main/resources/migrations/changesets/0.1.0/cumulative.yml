@@ -1,0 +1,9 @@
+databaseChangeLog:
+    -   changeSet:
+            id     : 1
+            author : puliaevevgenii
+            comment: Create user's table
+            changes:
+                -   sqlFile:
+                        path                   : TASTY-010.sql
+                        relativeToChangelogFile: true
