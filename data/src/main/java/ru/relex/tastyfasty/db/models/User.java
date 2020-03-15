@@ -11,4 +11,8 @@ public class User {
     private int role;
     private String username;
     private String password;
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

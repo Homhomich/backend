@@ -8,7 +8,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     @Select(
-            //language=PostgreSQL
             "SELECT " +
                     "user_id AS id," +
                     "first_name, " +
