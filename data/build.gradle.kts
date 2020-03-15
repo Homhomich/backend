@@ -1,4 +1,4 @@
-dependencies {
+ dependencies {
     implementation("org.springframework.boot:spring-boot-autoconfigure:2.2.5.RELEASE")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
 

@@ -7,11 +7,20 @@ databaseChangeLog:
                 -   sqlFile:
                         path                   : TASTY-010.sql
                         relativeToChangelogFile: true
-    - changeSet:
-        id: 3
-        author: dkorelov
-        comment: Deaniel create user's table
-        changes:
-          - sqlFile:
-              path: TASTY-010.sql
-              relativeToChangelogFile: true
+
+  - changeSet:
+      id: 2
+      author: AnyaYankevich
+      comment: Create rectaurant and adress table
+      changes:
+        - sqlFile:
+            path: restaurant-010.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: 3
+      author: dkorelov
+      comment: Deaniel create user's table
+      changes:
+         - sqlFile:
+            path: TASTY-010.sql
+            relativeToChangelogFile: true
