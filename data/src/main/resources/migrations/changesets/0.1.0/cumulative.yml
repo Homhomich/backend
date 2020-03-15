@@ -1,13 +1,12 @@
 databaseChangeLog:
-    -   changeSet:
-            id     : 1
-            author : puliaevevgenii
-            comment: Create user's table
-            changes:
-                -   sqlFile:
-                        path                   : TASTY-010.sql
-                        relativeToChangelogFile: true
-
+  - changeSet:
+      id: 1
+      author: puliaevevgenii
+      comment: Create user's table
+      changes:
+        - sqlFile:
+            path: TASTY-010.sql
+            relativeToChangelogFile: true
   - changeSet:
       id: 2
       author: AnyaYankevich
@@ -22,5 +21,21 @@ databaseChangeLog:
       comment: Deaniel create user's table
       changes:
          - sqlFile:
-            path: TASTY-010.sql
+            path: order-010.sql
+            relativeToChangelogFile: true
+  -   changeSet:
+       id: evgenii_2
+       author: puliaevevgenii
+       comment: Create messages table
+       changes:
+           -   sqlFile:
+                   path: messages-0-1-0.sql
+                   relativeToChangelogFile: true
+  - changeSet:
+      id: evgenii_3
+      author: puliaevevgenii
+      comment: Modify users table
+      changes:
+        - sqlFile:
+            path: modify-users-0-1-0.sql
             relativeToChangelogFile: true
