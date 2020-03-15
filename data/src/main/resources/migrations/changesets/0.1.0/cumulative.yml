@@ -7,3 +7,11 @@ databaseChangeLog:
                 -   sqlFile:
                         path                   : TASTY-010.sql
                         relativeToChangelogFile: true
+    - changeSet:
+        id: 3
+        author: dkorelov
+        comment: Deaniel create user's table
+        changes:
+          - sqlFile:
+              path: TASTY-010.sql
+              relativeToChangelogFile: true
