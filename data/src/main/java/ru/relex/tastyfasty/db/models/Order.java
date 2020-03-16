@@ -4,9 +4,14 @@ import lombok.Data;
 
 @Data
 public class Order {
-    private int order_id;
+    private int orderID;
     private String name;
     private String tag;
-    private int customer_id;
-    private int deliveryman_id;
+    private int customerID;
+    private int deliverymanID;
+
+    public Order(int orderID) {
+        this.orderID = orderID;
+    }
+
 }

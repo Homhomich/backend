@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class Breakfast {
-    private int breakfast_id;
+    private int breakfastID;
     private String name;
     private String tag;
     private double price;
 
     public void setId(int id) {
-        this.breakfast_id = id;
+        this.breakfastID = id;
     }
 }
