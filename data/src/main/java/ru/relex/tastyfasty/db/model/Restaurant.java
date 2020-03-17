@@ -1,4 +1,4 @@
-package ru.relex.tastyfasty.db.models;
+package ru.relex.tastyfasty.db.model;
 
 import lombok.Data;
 
@@ -13,10 +13,5 @@ public class Restaurant {
     private int rating;
     private Instant open_time;
     private Instant close_time;
-
-    public void setRestaurant_id(int restaurant_id) {
-        this.restaurant_id = restaurant_id;
-    }
-
 
 }

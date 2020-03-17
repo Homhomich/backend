@@ -1,4 +1,4 @@
-package ru.relex.tastyfasty.db.models;
+package ru.relex.tastyfasty.db.model;
 
 import lombok.Data;
 

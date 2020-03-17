@@ -1,7 +1,7 @@
-package ru.relex.tastyfasty.db.mappers;
+package ru.relex.tastyfasty.db.mapper;
 
 import org.apache.ibatis.annotations.*;
-import ru.relex.tastyfasty.db.models.Breakfast;
+import ru.relex.tastyfasty.db.model.Breakfast;
 
 import java.util.List;
 

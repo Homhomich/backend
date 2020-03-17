@@ -1,12 +1,10 @@
-package ru.relex.tastyfasty.rest.controllers;
+package ru.relex.tastyfasty.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.relex.tastyfasty.db.mappers.OrderBreakfastsMapper;
-import ru.relex.tastyfasty.db.mappers.UserMapper;
-import ru.relex.tastyfasty.db.models.OrderBreakfasts;
-import ru.relex.tastyfasty.db.models.User;
+import ru.relex.tastyfasty.db.mapper.OrderBreakfastsMapper;
+import ru.relex.tastyfasty.db.model.OrderBreakfasts;
 
 import java.util.List;
 

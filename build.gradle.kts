@@ -23,6 +23,7 @@ allprojects {
         annotationProcessor("org.projectlombok:lombok:1.18.12")
         testCompileOnly("org.projectlombok:lombok:1.18.12")
         testAnnotationProcessor("org.projectlombok:lombok:1.18.12")
+        implementation("ru.relex:TastyFasty-commons:1.0-SNAPSHOT")
     }
 }
 

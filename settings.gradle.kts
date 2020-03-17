@@ -3,3 +3,4 @@ include(
         "services",
         "data"
 )
+includeBuild("commons")

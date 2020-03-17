@@ -1,6 +1,7 @@
-package ru.relex.tastyfasty.db.models;
+package ru.relex.tastyfasty.db.model;
 
 import lombok.Data;
+import ru.relex.commons.model.Role;
 
 @Data
 public class User {
@@ -8,11 +9,8 @@ public class User {
     private String firstName;
     private String lastName;
     private String middleName;
-    private int role;
+    private Role role;
     private String username;
     private String password;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }
