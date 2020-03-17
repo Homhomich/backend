@@ -35,7 +35,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto update(final UserDto userDto) {
-        return null;
+        var user = userStruct.fromDto(userDto);
+        userMapper.update(user);
+        return userStruct.toDto(user);
     }
 
     @Override

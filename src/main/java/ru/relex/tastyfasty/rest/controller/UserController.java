@@ -3,8 +3,8 @@ package ru.relex.tastyfasty.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.relex.tastyfasty.db.mapper.UserMapper;
-import ru.relex.tastyfasty.db.model.User;
+import ru.relex.tastyfasty.services.dto.user.UserDto;
+import ru.relex.tastyfasty.services.service.IUserService;
 
 import java.util.List;
 
@@ -15,34 +15,34 @@ import java.util.List;
 )
 public class UserController {
 
-    private final UserMapper userMapper;
+    private final IUserService userService;
 
     @Autowired
-    public UserController(final UserMapper userMapper) {
-        this.userMapper = userMapper;
+    public UserController(final IUserService userService) {
+        this.userService = userService;
     }
 
 
     @GetMapping
-    List<User> getUsers(@RequestParam(name = "search", required = false) String search) {
-        return userMapper.getUsers(search);
+    List<UserDto> getUsers(@RequestParam(name = "search", required = false) String search) {
+        return userService.findUsers(search);
     }
 
     @GetMapping("/{id}")
-    User findById(@PathVariable("id") int id) {
-        return userMapper.findById(id);
+    UserDto findById(@PathVariable("id") int id) {
+        return null;
     }
 
     @PutMapping("/{id}")
-    User update(@PathVariable("id") int id, @RequestBody User user) {
+    UserDto update(@PathVariable("id") int id, @RequestBody UserDto user) {
         user.setId(id);
-        userMapper.update(user);
+        userService.update(user);
         return findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    User create(@RequestBody User user) {
-        userMapper.insert(user);
+    UserDto create(@RequestBody UserDto user) {
+        userService.create(user);
         return user;
 
 
