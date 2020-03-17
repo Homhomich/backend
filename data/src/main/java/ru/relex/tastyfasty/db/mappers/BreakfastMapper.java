@@ -1,6 +1,7 @@
 package ru.relex.tastyfasty.db.mappers;
 
 import org.apache.ibatis.annotations.*;
+import ru.relex.tastyfasty.db.models.Breakfast;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface BreakfastMapper {
                     "price," +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
-    List<BreakfastMapper> getBreakfasts(@Param("search") String search);
+    List<Breakfast> getBreakfasts(@Param("search") String search);
 
     @Select("SELECT " +
             "breakfast_id AS breakfastID," +
@@ -38,7 +39,7 @@ public interface BreakfastMapper {
             "tag= #{tag}," +
             "price= #{price}," +
             "WHERE order_id = #{id}")
-    void update(BreakfastMapper orderMapper);
+    void update(Breakfast breakfast);
 
     @Delete("DELETE FROM orders WHERE order_id = #{breakfastID}")
     void delete(@Param("breakfastID") int breakfastID);
@@ -46,5 +47,5 @@ public interface BreakfastMapper {
 
     @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, price)" +
             "VALUES(#{orderID}, #{name},  #{tag},  #{price}")
-    void insert(BreakfastMapper breakfastMapper);
+    void insert(Breakfast breakfast);
 }

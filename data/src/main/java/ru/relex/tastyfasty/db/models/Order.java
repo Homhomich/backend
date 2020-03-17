@@ -14,4 +14,7 @@ public class Order {
         this.orderID = orderID;
     }
 
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
 }

@@ -8,4 +8,8 @@ public class OrderBreakfasts {
     public OrderBreakfasts(int orderBreakfastID) {
         this.orderBreakfastID = orderBreakfastID;
     }
+
+    public void setOrderBreakfastID(int orderBreakfastID) {
+        this.orderBreakfastID = orderBreakfastID;
+    }
 }
