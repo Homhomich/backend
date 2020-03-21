@@ -3,7 +3,7 @@ package ru.relex.tastyfasty.db.model;
 import lombok.Data;
 
 @Data
-public class Breakfast {
+public class  Breakfast {
     private int breakfastID;
     private String name;
     private String tag;
