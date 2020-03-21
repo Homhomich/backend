@@ -1,6 +1,7 @@
 rootProject.name = "TastyFasty"
 include(
         "services",
-        "data"
+        "data",
+        "security"
 )
 includeBuild("commons")

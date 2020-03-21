@@ -1,5 +1,8 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     java
+    id("org.springframework.boot") version "2.2.5.RELEASE"
 }
 
 allprojects {
@@ -30,9 +33,20 @@ allprojects {
 
 
 dependencies {
-    implementation(project(":data"))
+    implementation(project(":data"))   /*надо будет удалить когда перейдем на сервисы*/
+    implementation(project(":security"))
     implementation(project(":services"))
     implementation("org.springframework.boot:spring-boot-starter-web:2.2.5.RELEASE")
     testCompile("junit:junit:4.12")
 }
 
+springBoot {
+    mainClassName = "ru.relex.tastyfasty.rest.TastyFasty"
+}
+
+
+val bootJar: BootJar by tasks
+
+bootJar.apply {
+    launchScript()
+}
