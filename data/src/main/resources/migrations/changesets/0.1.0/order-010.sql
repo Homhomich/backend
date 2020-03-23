@@ -3,10 +3,6 @@ CREATE TABLE breakfasts (
     name VARCHAR(50) NOT NULL,
     tag VARCHAR(50),
     price NUMERIC NOT NULL
-    restaurant_id INTEGER,
-    CONSTRAINT breakfast_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
 );
 
 CREATE TABLE orders (

@@ -47,3 +47,11 @@ databaseChangeLog:
         - sqlFile:
             path: modify-orders-create-status-0-1-0.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: dkorelov_1
+      author: dkorelov
+      comment: update order-010.sql. added restaurant_id
+      changes:
+        - sqlFile:
+            path: modify-order-0-1-0.sql
+            relativeToChangelogFile: true
