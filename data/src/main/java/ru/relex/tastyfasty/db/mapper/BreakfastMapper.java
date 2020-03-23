@@ -50,6 +50,7 @@ public interface BreakfastMapper {
             "name= #{name}," +
             "tag= #{tag}," +
             "price= #{price}," +
+            "restaurant_id AS restaurantID" +
             "WHERE order_id = #{id}")
     void update(Breakfast breakfast);
 
@@ -57,7 +58,7 @@ public interface BreakfastMapper {
     void delete(@Param("breakfastID") int breakfastID);
 
 
-    @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, price,restaurant_id)" +
+    @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, price, restaurant_id)" +
             "VALUES(#{orderID}, #{name},  #{tag},  #{price}, #{restaurantID}")
     void insert(Breakfast breakfast);
 }
