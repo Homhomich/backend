@@ -30,8 +30,6 @@ public class StatusTypeHandler implements TypeHandler<Status> {
         }
     }
 
-
-
     @Override
     public Status getResult(ResultSet rs, String columnName) throws SQLException {
         return Status.of(rs.getInt(columnName)).orElse(null);

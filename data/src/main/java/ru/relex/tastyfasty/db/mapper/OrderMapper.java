@@ -12,6 +12,7 @@ public interface OrderMapper {
                     "order_id AS orderID," +
                     "name AS orderID," +
                     "tag AS breakfastID," +
+                    "status_id AS status" +
                     "customer_id AS customerID," +
                     "deliveryman_id AS deliverymanID," +
                     "WHERE #{search:VARCHAR} IS NULL "
@@ -22,6 +23,7 @@ public interface OrderMapper {
             "order_id AS orderID," +
             "name AS orderID," +
             "tag AS breakfastID," +
+            "status_id AS status" +
             "customer_id AS customerID," +
             "deliveryman_id AS deliverymanID," +
             "WHERE order_id = #{id}")
@@ -31,6 +33,7 @@ public interface OrderMapper {
             "order_id AS orderID," +
             "name AS orderID," +
             "tag AS breakfastID," +
+            "status_id AS status" +
             "customer_id AS customerID," +
             "deliveryman_id AS deliverymanID," +
             "WHERE customer_id = #{id}")
@@ -40,6 +43,7 @@ public interface OrderMapper {
             "order_id AS orderID," +
             "name AS orderID," +
             "tag AS breakfastID," +
+            "status_id AS status" +
             "customer_id AS customerID," +
             "deliveryman_id AS deliverymanID," +
             "WHERE deliveryman_id = #{id}")
@@ -49,6 +53,7 @@ public interface OrderMapper {
             "SET order_id = #{orderBreakfastID}," +
             "name= #{orderID}," +
             "tag= #{breakfastID}," +
+            "status_id= #{status}," +
             "customer_id= #{customerID}," +
             "deliveryman_id= #{deliverymanID}," +
             "WHERE order_id = #{id}")
@@ -57,8 +62,7 @@ public interface OrderMapper {
     @Delete("DELETE FROM orders WHERE order_id = #{orderID}")
     void delete(@Param("orderID") int orderID);
 
-
-    @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, customer_id,deliveryman_id,)" +
-            "VALUES(#{orderID}, #{name},  #{tag},  #{customerID},  #{deliverymanID}")
+    @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, status_id customer_id, deliveryman_id,)" +
+            "VALUES(#{orderID}, #{name},  #{tag}, #{status},  #{customerID},  #{deliverymanID}")
     void insert(Order order);
 }
