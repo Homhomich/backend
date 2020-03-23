@@ -3,8 +3,9 @@ package ru.relex.tastyfasty.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.relex.tastyfasty.db.mapper.RestaurantMapper;
 import ru.relex.tastyfasty.db.model.Restaurant;
+import ru.relex.tastyfasty.services.dto.restaurant.RestaurantDto;
+import ru.relex.tastyfasty.services.service.IRestaurantService;
 
 import java.util.List;
 
@@ -15,44 +16,40 @@ import java.util.List;
 )
 public class RestaurantController {
 
-    private final RestaurantMapper restaurantMapper;
+    private final IRestaurantService restaurantService;
 
     @Autowired
-    public RestaurantController(RestaurantMapper restaurantMapper) {
-        this.restaurantMapper = restaurantMapper;
+    public RestaurantController(IRestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
     }
 
 
     @GetMapping
-    List<Restaurant> getRestaurant(@RequestParam(name = "search", required = false) String search) {
-        return restaurantMapper.getRestaurant(search);
+    List<RestaurantDto> getRestaurant(@RequestParam(name = "search", required = false) String search) {
+        return restaurantService.findRestaurant(search);
     }
 
     @GetMapping("/{id}")
     Restaurant findById(@PathVariable("id") int id) {
-        return restaurantMapper.findById(id);
+        return null;
     }
 
     @GetMapping("/{city}, /{street}, /{building}")
-    Restaurant findByAddress(@PathVariable("city") String city, @PathVariable("street") String street, @PathVariable("building") int building) {
-        return restaurantMapper.findByAddress(city, street, building);
+    RestaurantDto findByAddress(@PathVariable("city") String city, @PathVariable("street") String street, @PathVariable("building") int building) {
+        return restaurantService.findRestaurantByAddress(city, street, building);
     }
 
-    @GetMapping("/{name}")
-    Restaurant findByName(@PathVariable("name") String name) {
-        return restaurantMapper.findByName(name);
-    }
 
     @PutMapping("/{id}")
-    Restaurant update(@PathVariable("id") int id, @RequestBody Restaurant restaurant) {
+    Restaurant update(@PathVariable("id") int id, @RequestBody RestaurantDto restaurant) {
         restaurant.setRestaurant_id(id);
-        restaurantMapper.update(restaurant);
+        restaurantService.update(restaurant);
         return findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    Restaurant create(@RequestBody Restaurant restaurant) {
-        restaurantMapper.insert(restaurant);
+    RestaurantDto create(@RequestBody RestaurantDto restaurant) {
+        restaurantService.create(restaurant);
         return restaurant;
 
 

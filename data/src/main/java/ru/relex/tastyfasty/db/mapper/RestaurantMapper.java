@@ -10,13 +10,13 @@ public interface RestaurantMapper {
     @Select(
             "SELECT " +
                     "restaurant_id," +
-                    "name," +
-                    "breakfast_id," +
+                    "name,"  +
                     "rating," +
                     "address_id," +
                     "tags" +
                     "FROM restaurants rest " +
-                    "WHERE #{search:VARCHAR} IS NULL "
+                    "WHERE #{search:VARCHAR} IS NULL " +
+                    "OR CONCAT_WS('$', name, rating, tags) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
     )
     List<Restaurant> getRestaurant(@Param("search") String search);
 
@@ -44,18 +44,6 @@ public interface RestaurantMapper {
             "WHERE addr.city = #{city} AND addr.street = #{street} AND addr.building = #{building}")
     Restaurant findByAddress(@Param("city") String city, @Param("street") String street, @Param("building") int building);
 
-
-    @Select("SELECT " +
-            "restaurant_id," +
-            "name," +
-            "open_time," +
-            "close_time," +
-            "rating," +
-            "address_id," +
-            "tags" +
-            "FROM restaurants rest " +
-            "WHERE name = #{name}")
-    Restaurant findByName(@Param("name") String name);
 
     @Update("UPDATE restaurants " +
             "SET name = #{name}," +
