@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IRestaurantService {
 
-    List<RestaurantDto> findRestaurant(String search);
+    List<RestaurantDto> findRestaurants(String search);
 
     RestaurantDto findRestaurantByAddress(String city, String street, int building);
 

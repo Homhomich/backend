@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        path = "/order",
+        path = "/orders",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class OrderController {
@@ -24,7 +24,7 @@ public class OrderController {
 
 
     @GetMapping
-    List<Order> getOrder(@RequestParam(name = "search", required = false) String search) {
+    List<Order> getOrders(@RequestParam(name = "search", required = false) String search) {
         return orderMapper.getOrders(search);
     }
 

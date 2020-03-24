@@ -25,7 +25,7 @@ public interface BreakfastMapper {
             "price," +
             "restaurant_id  AS restaurantID" +
             "WHERE breakfast_id = #{id}")
-    BreakfastMapper findById(@Param("id") int id);
+    Breakfast findById(@Param("id") int id);
 
     @Select("SELECT " +
             "breakfast_id AS breakfastID," +
@@ -34,7 +34,7 @@ public interface BreakfastMapper {
             "price," +
             "restaurant_id  AS restaurantID" +
             "WHERE restaurant_id = #{id}")
-    BreakfastMapper findByRestaurantID(@Param("id") int id);
+    Breakfast findByRestaurantID(@Param("id") int id);
 
     @Select("SELECT " +
             "breakfast_id AS breakfastID," +
@@ -43,7 +43,7 @@ public interface BreakfastMapper {
             "price," +
             "restaurant_id AS restaurantID" +
             "WHERE name = #{name}")
-    BreakfastMapper findBreakfastByName(@Param("name") int name);
+    Breakfast findBreakfastByName(@Param("name") int name);
 
     @Update("UPDATE orders_breakfasts " +
             "SET order_id = #{breakfastID}," +

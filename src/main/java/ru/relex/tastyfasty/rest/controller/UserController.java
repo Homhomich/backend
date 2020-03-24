@@ -44,7 +44,5 @@ public class UserController {
     UserDto create(@RequestBody UserDto user) {
         userService.create(user);
         return user;
-
-
     }
 }
