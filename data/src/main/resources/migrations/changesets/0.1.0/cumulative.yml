@@ -55,3 +55,19 @@ databaseChangeLog:
         - sqlFile:
             path: modify-order-0-1-0.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: dkorelov_2
+      author: dkorelov
+      comment: basket.sql created
+      changes:
+        - sqlFile:
+            path: baskets-0-1-0.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: dkorelov_3
+      author: dkorelov
+      comment: rename breakfasts_in_basket to breakfasts_in_basket_id
+      changes:
+        - sqlFile:
+            path: modify-baskets-0-1-0.sql
+            relativeToChangelogFile: true

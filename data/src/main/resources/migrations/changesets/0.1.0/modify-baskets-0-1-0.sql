@@ -1,0 +1,1 @@
+ALTER TABLE breakfasts_in_basket RENAME COLUMN breakfasts_in_basket TO breakfasts_in_basket_id;
