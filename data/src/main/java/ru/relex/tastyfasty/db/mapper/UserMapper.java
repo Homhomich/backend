@@ -13,6 +13,7 @@ public interface UserMapper {
                     "first_name, " +
                     "last_name, " +
                     "username, " +
+                    "address_id AS address" +
                     "role_id as role " +
                     "FROM users u " +
                     "WHERE #{search:VARCHAR} IS NULL " +
@@ -25,6 +26,7 @@ public interface UserMapper {
             "first_name, " +
             "last_name, " +
             "username, " +
+            "address_id AS address" +
             "role_id as role " +
             "FROM users u " +
             "WHERE user_id = #{id}")
@@ -33,6 +35,7 @@ public interface UserMapper {
     @Update("UPDATE users " +
             "SET first_name = #{firstName}," +
             "last_name = #{lastName}," +
+            "address_id= #{address}," +
             "username = #{username}," +
             "password = #{password}," +
             "role_id = #{role} " +
@@ -48,8 +51,8 @@ public interface UserMapper {
      *
      * @param user
      */
-    @Insert("INSERT INTO users (first_name, last_name, username, password, role_id) " +
-            "VALUES(#{firstName}, #{lastName}, #{username}, #{password}, #{role})")
+    @Insert("INSERT INTO users (first_name, last_name, username, password, role_id, address_id) " +
+            "VALUES(#{firstName}, #{lastName}, #{username}, #{password}, #{role}, #{address})")
     @SelectKey(
             before = false,
             keyProperty = "id",
