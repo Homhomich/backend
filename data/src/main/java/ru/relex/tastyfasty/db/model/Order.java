@@ -12,5 +12,4 @@ public class Order {
     private String tag;
     private int customerID;
     private int deliverymanID;
-
 }

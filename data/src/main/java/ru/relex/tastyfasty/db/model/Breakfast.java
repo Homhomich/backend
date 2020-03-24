@@ -8,4 +8,5 @@ public class  Breakfast {
     private String name;
     private String tag;
     private double price;
+    private int restaurantID;
 }

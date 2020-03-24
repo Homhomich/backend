@@ -16,6 +16,15 @@ public final class ConstraintMessage {
         public static final String ROLE = "ROLE";
         public static final String MIDDLE_NAME = "MIDDLENAME";
         public static final String PERSONAL_INFO = "PERSONALINFO";
+
+        public static final String RESTAURANT_NAME = "RESTAURANTNAME";
+        public static final String RESTAURANT_TAGS = "RESTAURANTTAGS";
+        public static final String RESTAURANT_RATING = "RESTAURANTRATING";
+        public static final String RESTAURANT_TIME = "RESTAURANTTIME";
+        public static final String RESTAURANT_INFO = "RESTAURANTINFO";
+
+
+
     }
 
     public static class Constraint {

@@ -13,6 +13,7 @@ public interface BreakfastMapper {
                     "name," +
                     "tag," +
                     "price," +
+                    "restaurant_id AS  as restaurantID" +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
     List<Breakfast> getBreakfasts(@Param("search") String search);
@@ -22,6 +23,7 @@ public interface BreakfastMapper {
             "name," +
             "tag," +
             "price," +
+            "restaurant_id  AS restaurantID" +
             "WHERE breakfast_id = #{id}")
     BreakfastMapper findById(@Param("id") int id);
 
@@ -30,6 +32,16 @@ public interface BreakfastMapper {
             "name," +
             "tag," +
             "price," +
+            "restaurant_id  AS restaurantID" +
+            "WHERE restaurant_id = #{id}")
+    BreakfastMapper findByRestaurantID(@Param("id") int id);
+
+    @Select("SELECT " +
+            "breakfast_id AS breakfastID," +
+            "name," +
+            "tag," +
+            "price," +
+            "restaurant_id AS restaurantID" +
             "WHERE name = #{name}")
     BreakfastMapper findBreakfastByName(@Param("name") int name);
 
@@ -38,6 +50,7 @@ public interface BreakfastMapper {
             "name= #{name}," +
             "tag= #{tag}," +
             "price= #{price}," +
+            "restaurant_id AS restaurantID" +
             "WHERE order_id = #{id}")
     void update(Breakfast breakfast);
 
@@ -45,7 +58,7 @@ public interface BreakfastMapper {
     void delete(@Param("breakfastID") int breakfastID);
 
 
-    @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, price)" +
-            "VALUES(#{orderID}, #{name},  #{tag},  #{price}")
+    @Insert("INSERT INTO orders_breakfasts ( order_id, name, tag, price, restaurant_id)" +
+            "VALUES(#{orderID}, #{name},  #{tag},  #{price}, #{restaurantID}")
     void insert(Breakfast breakfast);
 }
