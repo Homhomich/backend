@@ -28,7 +28,7 @@ public class RestaurantServiceImpl implements IRestaurantService {
 
     @Override
     public List<RestaurantDto> findRestaurants(String search) {
-        var restaurants = restaurantMapper.getRestaurant(search);
+        var restaurants = restaurantMapper.getRestaurants(search);
         return restaurantStruct.toDto(restaurants);
     }
 

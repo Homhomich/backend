@@ -34,7 +34,16 @@ public interface BreakfastMapper {
             "price," +
             "restaurant_id  AS restaurantID" +
             "WHERE restaurant_id = #{id}")
-    Breakfast findByRestaurantID(@Param("id") int id);
+    List<Breakfast> findByRestaurantID(@Param("id") int id);
+
+    @Select("SELECT " +
+            "breakfast_id AS breakfastID," +
+            "name," +
+            "tag," +
+            "price," +
+            "restaurant_id  AS restaurantID" +
+            "WHERE tag = #{tag}")
+    List<Breakfast> findByTag(@Param("tag") String tag);
 
     @Select("SELECT " +
             "breakfast_id AS breakfastID," +
@@ -43,7 +52,7 @@ public interface BreakfastMapper {
             "price," +
             "restaurant_id AS restaurantID" +
             "WHERE name = #{name}")
-    Breakfast findBreakfastByName(@Param("name") int name);
+    List<Breakfast> findByName(@Param("name") String name);
 
     @Update("UPDATE orders_breakfasts " +
             "SET order_id = #{breakfastID}," +

@@ -18,7 +18,7 @@ public interface RestaurantMapper {
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', name, rating, tags) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
     )
-    List<Restaurant> getRestaurant(@Param("search") String search);
+    List<Restaurant> getRestaurants(@Param("search") String search);
 
     @Select("SELECT " +
             "restaurant_id AS id," +

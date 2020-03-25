@@ -30,6 +30,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public UserDto findUserById(int userId) {
+        return null;
+    }
+
+    @Override
     public UserDto create(@Valid final UserDto userDto) {
         var user = userStruct.fromDto(userDto);
         userMapper.insert(user);
