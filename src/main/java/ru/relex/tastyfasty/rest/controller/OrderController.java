@@ -3,8 +3,6 @@ package ru.relex.tastyfasty.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.relex.tastyfasty.db.mapper.OrderMapper;
-import ru.relex.tastyfasty.db.model.Order;
 import ru.relex.tastyfasty.services.dto.order.OrderDto;
 import ru.relex.tastyfasty.services.service.impl.OrderServiceImpl;
 

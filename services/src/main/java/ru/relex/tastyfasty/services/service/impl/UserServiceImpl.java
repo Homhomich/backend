@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 @Validated
 public class UserServiceImpl implements IUserService {
+
     private final UserMapper userMapper;
     private final UserStruct userStruct;
 
@@ -22,6 +23,7 @@ public class UserServiceImpl implements IUserService {
         this.userMapper = userMapper;
         this.userStruct = userStruct;
     }
+
 
     @Override
     public List<UserDto> findUsers(final String search) {

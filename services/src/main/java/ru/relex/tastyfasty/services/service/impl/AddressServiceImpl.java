@@ -1,5 +1,6 @@
 package ru.relex.tastyfasty.services.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import ru.relex.tastyfasty.db.mapper.AddressMapper;
@@ -17,6 +18,7 @@ public class AddressServiceImpl implements IAddressService {
     private final AddressMapper addressMapper;
     private final AddressStruct addressStruct;
 
+    @Autowired
     public AddressServiceImpl(AddressMapper addressMapper, AddressStruct addressStruct) {
         this.addressMapper = addressMapper;
         this.addressStruct = addressStruct;

@@ -16,7 +16,7 @@ public interface OrderStruct {
     @Mapping(target = "orderInfo.name", source = "name")
     OrderDto toDto(Order order);
 
-    @Mapping(target = "tag", source = "orderInfo.tags")
+    @Mapping(target = "tag", source = "orderInfo.tag")
     @Mapping(target = "name", source = "orderInfo.name")
     Order fromDto(OrderDto orderDto);
 

@@ -14,12 +14,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public abstract class UserStruct {
 
-    private final IAddressService addressService;
-
     @Autowired
-    public UserStruct(IAddressService addressService) {
-        this.addressService = addressService;
-    }
+    private IAddressService addressService;
 
     @Named("fromId")
     protected AddressDto fromId(User user) {

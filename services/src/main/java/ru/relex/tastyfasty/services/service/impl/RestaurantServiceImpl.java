@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 @Validated
 public class RestaurantServiceImpl implements IRestaurantService {
+
     private final RestaurantMapper restaurantMapper;
     private final RestaurantStruct restaurantStruct;
-
 
     @Autowired
     public RestaurantServiceImpl(RestaurantMapper restaurantMapper, RestaurantStruct restaurantStruct) {
