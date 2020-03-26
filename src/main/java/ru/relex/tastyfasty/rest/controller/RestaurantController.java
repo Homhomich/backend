@@ -45,7 +45,7 @@ public class RestaurantController {
 
     @PutMapping("/{id}")
     RestaurantDto update(@PathVariable("id") int id, @RequestBody RestaurantDto restaurant) {
-        restaurant.setRestaurant_id(id);
+        restaurant.setRestaurantId(id);
         restaurantService.update(restaurant);
         return findById(id);
     }
@@ -53,5 +53,10 @@ public class RestaurantController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     RestaurantDto create(@RequestBody RestaurantDto restaurant) {
         return restaurantService.create(restaurant);
+    }
+
+    @DeleteMapping("/{id}")
+    void remove(@PathVariable("restaurantID") int id) {
+        restaurantService.remove(id);
     }
 }

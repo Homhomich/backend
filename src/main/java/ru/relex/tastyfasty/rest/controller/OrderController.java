@@ -5,6 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.tastyfasty.db.mapper.OrderMapper;
 import ru.relex.tastyfasty.db.model.Order;
+import ru.relex.tastyfasty.services.dto.order.OrderDto;
+import ru.relex.tastyfasty.services.service.impl.OrderServiceImpl;
 
 import java.util.List;
 
@@ -15,36 +17,39 @@ import java.util.List;
 )
 public class OrderController {
 
-    private final OrderMapper orderMapper;
+    private final OrderServiceImpl orderService;
 
     @Autowired
-    public OrderController(final OrderMapper orderMapper) {
-        this.orderMapper = orderMapper;
+    public OrderController(final OrderServiceImpl orderService) {
+        this.orderService = orderService;
     }
 
 
     @GetMapping
-    List<Order> getOrders(@RequestParam(name = "search", required = false) String search) {
-        return orderMapper.getOrders(search);
+    List<OrderDto> getOrders(@RequestParam(name = "search", required = false) String search) {
+        return orderService.findOrders(search);
     }
 
     @GetMapping("/{id}")
-    Order findById(@PathVariable("orderID") int id) {
-        return orderMapper.findById(id);
+    OrderDto findById(@PathVariable("orderID") int id) {
+        return orderService.findById(id);
     }
 
     @PutMapping("/{id}")
-    Order update(@PathVariable("orderID") int id, @RequestBody Order order) {
-        order.setOrderID(id);
-        orderMapper.update(order);
+    OrderDto update(@PathVariable("orderID") int id, @RequestBody OrderDto orderDto) {
+        orderDto.setOrderID(id);
+        orderService.update(orderDto);
         return findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    Order create(@RequestBody Order order) {
-        orderMapper.insert(order);
-        return order;
+    OrderDto create(@RequestBody OrderDto orderDto) {
+        orderService.create(orderDto);
+        return orderDto;
+    }
 
-
+    @DeleteMapping("/{id}")
+    void remove(@PathVariable("orderID") int id) {
+        orderService.remove(id);
     }
 }

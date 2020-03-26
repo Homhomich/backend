@@ -52,7 +52,7 @@ public class BreakfastController {
     }
 
     @DeleteMapping("/{id}")
-    void delete(@PathVariable("breakfastID") int id) {
+    void remove(@PathVariable("breakfastID") int id) {
         breakfastService.remove(id);
     }
 }

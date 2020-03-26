@@ -9,14 +9,10 @@ import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Field;
 
 @Data
 public class RestaurantDto {
-    private int restaurant_id;
-    private int address_id;
+    private int restaurantId;
+    private int addressId;
 
     @Valid
     @NotNull(message = Field.RESTAURANT_INFO + Constraint.IS_NULL)
     private RestaurantInfoDto restaurantInfo;
-
-    public void setRestaurant_id(int restaurant_id) {
-        this.restaurant_id = restaurant_id;
-    }
 }
