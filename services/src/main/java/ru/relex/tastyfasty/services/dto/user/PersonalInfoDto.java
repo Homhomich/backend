@@ -1,7 +1,7 @@
 package ru.relex.tastyfasty.services.dto.user;
 
 import lombok.Data;
-import ru.relex.tastyfasty.db.model.Address;
+import ru.relex.tastyfasty.services.dto.address.AddressDto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -22,5 +22,5 @@ public class PersonalInfoDto {
 
     @Size(max = 50, message = Field.MIDDLE_NAME + Constraint.TOO_LONG)
     private String middleName;
-    private Address address;
+    private AddressDto address;
 }

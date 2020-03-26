@@ -1,6 +1,8 @@
 package ru.relex.tastyfasty.services.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import ru.relex.tastyfasty.db.mapper.BreakfastMapper;
 import ru.relex.tastyfasty.services.dto.breakfast.BreakfastDto;
 import ru.relex.tastyfasty.services.mapstruct.BreakfastStruct;
@@ -9,6 +11,8 @@ import ru.relex.tastyfasty.services.service.IBreakfastService;
 import javax.validation.Valid;
 import java.util.List;
 
+@Service
+@Validated
 public class BreakfastServiceImpl implements IBreakfastService {
 
     private final BreakfastMapper breakfastMapper;

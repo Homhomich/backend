@@ -3,7 +3,19 @@ package ru.relex.tastyfasty.db.mapper;
 import org.apache.ibatis.annotations.*;
 import ru.relex.tastyfasty.db.model.Address;
 
+import java.util.List;
+
 public interface AddressMapper {
+
+    @Select("SELECT " +
+            "address_id AS id," +
+            "city, " +
+            "street, " +
+            "building, " +
+            "FROM addresses" +
+            "WHERE #{search:VARCHAR} IS NULL ")
+    List<Address> getAddresses(@Param("search") String search);
+
     @Select("SELECT " +
             "address_id AS id," +
             "city, " +
