@@ -13,6 +13,7 @@ public interface UserMapper {
                     "first_name, " +
                     "last_name, " +
                     "username, " +
+                    "phone_number," +
                     "address_id AS address" +
                     "role_id as role " +
                     "FROM users u " +
@@ -26,6 +27,7 @@ public interface UserMapper {
             "first_name, " +
             "last_name, " +
             "username, " +
+            "phone_number," +
             "address_id AS address" +
             "role_id as role " +
             "FROM users u " +
@@ -36,6 +38,7 @@ public interface UserMapper {
             "SET first_name = #{firstName}," +
             "last_name = #{lastName}," +
             "address_id= #{address}," +
+            "phone_number=#{phone_number}," +
             "username = #{username}," +
             "password = #{password}," +
             "role_id = #{role} " +

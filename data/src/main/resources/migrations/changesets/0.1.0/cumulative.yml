@@ -71,3 +71,11 @@ databaseChangeLog:
         - sqlFile:
             path: modify-baskets-0-1-0.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: yankevich_3
+      author: AnyaYankevich
+      comment: add phone number to users
+      changes:
+        - sqlFile:
+            path: modify-users-with-phone-0-1-0.sql
+            relativeToChangelogFile: true

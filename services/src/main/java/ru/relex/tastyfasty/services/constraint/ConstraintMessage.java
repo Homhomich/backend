@@ -11,6 +11,8 @@ public final class ConstraintMessage {
         public static final String LAST_NAME = "LASTNAME";
         public static final String ROLE = "ROLE";
         public static final String PERSONAL_INFO = "PERSONALINFO";
+        public static final String PHONE_NUMBER = "PHONE_NUMBER";
+
 
         public static final String RESTAURANT_NAME = "RESTAURANTNAME";
         public static final String RESTAURANT_TAGS = "RESTAURANTTAGS";

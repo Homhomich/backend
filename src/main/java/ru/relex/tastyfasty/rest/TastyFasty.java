@@ -9,7 +9,7 @@ import ru.relex.tastyfasty.services.ServicesConfiguration;
         scanBasePackages = "ru.relex.tastyfasty.rest"
 )
 @Import(ServicesConfiguration.class)
-public class TastyFasty {
+public class  TastyFasty {
     public static void main(String[] args) {
         SpringApplication.run(TastyFasty.class, args);
     }
