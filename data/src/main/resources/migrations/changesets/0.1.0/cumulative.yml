@@ -79,3 +79,12 @@ databaseChangeLog:
         - sqlFile:
             path: modify-users-with-phone-0-1-0.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: yankevich_4
+      author: AnyaYankevich
+      comment: add price to order
+      changes:
+        - sqlFile:
+            path: modify-order-with-price-0-1-0.sql
+            relativeToChangelogFile: true

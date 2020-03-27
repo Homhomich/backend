@@ -15,4 +15,8 @@ public class OrderInfoDto {
     @NotBlank(message = ConstraintMessage.Field.ORDER_TAG + ConstraintMessage.Constraint.IS_EMPTY)
     @Size(max = 20, message = ConstraintMessage.Field.ORDER_TAG + ConstraintMessage.Constraint.TOO_LONG)
     private String tag;
+
+    @NotBlank(message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.IS_EMPTY)
+    @Size(max = 20, message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.TOO_LONG)
+    private Integer price;
 }
