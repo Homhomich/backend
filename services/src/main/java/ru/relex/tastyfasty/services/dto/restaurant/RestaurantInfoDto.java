@@ -7,6 +7,7 @@ import ru.relex.tastyfasty.services.dto.address.AddressDto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalTime;
 
 import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Constraint;
 import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Field;
@@ -26,14 +27,20 @@ public class RestaurantInfoDto {
     //не уверена что здесь в принципе нужна валидация
     private int rating;
 
-    @NotBlank(message = Field.RESTAURANT_TIME+ Constraint.IS_EMPTY)
-    @Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
-    private Instant open_time;
+    //@Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
+    private int open_time;
 
-    @NotBlank(message = Field.RESTAURANT_TIME+ Constraint.IS_EMPTY)
-    @Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
-    private Instant close_time;
+
+   // @Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
+    private int close_time;
 
     private AddressDto address;
 
+    public int getOpen_time() {
+        return open_time;
+    }
+
+    public int getClose_time() {
+        return close_time;
+    }
 }

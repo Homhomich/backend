@@ -38,7 +38,7 @@ public interface UserMapper {
             "SET first_name = #{firstName}, " +
             "last_name = #{lastName}, " +
             "address_id= #{address}, " +
-            "phone_number=#{phone_number}, " +
+            "phone_number=#{phoneNumber}, " +
             "username = #{username}, " +
             "password = #{password}, " +
             "role_id = #{role} " +
@@ -55,7 +55,7 @@ public interface UserMapper {
      * @param user
      */
     @Insert("INSERT INTO users (first_name, last_name, username, password, role_id, address_id) " +
-            "VALUES(#{firstName}, #{lastName}, #{username}, #{password}, #{role}, #{address}, #{phone_number})")
+            "VALUES(#{firstName}, #{lastName}, #{username}, #{password}, #{role}, #{address}, #{phoneNumber})")
     @SelectKey(
             before = false,
             keyProperty = "id",

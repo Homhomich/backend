@@ -8,9 +8,9 @@ import ru.relex.tastyfasty.services.service.IRestaurantService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(
-        //headers = { "Access-Control-Allow-Origin = *" },
         path = "/restaurants",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
@@ -24,6 +24,7 @@ public class RestaurantController {
     }
 
 
+
     @GetMapping
     List<RestaurantDto> getRestaurants(@RequestParam(name = "search", required = false) String search) {
         return restaurantService.findRestaurants(search);
@@ -34,7 +35,8 @@ public class RestaurantController {
         return null;
     }
 
-    @GetMapping("/{city}, /{street}, /{building}")  // TODO: 24.03.2020 is it working????))
+    @GetMapping("/{city}, /{street}, /{building}")
+        // TODO: 24.03.2020 is it working????))
     RestaurantDto findByAddress(
             @PathVariable("city") String city,
             @PathVariable("street") String street,

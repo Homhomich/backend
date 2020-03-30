@@ -14,4 +14,8 @@ public class RestaurantDto {
     @Valid
     @NotNull(message = Field.RESTAURANT_INFO + Constraint.IS_NULL)
     private RestaurantInfoDto restaurantInfo;
+
+    public RestaurantInfoDto getRestaurantInfo() {
+        return restaurantInfo;
+    }
 }

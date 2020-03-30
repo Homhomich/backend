@@ -3,6 +3,7 @@ package ru.relex.tastyfasty.db.model;
 import lombok.Data;
 
 import java.time.Instant;
+import java.time.LocalTime;
 
 @Data
 public class Restaurant {
@@ -11,14 +12,18 @@ public class Restaurant {
     private int address;
     private String name;
     private int rating;
-    private Instant open_time;
-    private Instant close_time;
+    private LocalTime open_time;
+    private LocalTime close_time;
 
-    public Instant getOpen_time() {
+    public LocalTime getOpen_time() {
         return open_time;
     }
 
-    public Instant getClose_time() {
+    public LocalTime getClose_time() {
         return close_time;
+    }
+
+    public int getAddress() {
+        return address;
     }
 }

@@ -50,7 +50,7 @@ public interface RestaurantMapper {
             "open_time= #{open_time}, " +
             "close_time= #{close_time}, " +
             "rating = #{rating}, " +
-            "address_id = #{address_id}, " +
+            "address_id = #{address}, " +
             "tags = #{tags} " +
             "WHERE restaurant_id = #{id}")
     void update(Restaurant restaurant);
@@ -60,6 +60,6 @@ public interface RestaurantMapper {
 
 
     @Insert("INSERT INTO restaurants ( restaurant_id, name, open_time, close_time, rating, address_id, tags)" +
-            "VALUES(#{restaurant_id}, #{name},  #{open_time}, #{close_time}, #{rating}, #{address_id}, #{tags})")
+            "VALUES(#{restaurant_id}, #{name},  #{open_time}, #{close_time}, #{rating}, #{address}, #{tags})")
     void insert(Restaurant restaurant);
 }
