@@ -51,8 +51,8 @@ public interface RestaurantMapper {
     @Update(
             "UPDATE restaurants " +
                     "SET name = #{name}, " +
-                    "open_time= #{open_time}, " +
-                    "close_time= #{close_time}, " +
+                    "open_time= #{openTime}, " +
+                    "close_time= #{closeTime}, " +
                     "rating = #{rating}, " +
                     "address_id = #{address}, " +
                     "tags = #{tags} " +
@@ -62,16 +62,22 @@ public interface RestaurantMapper {
 
     @Delete(
             "DELETE FROM restaurants " +
-                    "WHERE restaurant_id = #{restaurant_id}"
+                    "WHERE restaurant_id = #{restaurantId}"
     )
     void delete(@Param("restaurant_id") int restaurant_id);
 
     @Insert(
             "INSERT " +
                     "INTO restaurants " +
-                    "(restaurant_id, name, open_time, close_time, rating, address_id, tags)" +
+                    "(name, open_time, close_time, rating, address_id, tags)" +
                     "VALUES " +
-                    "(#{restaurant_id}, #{name},  #{open_time}, #{close_time}, #{rating}, #{address}, #{tags})"
+                    "(#{name}, #{openTime}, #{closeTime}, #{rating}, #{address}, #{tags})"
     )
+    @SelectKey(
+            before = false,
+            keyProperty = "restaurantId",
+            keyColumn = "restaurant_id",
+            statement = "select currval('restaurants_restaurant_id_seq')",
+            resultType = Integer.class)
     void insert(Restaurant restaurant);
 }

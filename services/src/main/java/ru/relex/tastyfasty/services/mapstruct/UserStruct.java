@@ -35,8 +35,7 @@ public abstract class UserStruct {
 
     public abstract List<User> fromDto(List<UserDto> userDto);
 
-    public AddressDto AddressIdToAddressDto(int addressId) {
-        System.out.println("fromId");
+    protected AddressDto AddressIdToAddressDto(int addressId) {
         return addressService.findAddressById(addressId);
     }
 }

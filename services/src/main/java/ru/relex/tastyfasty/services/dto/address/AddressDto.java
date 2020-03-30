@@ -18,7 +18,7 @@ public class AddressDto {
     @Size(max = 15, message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.TOO_LONG)
     private String street;
 
-    @NotBlank(message = ConstraintMessage.Field.BUILDING + ConstraintMessage.Constraint.IS_EMPTY)
-    @Size(max = 5, message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.TOO_LONG)
+//    @NotBlank(message = ConstraintMessage.Field.BUILDING + ConstraintMessage.Constraint.IS_EMPTY)
+//    @Size(max = 5, message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.TOO_LONG)
     private int building;
 }

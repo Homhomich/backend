@@ -88,3 +88,20 @@ databaseChangeLog:
         - sqlFile:
             path: modify-order-with-price-0-1-0.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_5
+      author: puliaevevgenii
+      comment: modify address in restaurant
+      changes:
+        - sqlFile:
+            path: modify-address-in-restaurant-0-1-0.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: evgenii_6
+      author: puliaevevgenii
+      comment: fix my last changes
+      changes:
+        - sqlFile:
+            path: fix-mistake-in-restaurant-address-0-1-0.sql
+            relativeToChangelogFile: true

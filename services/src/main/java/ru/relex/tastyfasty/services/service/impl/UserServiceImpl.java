@@ -3,11 +3,10 @@ package ru.relex.tastyfasty.services.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import ru.relex.tastyfasty.db.mapper.AddressMapper;
 import ru.relex.tastyfasty.db.mapper.UserMapper;
 import ru.relex.tastyfasty.services.dto.user.UserDto;
-import ru.relex.tastyfasty.services.mapstruct.AddressStruct;
 import ru.relex.tastyfasty.services.mapstruct.UserStruct;
+import ru.relex.tastyfasty.services.service.IAddressService;
 import ru.relex.tastyfasty.services.service.IUserService;
 
 import javax.validation.Valid;
@@ -20,15 +19,13 @@ public class UserServiceImpl implements IUserService {
     private final UserMapper userMapper;
     private final UserStruct userStruct;
 
-    private final AddressMapper addressMapper;
-    private final AddressStruct addressStruct;
+    private final IAddressService addressService;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, UserStruct userStruct, AddressMapper addressMapper, AddressStruct addressStruct) {
+    public UserServiceImpl(UserMapper userMapper, UserStruct userStruct, IAddressService addressService) {
         this.userMapper = userMapper;
         this.userStruct = userStruct;
-        this.addressMapper = addressMapper;
-        this.addressStruct = addressStruct;
+        this.addressService = addressService;
     }
 
 
@@ -46,10 +43,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto create(@Valid final UserDto userDto) {
-        var address = addressStruct.fromDto(userDto.getPersonalInfo().getAddress());
-        addressMapper.insert(address);
+        var addressDto = addressService.create(userDto.getPersonalInfo().getAddress());
         var user = userStruct.fromDto(userDto);
-        user.setAddress(address.getId());
+        user.setAddress(addressDto.getId());
         userMapper.insert(user);
         return userStruct.toDto(user);
     }

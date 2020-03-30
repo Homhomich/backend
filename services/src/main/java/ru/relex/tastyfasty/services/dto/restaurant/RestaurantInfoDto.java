@@ -28,19 +28,11 @@ public class RestaurantInfoDto {
     private int rating;
 
     //@Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
-    private int open_time;
+    private int openTime;
 
 
    // @Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
-    private int close_time;
+    private int closeTime;
 
     private AddressDto address;
-
-    public int getOpen_time() {
-        return open_time;
-    }
-
-    public int getClose_time() {
-        return close_time;
-    }
 }
