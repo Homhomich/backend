@@ -8,6 +8,8 @@ import ru.relex.tastyfasty.services.service.impl.OrderServiceImpl;
 
 import java.util.List;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping(
         path = "/orders",
