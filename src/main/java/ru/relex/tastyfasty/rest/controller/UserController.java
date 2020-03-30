@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.tastyfasty.services.dto.user.UserDto;
+import ru.relex.tastyfasty.services.service.IAddressService;
 import ru.relex.tastyfasty.services.service.IUserService;
 
 import java.util.List;
@@ -31,20 +32,20 @@ public class UserController {
 
     @GetMapping("/{id}")
     UserDto findById(@PathVariable("id") int id) {
-        return null;
+        return userService.findUserById(id);
     }
 
     @PutMapping("/{id}")
-    UserDto update(@PathVariable("id") int id, @RequestBody UserDto user) {
-        user.setId(id);
-        userService.update(user);
+    UserDto update(@PathVariable("id") int id, @RequestBody UserDto userDto) {
+        userDto.setId(id);
+        userService.update(userDto);
         return findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    UserDto create(@RequestBody UserDto user) {
-        userService.create(user);
-        return user;
+    UserDto create(@RequestBody UserDto userDto) {
+        userService.create(userDto);
+        return userDto;
     }
 
     @DeleteMapping("/{id}")

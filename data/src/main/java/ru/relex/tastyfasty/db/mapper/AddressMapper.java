@@ -8,28 +8,28 @@ import java.util.List;
 public interface AddressMapper {
 
     @Select("SELECT " +
-            "address_id AS id," +
+            "address_id AS id, " +
             "city, " +
             "street, " +
-            "building, " +
-            "FROM addresses" +
+            "building " +
+            "FROM addresses " +
             "WHERE #{search:VARCHAR} IS NULL ")
     List<Address> getAddresses(@Param("search") String search);
 
     @Select("SELECT " +
-            "address_id AS id," +
+            "address_id AS id, " +
             "city, " +
             "street, " +
-            "building, " +
-            "FROM addresses" +
-            "WHERE addresses_id = #{id}")
+            "building " +
+            "FROM addresses " +
+            "WHERE address_id = #{id}")
     Address getAddressById(@Param("id") int id);
 
     @Update("UPDATE addresses " +
-            "SET city = #{city}," +
-            "street = #{street}," +
-            "building = #{building}," +
-            "address_id = #{id}," +
+            "SET city = #{city}, " +
+            "street = #{street}, " +
+            "building = #{building}, " +
+            "address_id = #{id} " +
             "WHERE address_id = #{id}")
     void update(Address address);
 
@@ -37,7 +37,7 @@ public interface AddressMapper {
     void delete(@Param("id") int id);
 
     @Insert("INSERT INTO addresses (city, street, building) " +
-            "VALUES(#{firstName}, #{city}, #{street}, #{building})")
+            "VALUES(#{city}, #{street}, #{building})")
     @SelectKey(
             before = false,
             keyProperty = "id",

@@ -12,6 +12,7 @@ public interface UserMapper {
                     "user_id AS id," +
                     "first_name, " +
                     "last_name, " +
+                    "middle_name, " +
                     "username, " +
                     "phone_number, " +
                     "address_id AS address, " +
@@ -26,6 +27,7 @@ public interface UserMapper {
             "user_id AS id, " +
             "first_name, " +
             "last_name, " +
+            "middle_name, " +
             "username, " +
             "phone_number, " +
             "address_id AS address, " +
@@ -35,10 +37,12 @@ public interface UserMapper {
     User findById(@Param("id") int id);
 
     @Update("UPDATE users " +
-            "SET first_name = #{firstName}, " +
+            "SET " +
+            "first_name = #{firstName}, " +
             "last_name = #{lastName}, " +
+            "middle_name = #{middleName}, " +
             "address_id= #{address}, " +
-            "phone_number=#{phone_number}, " +
+            "phone_number=#{phoneNumber}, " +
             "username = #{username}, " +
             "password = #{password}, " +
             "role_id = #{role} " +
@@ -54,8 +58,8 @@ public interface UserMapper {
      *
      * @param user
      */
-    @Insert("INSERT INTO users (first_name, last_name, username, password, role_id, address_id) " +
-            "VALUES(#{firstName}, #{lastName}, #{username}, #{password}, #{role}, #{address}, #{phone_number})")
+    @Insert("INSERT INTO users (first_name, last_name, middle_name, username, password, role_id, address_id, phone_number) " +
+            "VALUES(#{firstName}, #{lastName}, #{middleName}, #{username}, #{password}, #{role}, #{address}, #{phoneNumber})")
     @SelectKey(
             before = false,
             keyProperty = "id",
