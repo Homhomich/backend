@@ -48,14 +48,13 @@ public interface RestaurantMapper {
     )
     Restaurant findByAddress(@Param("city") String city, @Param("street") String street, @Param("building") int building);
 
-
     @Update(
             "UPDATE restaurants " +
                     "SET name = #{name}, " +
                     "open_time= #{open_time}, " +
                     "close_time= #{close_time}, " +
                     "rating = #{rating}, " +
-                    "address_id = #{address_id}, " +
+                    "address_id = #{address}, " +
                     "tags = #{tags} " +
                     "WHERE restaurant_id = #{id}"
     )
@@ -67,12 +66,12 @@ public interface RestaurantMapper {
     )
     void delete(@Param("restaurant_id") int restaurant_id);
 
-
     @Insert(
             "INSERT " +
                     "INTO restaurants " +
                     "(restaurant_id, name, open_time, close_time, rating, address_id, tags)" +
                     "VALUES " +
-                    "(#{restaurant_id}, #{name},  #{open_time}, #{close_time}, #{rating}, #{address_id}, #{tags})")
+                    "(#{restaurant_id}, #{name},  #{open_time}, #{close_time}, #{rating}, #{address}, #{tags})"
+    )
     void insert(Restaurant restaurant);
 }

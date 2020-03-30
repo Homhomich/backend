@@ -8,9 +8,9 @@ import ru.relex.tastyfasty.services.service.IUserService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(
-      //  headers = { "Access-Control-Allow-Origin=*" },
         path = "/users",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
