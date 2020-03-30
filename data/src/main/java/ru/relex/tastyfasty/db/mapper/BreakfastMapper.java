@@ -18,56 +18,74 @@ public interface BreakfastMapper {
     )
     List<Breakfast> getBreakfasts(@Param("search") String search);
 
-    @Select("SELECT " +
-            "breakfast_id AS breakfastID, " +
-            "name, " +
-            "tag, " +
-            "price, " +
-            "restaurant_id AS restaurantID " +
-            "WHERE breakfast_id = #{id}")
+    @Select(
+            "SELECT " +
+                    "breakfast_id AS breakfastID, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id AS restaurantID " +
+                    "WHERE breakfast_id = #{id}"
+    )
     Breakfast findById(@Param("id") int id);
 
-    @Select("SELECT " +
-            "breakfast_id AS breakfastID, " +
-            "name, " +
-            "tag, " +
-            "price, " +
-            "restaurant_id AS restaurantID " +
-            "WHERE restaurant_id = #{id}")
+    @Select(
+            "SELECT " +
+                    "breakfast_id AS breakfastID, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id AS restaurantID " +
+                    "WHERE restaurant_id = #{id}"
+    )
     List<Breakfast> findByRestaurantID(@Param("id") int id);
 
-    @Select("SELECT " +
-            "breakfast_id AS breakfastID, " +
-            "name, " +
-            "tag, " +
-            "price, " +
-            "restaurant_id AS restaurantID " +
-            "WHERE tag = #{tag}")
+    @Select(
+            "SELECT " +
+                    "breakfast_id AS breakfastID, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id AS restaurantID " +
+                    "WHERE tag = #{tag}"
+    )
     List<Breakfast> findByTag(@Param("tag") String tag);
 
-    @Select("SELECT " +
-            "breakfast_id AS breakfastID, " +
-            "name, " +
-            "tag, " +
-            "price, " +
-            "restaurant_id AS restaurantID " +
-            "WHERE name = #{name}")
+    @Select(
+            "SELECT " +
+                    "breakfast_id AS breakfastID, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id AS restaurantID " +
+                    "WHERE name = #{name}"
+    )
     List<Breakfast> findByName(@Param("name") String name);
 
-    @Update("UPDATE orders_breakfasts " +
-            "SET order_id = #{breakfastID}, " +
-            "name= #{name}, " +
-            "tag= #{tag}, " +
-            "price= #{price}, " +
-            "restaurant_id AS restaurantID " +
-            "WHERE order_id = #{id}")
+    @Update(
+            "UPDATE orders_breakfasts " +
+                    "SET " +
+                    "order_id = #{breakfastID}, " +
+                    "name= #{name}, " +
+                    "tag= #{tag}, " +
+                    "price= #{price}, " +
+                    "restaurant_id AS restaurantID " +
+                    "WHERE order_id = #{id}"
+    )
     void update(Breakfast breakfast);
 
-    @Delete("DELETE FROM orders WHERE order_id = #{breakfastID}")
+    @Delete(
+            "DELETE FROM orders " +
+                    "WHERE order_id = #{breakfastID}"
+    )
     void delete(@Param("breakfastID") int breakfastID);
 
 
-    @Insert("INSERT INTO orders_breakfasts (order_id, name, tag, price, restaurant_id)" +
-            "VALUES(#{orderID}, #{name}, #{tag}, #{price}, #{restaurantID}")
+    @Insert(
+            "INSERT " +
+                    "INTO orders_breakfasts " +
+                    "(order_id, name, tag, price, restaurant_id)" +
+                    "VALUES " +
+                    "(#{orderID}, #{name}, #{tag}, #{price}, #{restaurantID})")
     void insert(Breakfast breakfast);
 }

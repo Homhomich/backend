@@ -19,27 +19,39 @@ public interface BasketMapper {
     )
     List<Breakfast> getBaskets(@Param("search") String search);
 
-    @Select("SELECT " +
-            "basket_id AS basketID, " +
-            "full_price AS fullPrice, " +
-            "number_of_persons AS numberOfPersons, " +
-            "user_id AS userID " +
-            "WHERE basket_id = #{id}")
+    @Select(
+            "SELECT " +
+                    "basket_id AS basketID, " +
+                    "full_price AS fullPrice, " +
+                    "number_of_persons AS numberOfPersons, " +
+                    "user_id AS userID " +
+                    "WHERE basket_id = #{id}"
+    )
     Breakfast findByBasketId(@Param("id") int id);
 
-    @Update("UPDATE baskets " +
-            "SET " +
-            "basket_id = #{basketID}, " +
-            "full_price = #{fullPrice}, " +
-            "number_of_persons = #{numberOfPersons}, " +
-            "user_id AS userID " +
-            "WHERE basket_id = #{id}")
+    @Update(
+            "UPDATE baskets " +
+                    "SET " +
+                    "basket_id = #{basketID}, " +
+                    "full_price = #{fullPrice}, " +
+                    "number_of_persons = #{numberOfPersons}, " +
+                    "user_id AS userID " +
+                    "WHERE basket_id = #{id}"
+    )
     void update(Basket basket);
 
-    @Delete("DELETE FROM baskets WHERE basket_id = #{basketID}")
+    @Delete(
+            "DELETE FROM baskets " +
+                    "WHERE basket_id = #{basketID}"
+    )
     void delete(@Param("basketID") int basketID);
 
-    @Insert("INSERT INTO baskets ( basket_id, full_price, number_of_persons, user_id)" +
-            "VALUES(#{basketID}, #{fullPrice}, #{numberOfPersons}, #{userID}")
+    @Insert(
+            "INSERT " +
+                    "INTO baskets " +
+                    "(basket_id, full_price, number_of_persons, user_id)" +
+                    "VALUES " +
+                    "(#{basketID}, #{fullPrice}, #{numberOfPersons}, #{userID})"
+    )
     void insert(Basket basket);
 }

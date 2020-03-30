@@ -17,39 +17,53 @@ public interface BreakfastsInBasketMapper {
     )
     List<Breakfast> getBreakfastsInBasket(@Param("search") String search);
 
-    @Select("SELECT " +
+    @Select(
+            "SELECT " +
             "breakfasts_in_basket_id AS breakfastsInBasketID, " +
             "basket_id AS basketID, " +
             "user_id AS userID " +
-            "WHERE breakfast_in_basket_id = #{id}")
+            "WHERE breakfast_in_basket_id = #{id}"
+    )
     Breakfast findByBreakfastInBasketId(@Param("id") int id);
 
-    @Select("SELECT " +
+    @Select(
+            "SELECT " +
             "breakfasts_in_basket_id AS breakfastsInBasketID, " +
             "basket_id AS basketID, " +
             "user_id AS userID " +
-            "WHERE basket_id = #{id}")
+            "WHERE basket_id = #{id}"
+    )
     Breakfast findByBasketId(@Param("id") int id);
 
-    @Select("SELECT " +
+    @Select(
+            "SELECT " +
             "breakfasts_in_basket_id AS breakfastsInBasketID, " +
             "basket_id AS basketID, " +
             "user_id AS userID " +
-            "WHERE user_id = #{id}")
+            "WHERE user_id = #{id}"
+    )
     Breakfast findByUserId(@Param("id") int id);
 
-    @Update("UPDATE breakfasts_in_basket " +
+    @Update(
+            "UPDATE breakfasts_in_basket " +
             "SET breakfasts_in_basket_id = #{breakfastsInBasketID}, " +
             "basket_id = #{basketID}, " +
             "user_id= #{userID} " +
-            "WHERE order_id = #{id}")
+            "WHERE order_id = #{id}"
+    )
     void update(BreakfastsInBasket breakfastsInBasket);
 
-    @Delete("DELETE FROM breakfasts_in_basket WHERE breakfasts_basket_id = #{breakfastsInBasketID}")
+    @Delete(
+            "DELETE FROM breakfasts_in_basket " +
+                    "WHERE breakfasts_basket_id = #{breakfastsInBasketID}"
+    )
     void delete(@Param("breakfastsInBasketID") int breakfastsInBasketID);
 
-    @Insert("INSERT INTO breakfasts_in_basket ( breakfasts_in_basket_id, basket_id, user_id)" +
-            "VALUES(#{breakfastsInBasketID}, #{basketID},  #{userID}")
+    @Insert(
+            "INSERT INTO breakfasts_in_basket " +
+                    "(breakfasts_in_basket_id, basket_id, user_id)" +
+            "VALUES " +
+                    "(#{breakfastsInBasketID}, #{basketID}, #{userID})")
     void insert(BreakfastsInBasket breakfastsInBasket);
 
 

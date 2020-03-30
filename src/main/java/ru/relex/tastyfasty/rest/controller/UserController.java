@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.tastyfasty.services.dto.user.UserDto;
-import ru.relex.tastyfasty.services.service.IAddressService;
 import ru.relex.tastyfasty.services.service.IUserService;
 
 import java.util.List;
