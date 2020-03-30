@@ -3,8 +3,10 @@ package ru.relex.tastyfasty.services.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import ru.relex.tastyfasty.db.mapper.AddressMapper;
 import ru.relex.tastyfasty.db.mapper.UserMapper;
 import ru.relex.tastyfasty.services.dto.user.UserDto;
+import ru.relex.tastyfasty.services.mapstruct.AddressStruct;
 import ru.relex.tastyfasty.services.mapstruct.UserStruct;
 import ru.relex.tastyfasty.services.service.IUserService;
 
@@ -18,10 +20,15 @@ public class UserServiceImpl implements IUserService {
     private final UserMapper userMapper;
     private final UserStruct userStruct;
 
+    private final AddressMapper addressMapper;
+    private final AddressStruct addressStruct;
+
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, UserStruct userStruct) {
+    public UserServiceImpl(UserMapper userMapper, UserStruct userStruct, AddressMapper addressMapper, AddressStruct addressStruct) {
         this.userMapper = userMapper;
         this.userStruct = userStruct;
+        this.addressMapper = addressMapper;
+        this.addressStruct = addressStruct;
     }
 
 
@@ -33,18 +40,24 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto findUserById(int userId) {
-        return null;
+        var user = userMapper.findById(userId);
+        return userStruct.toDto(user);
     }
 
     @Override
     public UserDto create(@Valid final UserDto userDto) {
+        var address = addressStruct.fromDto(userDto.getPersonalInfo().getAddress());
+        addressMapper.insert(address);
         var user = userStruct.fromDto(userDto);
+        user.setAddress(address.getId());
         userMapper.insert(user);
         return userStruct.toDto(user);
     }
 
     @Override
     public UserDto update(@Valid final UserDto userDto) {
+        int addressId = userMapper.findById(userDto.getId()).getAddress();
+        userDto.getPersonalInfo().getAddress().setId(addressId);
         var user = userStruct.fromDto(userDto);
         userMapper.update(user);
         return userStruct.toDto(user);
@@ -52,6 +65,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void remove(final int userId) {
-
+        userMapper.delete(userId);
     }
 }

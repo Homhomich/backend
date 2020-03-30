@@ -17,26 +17,26 @@ public abstract class UserStruct {
     @Autowired
     private IAddressService addressService;
 
-    @Named("fromId")
-    protected AddressDto fromId(User user) {
-        return addressService.findAddressById(user.getAddress());
-    }
-
-    @Mapping(target = "personalInfoDto.firstName", source = "firstName")
-    @Mapping(target = "personalInfoDto.lastName", source = "lastName")
-    @Mapping(target = "personalInfoDto.middleName", source = "middleName")
-    @Mapping(target = "personalInfoDto.address", qualifiedByName = "fromId")
-    @Mapping(target = "personalInfoDto.phoneNumber", source = "phoneNumber")
+    @Mapping(target = "personalInfo.firstName", source = "firstName")
+    @Mapping(target = "personalInfo.lastName", source = "lastName")
+    @Mapping(target = "personalInfo.middleName", source = "middleName")
+    @Mapping(target = "personalInfo.address", source = "address")
+    @Mapping(target = "personalInfo.phoneNumber", source = "phoneNumber")
     public abstract UserDto toDto(User user);
 
-    @Mapping(target = "firstName", source = "personalInfoDto.firstName")
-    @Mapping(target = "lastName", source = "personalInfoDto.lastName")
-    @Mapping(target = "middleName", source = "personalInfoDto.middleName")
-    @Mapping(target = "address", source = "personalInfoDto.address.id")
-    @Mapping(target = "phoneNumber", source = "personalInfoDto.phoneNumber")
+    @Mapping(target = "firstName", source = "personalInfo.firstName")
+    @Mapping(target = "lastName", source = "personalInfo.lastName")
+    @Mapping(target = "middleName", source = "personalInfo.middleName")
+    @Mapping(target = "address", source = "personalInfo.address.id")
+    @Mapping(target = "phoneNumber", source = "personalInfo.phoneNumber")
     public abstract User fromDto(UserDto userDto);
 
     public abstract List<UserDto> toDto(List<User> user);
 
     public abstract List<User> fromDto(List<UserDto> userDto);
+
+    public AddressDto AddressIdToAddressDto(int addressId) {
+        System.out.println("fromId");
+        return addressService.findAddressById(addressId);
+    }
 }

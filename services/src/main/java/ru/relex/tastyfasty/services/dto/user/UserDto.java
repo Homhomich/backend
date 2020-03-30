@@ -26,7 +26,7 @@ public class UserDto {
 
     @Valid
     @NotNull(message = Field.PERSONAL_INFO + Constraint.IS_NULL)
-    private PersonalInfoDto personalInfoDto;
+    private PersonalInfoDto personalInfo;
 
     public void setId(Integer id) {
         this.id = id;

@@ -25,6 +25,6 @@ public class PersonalInfoDto {
 
     private AddressDto address;
 
-    @NotBlank(message = Field.PHONE_NUMBER + Constraint.IS_EMPTY)
+    //@NotBlank(message = Field.PHONE_NUMBER + Constraint.IS_EMPTY)
     private Integer phoneNumber;
 }

@@ -17,6 +17,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public abstract class RestaurantStruct {
+
     @Autowired
     private IAddressService addressService;
 
@@ -55,7 +56,7 @@ public abstract class RestaurantStruct {
     @Mapping(target = "restaurantInfo.rating", source = "rating")
     @Mapping(target = "restaurantInfo.open_time", qualifiedByName = "toIntOpenTime")
     @Mapping(target = "restaurantInfo.close_time", qualifiedByName = "toIntCloseTime")
-    @Mapping(target = "restaurantInfo.address", qualifiedByName = "fromId")
+    @Mapping(target = "restaurantInfo.address", source = "address")
     public abstract RestaurantDto toDto(Restaurant restaurant);
 
     @Mapping(target = "tags", source = "restaurantInfo.tags")
@@ -69,4 +70,9 @@ public abstract class RestaurantStruct {
     public abstract List<RestaurantDto> toDto(List<Restaurant> restaurants);
 
     public abstract List<Restaurant> fromDto(List<RestaurantDto> restaurantDto);
+
+    public AddressDto AddressIdToAddressDto(int addressId) {
+        System.out.println("fromId");
+        return addressService.findAddressById(addressId);
+    }
 }
