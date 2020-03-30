@@ -10,7 +10,6 @@ import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Field;
 @Data
 public class RestaurantDto {
     private int restaurantId;
-    private int addressId;
 
     @Valid
     @NotNull(message = Field.RESTAURANT_INFO + Constraint.IS_NULL)

@@ -13,8 +13,8 @@ public interface UserMapper {
                     "first_name, " +
                     "last_name, " +
                     "username, " +
-                    "phone_number," +
-                    "address_id AS address" +
+                    "phone_number, " +
+                    "address_id AS address, " +
                     "role_id as role " +
                     "FROM users u " +
                     "WHERE #{search:VARCHAR} IS NULL " +
@@ -23,24 +23,24 @@ public interface UserMapper {
     List<User> getUsers(@Param("search") String search);
 
     @Select("SELECT " +
-            "user_id AS id," +
+            "user_id AS id, " +
             "first_name, " +
             "last_name, " +
             "username, " +
-            "phone_number," +
-            "address_id AS address" +
+            "phone_number, " +
+            "address_id AS address, " +
             "role_id as role " +
             "FROM users u " +
             "WHERE user_id = #{id}")
     User findById(@Param("id") int id);
 
     @Update("UPDATE users " +
-            "SET first_name = #{firstName}," +
-            "last_name = #{lastName}," +
-            "address_id= #{address}," +
-            "phone_number=#{phone_number}," +
-            "username = #{username}," +
-            "password = #{password}," +
+            "SET first_name = #{firstName}, " +
+            "last_name = #{lastName}, " +
+            "address_id= #{address}, " +
+            "phone_number=#{phone_number}, " +
+            "username = #{username}, " +
+            "password = #{password}, " +
             "role_id = #{role} " +
             "WHERE user_id = #{id}")
     void update(User user);

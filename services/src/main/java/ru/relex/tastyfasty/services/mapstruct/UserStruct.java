@@ -26,12 +26,14 @@ public abstract class UserStruct {
     @Mapping(target = "personalInfoDto.lastName", source = "lastName")
     @Mapping(target = "personalInfoDto.middleName", source = "middleName")
     @Mapping(target = "personalInfoDto.address", qualifiedByName = "fromId")
+    @Mapping(target = "personalInfoDto.phoneNumber", source = "phoneNumber")
     public abstract UserDto toDto(User user);
 
     @Mapping(target = "firstName", source = "personalInfoDto.firstName")
     @Mapping(target = "lastName", source = "personalInfoDto.lastName")
     @Mapping(target = "middleName", source = "personalInfoDto.middleName")
     @Mapping(target = "address", source = "personalInfoDto.address.id")
+    @Mapping(target = "phoneNumber", source = "personalInfoDto.phoneNumber")
     public abstract User fromDto(UserDto userDto);
 
     public abstract List<UserDto> toDto(List<User> user);

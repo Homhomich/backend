@@ -2,6 +2,7 @@ package ru.relex.tastyfasty.services.dto.restaurant;
 
 import lombok.Data;
 import ru.relex.tastyfasty.services.constraint.ConstraintMessage;
+import ru.relex.tastyfasty.services.dto.address.AddressDto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -32,5 +33,7 @@ public class RestaurantInfoDto {
     @NotBlank(message = Field.RESTAURANT_TIME+ Constraint.IS_EMPTY)
     @Size(max = 10, message = Field.RESTAURANT_TIME + Constraint.TOO_LONG)
     private Instant close_time;
+
+    private AddressDto address;
 
 }

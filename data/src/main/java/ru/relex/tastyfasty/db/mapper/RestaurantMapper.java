@@ -9,11 +9,11 @@ import java.util.List;
 public interface RestaurantMapper {
     @Select(
             "SELECT " +
-                    "restaurant_id," +
-                    "name,"  +
-                    "rating," +
-                    "address_id," +
-                    "tags" +
+                    "restaurant_id, " +
+                    "name, "  +
+                    "rating, " +
+                    "address_id, " +
+                    "tags " +
                     "FROM restaurants rest " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', name, rating, tags) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
@@ -21,36 +21,36 @@ public interface RestaurantMapper {
     List<Restaurant> getRestaurants(@Param("search") String search);
 
     @Select("SELECT " +
-            "restaurant_id AS id," +
-            "name," +
-            "open_time," +
-            "close_time," +
-            "rating," +
-            "address_id," +
-            "tags" +
+            "restaurant_id AS id, " +
+            "name, " +
+            "open_time, " +
+            "close_time, " +
+            "rating, " +
+            "address_id, " +
+            "tags " +
             "FROM restaurants rest " +
             "WHERE restaurant_id = #{id}")
     Restaurant findById(@Param("id") int id);
 
     @Select("SELECT " +
-            "restaurant_id AS id," +
-            "name," +
-            "open_time," +
-            "close_time," +
-            "rating," +
-            "address_id," +
-            "tags" +
+            "restaurant_id AS id, " +
+            "name, " +
+            "open_time, " +
+            "close_time, " +
+            "rating, " +
+            "address_id, " +
+            "tags " +
             "FROM addresses addr " +
             "WHERE addr.city = #{city} AND addr.street = #{street} AND addr.building = #{building}")
     Restaurant findByAddress(@Param("city") String city, @Param("street") String street, @Param("building") int building);
 
 
     @Update("UPDATE restaurants " +
-            "SET name = #{name}," +
-            "open_time= #{open_time}," +
-            "close_time= #{close_time}," +
-            "rating = #{rating}," +
-            "address_id = #{address_id} " +
+            "SET name = #{name}, " +
+            "open_time= #{open_time}, " +
+            "close_time= #{close_time}, " +
+            "rating = #{rating}, " +
+            "address_id = #{address_id}, " +
             "tags = #{tags} " +
             "WHERE restaurant_id = #{id}")
     void update(Restaurant restaurant);
@@ -59,7 +59,7 @@ public interface RestaurantMapper {
     void delete(@Param("restaurant_id") int restaurant_id);
 
 
-    @Insert("INSERT INTO restaurants ( restaurant_id, name, open_time, close_time,  rating, address_id, tags)" +
+    @Insert("INSERT INTO restaurants ( restaurant_id, name, open_time, close_time, rating, address_id, tags)" +
             "VALUES(#{restaurant_id}, #{name},  #{open_time}, #{close_time}, #{rating}, #{address_id}, #{tags})")
     void insert(Restaurant restaurant);
 }

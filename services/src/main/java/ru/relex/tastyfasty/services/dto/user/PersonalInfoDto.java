@@ -22,5 +22,9 @@ public class PersonalInfoDto {
 
     @Size(max = 50, message = Field.MIDDLE_NAME + Constraint.TOO_LONG)
     private String middleName;
+
     private AddressDto address;
+
+    @NotBlank(message = Field.PHONE_NUMBER + Constraint.IS_EMPTY)
+    private Integer phoneNumber;
 }

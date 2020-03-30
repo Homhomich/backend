@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
+      //  headers = { "Access-Control-Allow-Origin=*" },
         path = "/users",
         produces = MediaType.APPLICATION_JSON_VALUE
 )

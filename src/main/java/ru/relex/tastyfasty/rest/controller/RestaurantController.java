@@ -10,7 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-        path = "/users/restaurants",
+        //headers = { "Access-Control-Allow-Origin = *" },
+        path = "/restaurants",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class RestaurantController {
