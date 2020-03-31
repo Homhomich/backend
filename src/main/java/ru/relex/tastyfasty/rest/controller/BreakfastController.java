@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/breakfasts",
+        path = "/restaurants/{restaurantId}/breakfasts",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class BreakfastController {
@@ -26,13 +26,8 @@ public class BreakfastController {
 
 
     @GetMapping
-    List<BreakfastDto> getBreakfasts(@RequestParam(name = "search", required = false) String search) {
-        return breakfastService.findBreakfasts(search);
-    }
-
-    @GetMapping("/{tag}")
-    List<BreakfastDto> getBreakfastByTag(@PathVariable("tag") String tag) {
-        return breakfastService.findBreakfastsByTag(tag);
+    List<BreakfastDto> getBreakfastByRestaurantId(@PathVariable("restaurantId") int restaurantId) {
+        return breakfastService.findBreakfastsByRestaurantId(restaurantId);
     }
 
     @GetMapping("/{id}")
@@ -40,17 +35,30 @@ public class BreakfastController {
         return breakfastService.findBreakfastById(id);
     }
 
-    @PutMapping("/{id}")
-    BreakfastDto update(@PathVariable("id") int id, @RequestBody BreakfastDto breakfastDto) {
-        breakfastDto.setBreakfastID(id);
-        breakfastService.update(breakfastDto);
-        return getBreakfastById(id);
+    @GetMapping("/{tag}")
+    List<BreakfastDto> getBreakfastByTag(
+            @PathVariable("restaurantId") int restaurantId,
+            @RequestParam(value = "tag") String tag
+    ) {
+        return breakfastService.findBreakfastsByTag(tag, restaurantId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    BreakfastDto create(@RequestBody BreakfastDto breakfastDto) {
-        breakfastService.create(breakfastDto);
-        return breakfastDto;
+    BreakfastDto create(@RequestBody BreakfastDto breakfastDto, @PathVariable("restaurantId") int restaurantId) {
+        breakfastDto.setRestaurantId(restaurantId);
+        return breakfastService.create(breakfastDto);
+    }
+
+    @PutMapping("/{id}")
+    BreakfastDto update(
+            @PathVariable("id") int id,
+            @PathVariable("restaurantId") int restaurantId,
+            @RequestBody BreakfastDto breakfastDto
+    ) {
+        breakfastDto.setId(id);
+        breakfastDto.setRestaurantId(restaurantId);
+        breakfastService.update(breakfastDto);
+        return getBreakfastById(id);
     }
 
     @DeleteMapping("/{id}")

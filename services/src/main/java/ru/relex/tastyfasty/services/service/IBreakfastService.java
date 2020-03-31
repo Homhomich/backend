@@ -10,17 +10,17 @@ public interface IBreakfastService {
 
     List<BreakfastDto> findBreakfasts(String search);
 
-    List<BreakfastDto> findBreakfastsByTag(String search);
+    List<BreakfastDto> findBreakfastsByTag(String tag, int restaurantId);
 
     List<BreakfastDto> findBreakfastsByName(String search);
 
     List<BreakfastDto> findBreakfastsByRestaurantId(int restaurantId);
 
-    BreakfastDto findBreakfastById(int breakfastId);
+    BreakfastDto findBreakfastById(int id);
 
     BreakfastDto create(@Valid BreakfastDto breakfastDto);
 
     BreakfastDto update(@Valid BreakfastDto breakfastDto);
 
-    void remove(int breakfastId);
+    void remove(int id);
 }

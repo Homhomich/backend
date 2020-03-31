@@ -32,8 +32,8 @@ public class BreakfastServiceImpl implements IBreakfastService {
     }
 
     @Override
-    public List<BreakfastDto> findBreakfastsByTag(String search) {
-        var breakfasts = breakfastMapper.findByTag(search);
+    public List<BreakfastDto> findBreakfastsByTag(String tag, int restaurantId) {
+        var breakfasts = breakfastMapper.findByTag(tag, restaurantId);
         return breakfastStruct.toDto(breakfasts);
     }
 
@@ -50,8 +50,8 @@ public class BreakfastServiceImpl implements IBreakfastService {
     }
 
     @Override
-    public BreakfastDto findBreakfastById(int breakfastId) {
-        var breakfast = breakfastMapper.findById(breakfastId);
+    public BreakfastDto findBreakfastById(int id) {
+        var breakfast = breakfastMapper.findById(id);
         return breakfastStruct.toDto(breakfast);
     }
 
@@ -70,7 +70,7 @@ public class BreakfastServiceImpl implements IBreakfastService {
     }
 
     @Override
-    public void remove(int breakfastId) {
-        breakfastMapper.delete(breakfastId);
+    public void remove(int id) {
+        breakfastMapper.delete(id);
     }
 }

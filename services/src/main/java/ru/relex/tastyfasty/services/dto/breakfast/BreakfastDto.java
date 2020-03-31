@@ -8,7 +8,8 @@ import javax.validation.constraints.Size;
 
 @Data
 public class BreakfastDto {
-    private int breakfastID;
+
+    private int id;
 
     @NotBlank(message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.IS_EMPTY)
     @Size(max = 30, message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.TOO_LONG)
@@ -18,8 +19,8 @@ public class BreakfastDto {
     @Size(max = 20, message = ConstraintMessage.Field.BREAKFAST_TAG + ConstraintMessage.Constraint.TOO_LONG)
     private String tag;
 
-    @NotBlank(message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.IS_EMPTY)
+    //@NotBlank(message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.IS_EMPTY)
     private double price;
 
-    private int restaurantID;
+    private int restaurantId;
 }

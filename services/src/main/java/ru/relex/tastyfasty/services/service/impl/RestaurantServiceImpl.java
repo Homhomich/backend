@@ -60,8 +60,17 @@ public class RestaurantServiceImpl implements IRestaurantService {
 
     @Override
     public RestaurantDto update(@Valid RestaurantDto restaurantDto) {
+        /**Этим методом адрес не обновлялся на тот что пришел с клиента*/
+        /*int addressId = restaurantMapper.findById(restaurantDto.getRestaurantId()).getAddress();
+        restaurantDto.getRestaurantInfo().getAddress().setId(addressId);*/
+
+        /**А этим обновляется*/
         int addressId = restaurantMapper.findById(restaurantDto.getRestaurantId()).getAddress();
-        restaurantDto.getRestaurantInfo().getAddress().setId(addressId);
+        var addressDto = restaurantDto.getRestaurantInfo().getAddress();
+        addressDto.setId(addressId);
+        addressService.update(addressDto);
+        restaurantDto.getRestaurantInfo().setAddress(addressDto);
+
         var restaurant = restaurantStruct.fromDto(restaurantDto);
         restaurantMapper.update(restaurant);
         return restaurantStruct.toDto(restaurant);

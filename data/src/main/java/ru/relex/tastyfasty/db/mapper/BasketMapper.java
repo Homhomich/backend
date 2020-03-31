@@ -17,7 +17,7 @@ public interface BasketMapper {
                     "user_id AS userID " +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
-    List<Breakfast> getBaskets(@Param("search") String search);
+    List<Basket> getBaskets(@Param("search") String search);
 
     @Select(
             "SELECT " +
@@ -27,7 +27,7 @@ public interface BasketMapper {
                     "user_id AS userID " +
                     "WHERE basket_id = #{id}"
     )
-    Breakfast findByBasketId(@Param("id") int id);
+    Basket findByBasketId(@Param("id") int id);
 
     @Update(
             "UPDATE baskets " +
