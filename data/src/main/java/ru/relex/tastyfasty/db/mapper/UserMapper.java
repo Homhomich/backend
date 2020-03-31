@@ -16,8 +16,8 @@ public interface UserMapper {
                     "username, " +
                     "phone_number, " +
                     "address_id AS address, " +
-                    "role_id as role " +
-                    "FROM users u " +
+                    "role_id AS role " +
+                    "FROM users " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', first_name, last_name, username) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
     )
@@ -32,8 +32,8 @@ public interface UserMapper {
                     "username, " +
                     "phone_number, " +
                     "address_id AS address, " +
-                    "role_id as role " +
-                    "FROM users u " +
+                    "role_id AS role " +
+                    "FROM users " +
                     "WHERE user_id = #{id}"
     )
     User findById(@Param("id") int id);
@@ -53,7 +53,10 @@ public interface UserMapper {
     )
     void update(User user);
 
-    @Delete("DELETE FROM users WHERE id = #{id}")
+    @Delete(
+            "DELETE FROM users " +
+                    "WHERE user_id = #{id}"
+    )
     void delete(@Param("id") int id);
 
     /**

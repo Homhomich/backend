@@ -43,12 +43,11 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     UserDto create(@RequestBody UserDto userDto) {
-        userService.create(userDto);
-        return userDto;
+        return userService.create(userDto);
     }
 
     @DeleteMapping("/{id}")
-    void remove(@PathVariable("userID") int id) {
+    void remove(@PathVariable("id") int id) {
         userService.remove(id);
     }
 }

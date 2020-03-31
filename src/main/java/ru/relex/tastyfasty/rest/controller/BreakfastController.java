@@ -34,12 +34,12 @@ public class BreakfastController {
     }
 
     @GetMapping("/{id}")
-    BreakfastDto getBreakfastById(@PathVariable("breakfastID") int id) {
+    BreakfastDto getBreakfastById(@PathVariable("id") int id) {
         return breakfastService.findBreakfastById(id);
     }
 
     @PutMapping("/{id}")
-    BreakfastDto update(@PathVariable("breakfastID") int id, @RequestBody BreakfastDto breakfastDto) {
+    BreakfastDto update(@PathVariable("id") int id, @RequestBody BreakfastDto breakfastDto) {
         breakfastDto.setBreakfastID(id);
         breakfastService.update(breakfastDto);
         return getBreakfastById(id);
@@ -52,7 +52,7 @@ public class BreakfastController {
     }
 
     @DeleteMapping("/{id}")
-    void remove(@PathVariable("breakfastID") int id) {
+    void remove(@PathVariable("id") int id) {
         breakfastService.remove(id);
     }
 }

@@ -41,7 +41,7 @@ public interface AddressMapper {
 
     @Delete(
             "DELETE FROM addresses " +
-                    "WHERE id = #{id}"
+                    "WHERE address_id = #{id}"
     )
     void delete(@Param("id") int id);
 

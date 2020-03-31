@@ -60,7 +60,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void remove(final int userId) {
-        userMapper.delete(userId);
+    public void remove(final int id) {
+        addressService.remove(findUserById(id).getPersonalInfo().getAddress().getId());
+        userMapper.delete(id);
     }
 }
