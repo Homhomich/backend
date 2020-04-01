@@ -105,3 +105,12 @@ databaseChangeLog:
         - sqlFile:
             path: fix-mistake-in-restaurant-address-0-1-0.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: yankevich_5
+      author: AnyaYankevich
+      comment: security modifications
+      changes:
+        - sqlFile:
+            path: permissions.sql
+            relativeToChangelogFile: true

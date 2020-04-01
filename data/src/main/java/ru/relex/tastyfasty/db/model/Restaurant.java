@@ -14,4 +14,6 @@ public class Restaurant {
     private int rating;
     private LocalTime openTime;
     private LocalTime closeTime;
+
+
 }

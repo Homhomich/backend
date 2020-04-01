@@ -13,6 +13,8 @@ public interface RestaurantMapper {
                     "name, "  +
                     "rating, " +
                     "address_id, " +
+                    "open_time, " +
+                    "close_time, " +
                     "tags " +
                     "FROM restaurants rest " +
                     "WHERE #{search:VARCHAR} IS NULL " +
