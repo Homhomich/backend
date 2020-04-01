@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class  Breakfast {
-    private int breakfastID;
+    private int id;
     private String name;
     private String tag;
     private double price;
-    private int restaurantID;
+    private int restaurantId;
 }

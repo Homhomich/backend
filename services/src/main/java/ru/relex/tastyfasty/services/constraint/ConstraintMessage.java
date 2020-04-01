@@ -35,6 +35,8 @@ public final class ConstraintMessage {
 
         public static final String PRICE = "PRICE";
 
+        public static final String NUMBER_OF_PERSONS = "NUMBEROFPERSONS";
+
     }
 
     public static class Constraint {
@@ -43,6 +45,7 @@ public final class ConstraintMessage {
         public static final String IS_EMPTY = "_EMPTY";
         public static final String TOO_LONG = "_TOOLONG";
         public static final String TOO_SHORT = "_TOOSHORT";
+        public static final String LESS_THAN_ONE = "_LESSTHANONE";
     }
 
 }

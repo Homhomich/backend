@@ -24,7 +24,6 @@ public class RestaurantController {
     }
 
 
-
     @GetMapping
     List<RestaurantDto> getRestaurants(@RequestParam(name = "search", required = false) String search) {
         return restaurantService.findRestaurants(search);
@@ -32,12 +31,11 @@ public class RestaurantController {
 
     @GetMapping("/{id}")
     RestaurantDto findById(@PathVariable("id") int id) {
-        return null;
+        return restaurantService.findRestaurantById(id);
     }
 
-    @GetMapping("/{city}, /{street}, /{building}")
-        // TODO: 24.03.2020 is it working????))
-    RestaurantDto findByAddress(
+    @GetMapping("/{city}/{street}/{building}")  // TODO: 24.03.2020 is it working????))
+    List<RestaurantDto> findByAddress(
             @PathVariable("city") String city,
             @PathVariable("street") String street,
             @PathVariable("building") int building
@@ -45,21 +43,20 @@ public class RestaurantController {
         return restaurantService.findRestaurantByAddress(city, street, building);
     }
 
-
     @PutMapping("/{id}")
-    RestaurantDto update(@PathVariable("id") int id, @RequestBody RestaurantDto restaurant) {
-        restaurant.setRestaurantId(id);
-        restaurantService.update(restaurant);
+    RestaurantDto update(@PathVariable("id") int id, @RequestBody RestaurantDto restaurantDto) {
+        restaurantDto.setRestaurantId(id);
+        restaurantService.update(restaurantDto);
         return findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    RestaurantDto create(@RequestBody RestaurantDto restaurant) {
-        return restaurantService.create(restaurant);
+    RestaurantDto create(@RequestBody RestaurantDto restaurantDto) {
+        return restaurantService.create(restaurantDto);
     }
 
     @DeleteMapping("/{id}")
-    void remove(@PathVariable("restaurantID") int id) {
+    void remove(@PathVariable("id") int id) {
         restaurantService.remove(id);
     }
 }

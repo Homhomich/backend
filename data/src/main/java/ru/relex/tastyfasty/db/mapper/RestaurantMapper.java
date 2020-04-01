@@ -12,11 +12,11 @@ public interface RestaurantMapper {
                     "restaurant_id, " +
                     "name, "  +
                     "rating, " +
-                    "address_id, " +
                     "open_time, " +
                     "close_time, " +
+                    "address_id AS address, " +
                     "tags " +
-                    "FROM restaurants rest " +
+                    "FROM restaurants " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', name, rating, tags) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
     )
@@ -24,31 +24,35 @@ public interface RestaurantMapper {
 
     @Select(
             "SELECT " +
-                    "restaurant_id AS id, " +
+                    "restaurant_id, " +
                     "name, " +
                     "open_time, " +
                     "close_time, " +
                     "rating, " +
-                    "address_id, " +
+                    "address_id AS address, " +
                     "tags " +
-                    "FROM restaurants rest " +
+                    "FROM restaurants " +
                     "WHERE restaurant_id = #{id}")
 
     Restaurant findById(@Param("id") int id);
 
     @Select(
             "SELECT " +
-                    "restaurant_id AS id, " +
+                    "restaurant_id, " +
                     "name, " +
                     "open_time, " +
                     "close_time, " +
                     "rating, " +
-                    "address_id, " +
+                    "address_id AS address, " +
                     "tags " +
-                    "FROM addresses addr " +
+                    "FROM restaurants rest NATURAL JOIN addresses addr " +
                     "WHERE addr.city = #{city} AND addr.street = #{street} AND addr.building = #{building}"
     )
-    Restaurant findByAddress(@Param("city") String city, @Param("street") String street, @Param("building") int building);
+    List<Restaurant> findByAddress(
+            @Param("city") String city,
+            @Param("street") String street,
+            @Param("building") int building
+    );
 
     @Update(
             "UPDATE restaurants " +
@@ -58,15 +62,15 @@ public interface RestaurantMapper {
                     "rating = #{rating}, " +
                     "address_id = #{address}, " +
                     "tags = #{tags} " +
-                    "WHERE restaurant_id = #{id}"
+                    "WHERE restaurant_id = #{restaurantId}"
     )
     void update(Restaurant restaurant);
 
     @Delete(
             "DELETE FROM restaurants " +
-                    "WHERE restaurant_id = #{restaurantId}"
+                    "WHERE restaurant_id = #{id}"
     )
-    void delete(@Param("restaurant_id") int restaurant_id);
+    void delete(@Param("id") int id);
 
     @Insert(
             "INSERT " +

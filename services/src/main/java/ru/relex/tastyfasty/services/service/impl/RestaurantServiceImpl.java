@@ -37,9 +37,15 @@ public class RestaurantServiceImpl implements IRestaurantService {
     }
 
     @Override
-    public RestaurantDto findRestaurantByAddress(String city, String street, int building) {
+    public List<RestaurantDto> findRestaurantByAddress(String city, String street, int building) {
         var restaurants = restaurantMapper.findByAddress(city, street, building);
         return restaurantStruct.toDto(restaurants);
+    }
+
+    @Override
+    public RestaurantDto findRestaurantById(int id) {
+        var restaurant = restaurantMapper.findById(id);
+        return restaurantStruct.toDto(restaurant);
     }
 
     @Override
@@ -54,15 +60,25 @@ public class RestaurantServiceImpl implements IRestaurantService {
 
     @Override
     public RestaurantDto update(@Valid RestaurantDto restaurantDto) {
+        /**Этим методом адрес не обновлялся на тот что пришел с клиента*/
+        /*int addressId = restaurantMapper.findById(restaurantDto.getRestaurantId()).getAddress();
+        restaurantDto.getRestaurantInfo().getAddress().setId(addressId);*/
+
+        /**А этим обновляется*/
         int addressId = restaurantMapper.findById(restaurantDto.getRestaurantId()).getAddress();
-        restaurantDto.getRestaurantInfo().getAddress().setId(addressId);
+        var addressDto = restaurantDto.getRestaurantInfo().getAddress();
+        addressDto.setId(addressId);
+        addressService.update(addressDto);
+        restaurantDto.getRestaurantInfo().setAddress(addressDto);
+
         var restaurant = restaurantStruct.fromDto(restaurantDto);
         restaurantMapper.update(restaurant);
         return restaurantStruct.toDto(restaurant);
     }
 
     @Override
-    public void remove(int restaurantID) {
-        restaurantMapper.delete(restaurantID);
+    public void remove(int id) {
+        addressService.remove(findRestaurantById(id).getRestaurantInfo().getAddress().getId());
+        restaurantMapper.delete(id);
     }
 }

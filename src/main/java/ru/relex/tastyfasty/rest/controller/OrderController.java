@@ -31,12 +31,12 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    OrderDto findById(@PathVariable("orderID") int id) {
+    OrderDto findById(@PathVariable("id") int id) {
         return orderService.findById(id);
     }
 
     @PutMapping("/{id}")
-    OrderDto update(@PathVariable("orderID") int id, @RequestBody OrderDto orderDto) {
+    OrderDto update(@PathVariable("id") int id, @RequestBody OrderDto orderDto) {
         orderDto.setOrderID(id);
         orderService.update(orderDto);
         return findById(id);
@@ -49,7 +49,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    void remove(@PathVariable("orderID") int id) {
+    void remove(@PathVariable("id") int id) {
         orderService.remove(id);
     }
 }

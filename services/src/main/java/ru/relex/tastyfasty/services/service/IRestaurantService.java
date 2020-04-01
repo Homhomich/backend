@@ -9,11 +9,13 @@ public interface IRestaurantService {
 
     List<RestaurantDto> findRestaurants(String search);
 
-    RestaurantDto findRestaurantByAddress(String city, String street, int building);
+    List<RestaurantDto> findRestaurantByAddress(String city, String street, int building);
+
+    RestaurantDto findRestaurantById(int id);
 
     RestaurantDto create(@Valid RestaurantDto restaurantDto);
 
     RestaurantDto update(@Valid RestaurantDto restaurantDto);
 
-    void remove(int restaurantID);
+    void remove(int id);
 }

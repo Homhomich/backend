@@ -9,83 +9,94 @@ import java.util.List;
 public interface BreakfastMapper {
     @Select(
             "SELECT " +
-                    "breakfast_id AS breakfastID, " +
+                    "breakfast_id AS id, " +
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id AS restaurantID " +
+                    "restaurant_id " +
+                    "FROM breakfasts " +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
     List<Breakfast> getBreakfasts(@Param("search") String search);
 
     @Select(
             "SELECT " +
-                    "breakfast_id AS breakfastID, " +
+                    "breakfast_id AS id, " +
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id AS restaurantID " +
+                    "restaurant_id " +
+                    "FROM breakfasts " +
                     "WHERE breakfast_id = #{id}"
     )
     Breakfast findById(@Param("id") int id);
 
     @Select(
             "SELECT " +
-                    "breakfast_id AS breakfastID, " +
+                    "breakfast_id AS id, " +
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id AS restaurantID " +
+                    "restaurant_id " +
+                    "FROM breakfasts " +
                     "WHERE restaurant_id = #{id}"
     )
     List<Breakfast> findByRestaurantID(@Param("id") int id);
 
     @Select(
             "SELECT " +
-                    "breakfast_id AS breakfastID, " +
+                    "breakfast_id AS id, " +
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id AS restaurantID " +
-                    "WHERE tag = #{tag}"
+                    "restaurant_id " +
+                    "FROM breakfasts " +
+                    "WHERE tag = #{tag} AND restaurant_id = #{restaurantId}"
     )
-    List<Breakfast> findByTag(@Param("tag") String tag);
+    List<Breakfast> findByTag(@Param("tag") String tag, @Param("restaurantId") int restaurantId);
 
     @Select(
             "SELECT " +
-                    "breakfast_id AS breakfastID, " +
+                    "breakfast_id AS id, " +
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id AS restaurantID " +
+                    "restaurant_id " +
+                    "FROM breakfasts " +
                     "WHERE name = #{name}"
     )
     List<Breakfast> findByName(@Param("name") String name);
 
     @Update(
-            "UPDATE orders_breakfasts " +
+            "UPDATE breakfasts " +
                     "SET " +
-                    "order_id = #{breakfastID}, " +
-                    "name= #{name}, " +
-                    "tag= #{tag}, " +
-                    "price= #{price}, " +
-                    "restaurant_id AS restaurantID " +
-                    "WHERE order_id = #{id}"
+                    "breakfast_id = #{id}, " +
+                    "name = #{name}, " +
+                    "tag = #{tag}, " +
+                    "price = #{price}, " +
+                    "restaurant_id = #{restaurantId} " +
+                    "WHERE breakfast_id = #{id}"
     )
     void update(Breakfast breakfast);
 
     @Delete(
-            "DELETE FROM orders " +
-                    "WHERE order_id = #{breakfastID}"
+            "DELETE FROM breakfasts " +
+                    "WHERE breakfast_id = #{id}"
     )
-    void delete(@Param("breakfastID") int breakfastID);
+    void delete(@Param("id") int id);
 
 
     @Insert(
             "INSERT " +
-                    "INTO orders_breakfasts " +
-                    "(order_id, name, tag, price, restaurant_id)" +
+                    "INTO breakfasts " +
+                    "(name, tag, price, restaurant_id)" +
                     "VALUES " +
-                    "(#{orderID}, #{name}, #{tag}, #{price}, #{restaurantID})")
+                    "(#{name}, #{tag}, #{price}, #{restaurantId})")
+    @SelectKey(
+            before = false,
+            keyProperty = "id",
+            keyColumn = "breakfast_id",
+            statement = "select currval('breakfasts_breakfast_id_seq')",
+            resultType = Integer.class)
     void insert(Breakfast breakfast);
 }

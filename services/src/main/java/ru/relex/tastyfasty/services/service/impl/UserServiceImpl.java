@@ -61,15 +61,24 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto update(@Valid final UserDto userDto) {
+        /**см. комментарии в RestaurantServiceImpl*/
+        /*int addressId = userMapper.findById(userDto.getId()).getAddress();
+        userDto.getPersonalInfo().getAddress().setId(addressId);*/
+
         int addressId = userMapper.findById(userDto.getId()).getAddress();
-        userDto.getPersonalInfo().getAddress().setId(addressId);
+        var addressDto = userDto.getPersonalInfo().getAddress();
+        addressDto.setId(addressId);
+        addressService.update(addressDto);
+        userDto.getPersonalInfo().setAddress(addressDto);
+
         var user = userStruct.fromDto(userDto);
         userMapper.update(user);
         return userStruct.toDto(user);
     }
 
     @Override
-    public void remove(final int userId) {
-        userMapper.delete(userId);
+    public void remove(final int id) {
+        addressService.remove(findUserById(id).getPersonalInfo().getAddress().getId());
+        userMapper.delete(id);
     }
 }
