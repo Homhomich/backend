@@ -109,8 +109,8 @@ databaseChangeLog:
   - changeSet:
       id: yankevich_5
       author: AnyaYankevich
-      comment: security modifications
+      comment: add security modifications
       changes:
         - sqlFile:
-            path: permissions.sql
+            path: TASTY-020.sql
             relativeToChangelogFile: true
