@@ -9,8 +9,6 @@ public interface IOrderFillingService {
 
     List<BreakfastDto> getBreakfastsInOrder(int orderId);
 
-    BreakfastDto getBreakfastInOrderByPK(int orderBreakfastId);
-
     BreakfastDto addBreakfastToOrder(@Valid BreakfastDto breakfastDto);
 
     BreakfastDto updateBreakfastInOrder(@Valid BreakfastDto breakfastDto);

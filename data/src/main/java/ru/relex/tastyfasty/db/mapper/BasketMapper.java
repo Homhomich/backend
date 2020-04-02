@@ -30,7 +30,7 @@ public interface BasketMapper {
                     "FROM baskets " +
                     "WHERE user_id = #{id}"
     )
-    List<Basket> findByUserId(@Param("id") int id);
+    Basket findByUserId(@Param("id") int id);
 
     @Select(//language=PostgreSQL
             "SELECT " +

@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface IBasketService {
 
-    //List<BasketDto> findBaskets(String search);
-
-    List<BasketDto> findBasketByUserId(int userID);
+    BasketDto findBasketByUserId(int userID);
 
     BasketDto findBasketById(int basketID);
 

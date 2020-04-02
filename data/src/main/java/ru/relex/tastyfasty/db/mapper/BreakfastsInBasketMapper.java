@@ -17,7 +17,7 @@ public interface BreakfastsInBasketMapper {
                     "FROM breakfasts_in_basket " +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
-    List<Breakfast> getBreakfastsInBasket(@Param("search") String search);*/
+    List<BreakfastInBasket> getBreakfastsInBasket(@Param("search") String search);*/
 
     /*@Select(//language=PostgreSQL
             "SELECT " +
@@ -27,19 +27,21 @@ public interface BreakfastsInBasketMapper {
                     "FROM breakfasts_in_basket " +
                     "WHERE breakfast_id = #{id}"
     )
-    List<Breakfast> findByBreakfastId(@Param("id") int id);*/
+    List<BreakfastInBasket> findByBreakfastId(@Param("id") int id);*/
 
     @Select(//language=PostgreSQL
             "SELECT " +
-                    "breakfasts_in_basket_id AS breakfastsInBasketID, " +
-                    "basket_id AS basketID, " +
-                    "breakfast_id AS breakfastID " +
-                    "FROM breakfasts_in_basket " +
-                    "WHERE basket_id = #{id}"
+                    "bb.breakfast_id AS id, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id " +
+                    "FROM breakfasts_in_basket bb RIGHT JOIN breakfasts br ON bb.breakfast_id = br.breakfast_id " +
+                    "WHERE bb.basket_id = #{basketId}"
     )
-    List<Breakfast> findByBasketId(@Param("id") int id);
+    List<Breakfast> findByBasketId(@Param("basketId") int basketId);
 
-    @Select(//language=PostgreSQL
+    /*@Select(//language=PostgreSQL
             "SELECT " +
                     "breakfasts_in_basket_id AS breakfastsInBasketID, " +
                     "basket_id AS basketID, " +
@@ -47,7 +49,7 @@ public interface BreakfastsInBasketMapper {
                     "FROM breakfasts_in_basket " +
                     "WHERE breakfasts_in_basket_id = #{id}"
     )
-    Breakfast findByBreakfastInBasketId(@Param("id") int id);
+    BreakfastsInBasket findByBreakfastInBasketId(@Param("id") int id);*/
 
     @Update(//language=PostgreSQL
             "UPDATE breakfasts_in_basket " +
@@ -58,17 +60,23 @@ public interface BreakfastsInBasketMapper {
     )
     void update(BreakfastsInBasket breakfastsInBasket);
 
-    @Delete(//language=PostgreSQL
+    /*@Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
                     "WHERE breakfasts_in_basket_id = #{breakfastsInBasketID}"
     )
-    void deleteById(@Param("breakfastsInBasketID") int breakfastsInBasketID);
+    void deleteById(@Param("breakfastsInBasketID") int breakfastsInBasketID);*/
 
     @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
                     "WHERE basket_id = #{basketID}"
     )
-    void deleteByBasketId(@Param("basketID") int basketID);
+    void deleteBreakfastsByBasketId(@Param("basketID") int basketID);
+
+    @Delete(//language=PostgreSQL
+            "DELETE FROM breakfasts_in_basket " +
+                    "WHERE basket_id = #{basketID} AND breakfast_id = #{breakfastId}"
+    )
+    void deleteOneBreakfastByBasketId(@Param("basketId") int basketId, @Param("breakfastId") int breakfastId);
 
     @Insert(//language=PostgreSQL
             "INSERT INTO breakfasts_in_basket " +

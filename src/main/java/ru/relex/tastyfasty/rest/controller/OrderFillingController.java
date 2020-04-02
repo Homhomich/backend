@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/order/restaurant",
+        path = "/order/{orderId}/",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class OrderBreakfastController {
+public class OrderFillingController {
 }

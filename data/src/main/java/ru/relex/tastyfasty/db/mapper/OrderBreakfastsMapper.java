@@ -1,6 +1,7 @@
 package ru.relex.tastyfasty.db.mapper;
 
 import org.apache.ibatis.annotations.*;
+import ru.relex.tastyfasty.db.model.Breakfast;
 import ru.relex.tastyfasty.db.model.OrderBreakfasts;
 
 import java.util.List;
@@ -20,15 +21,17 @@ public interface OrderBreakfastsMapper {
 
     @Select(//language=PostgreSQL
             "SELECT " +
-                    "order_breakfast_id AS orderBreakfastID, " +
-                    "order_id AS orderID, " +
-                    "breakfast_id AS breakfastID " +
-                    "FROM orders_breakfasts " +
-                    "WHERE order_id = #{orderId}"
+                    "ob.breakfast_id AS id, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id " +
+                    "FROM orders_breakfasts ob RIGHT JOIN breakfasts b ON  ob.breakfast_id = b.breakfast_id " +
+                    "WHERE ob.order_id = #{orderId}"
     )
-    List<OrderBreakfasts> findByOrderId(@Param("orderId") int orderId);
+    List<Breakfast> findByOrderId(@Param("orderId") int orderId);
 
-    @Select(//language=PostgreSQL
+    /*@Select(//language=PostgreSQL
             "SELECT " +
                     "order_breakfast_id AS orderBreakfastID, " +
                     "order_id AS orderID, " +
@@ -36,7 +39,7 @@ public interface OrderBreakfastsMapper {
                     "FROM orders_breakfasts " +
                     "WHERE order_breakfast_id = #{id}"
     )
-    OrderBreakfasts findById(@Param("id") int id);
+    OrderBreakfasts findById(@Param("id") int id);*/
 
     @Update(//language=PostgreSQL
             "UPDATE orders_breakfasts " +

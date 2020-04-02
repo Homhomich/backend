@@ -29,14 +29,8 @@ public class BasketServiceImpl  implements IBasketService {
     }
 
 
-    /*@Override
-    public List<BasketDto> findBaskets(final String search) {
-        var baskets = basketMapper.getBaskets(search);
-        return basketStruct.toDto(baskets);
-    }*/
-
     @Override
-    public List<BasketDto> findBasketByUserId(final int userID) {
+    public BasketDto findBasketByUserId(final int userID) {
         var baskets = basketMapper.findByUserId(userID);
         return basketStruct.toDto(baskets);
     }
