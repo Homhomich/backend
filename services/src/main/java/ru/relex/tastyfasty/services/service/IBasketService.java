@@ -7,9 +7,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 public interface IBasketService {
-    List<BasketDto> findBaskets(String search);
 
-    BasketDto findBasketByUserId(int userID);
+    //List<BasketDto> findBaskets(String search);
+
+    List<BasketDto> findBasketByUserId(int userID);
 
     BasketDto findBasketById(int basketID);
 
@@ -17,5 +18,7 @@ public interface IBasketService {
 
     BasketDto update(@Valid BasketDto basketDto);
 
-    void remove(int basketID);
+    void removeByBasketId(int basketID);
+
+    void removeByUserId(int userID);
 }

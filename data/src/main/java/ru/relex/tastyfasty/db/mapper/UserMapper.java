@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select(
+
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "user_id AS id," +
                     "first_name, " +
@@ -23,7 +24,7 @@ public interface UserMapper {
     )
     List<User> getUsers(@Param("search") String search);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "user_id AS id, " +
                     "first_name, " +
@@ -38,7 +39,7 @@ public interface UserMapper {
     )
     User findById(@Param("id") int id);
 
-    @Update(
+    @Update(//language=PostgreSQL
             "UPDATE users " +
                     "SET " +
                     "first_name = #{firstName}, " +
@@ -53,7 +54,7 @@ public interface UserMapper {
     )
     void update(User user);
 
-    @Delete(
+    @Delete(//language=PostgreSQL
             "DELETE FROM users " +
                     "WHERE user_id = #{id}"
     )
@@ -65,7 +66,7 @@ public interface UserMapper {
      *
      * @param user
      */
-    @Insert(
+    @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO users " +
                     "(first_name, last_name, middle_name, username, password, role_id, address_id, phone_number) " +

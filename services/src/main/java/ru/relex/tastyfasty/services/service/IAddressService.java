@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 public interface IAddressService {
+
     List<AddressDto> findAddresses(String search);
 
     AddressDto findAddressById(int addressId);

@@ -9,8 +9,10 @@ import ru.relex.tastyfasty.services.ServicesConfiguration;
 @SpringBootApplication(
         scanBasePackages = "ru.relex.tastyfasty.rest"
 )
-@Import({ServicesConfiguration.class,
-        SecurityConfiguration.class})
+@Import({
+        ServicesConfiguration.class,
+        SecurityConfiguration.class
+})
 public class  TastyFasty {
     public static void main(String[] args) {
         SpringApplication.run(TastyFasty.class, args);

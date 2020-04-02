@@ -18,7 +18,8 @@ public class RoleTypeHandler implements TypeHandler<Role> {
     @Override
     public void setParameter(
             PreparedStatement ps,
-            int i, Role parameter,
+            int i,
+            Role parameter,
             JdbcType jdbcType
     ) throws SQLException {
         if (parameter != null) {

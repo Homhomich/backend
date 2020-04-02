@@ -25,28 +25,41 @@ public class OrderController {
     }
 
 
-    @GetMapping
+    /*@GetMapping
     List<OrderDto> getOrders(@RequestParam(name = "search", required = false) String search) {
         return orderService.findOrders(search);
+    }
+
+    @GetMapping
+    List<OrderDto> getOrdersByCustomerId(@RequestParam(value = "userId") int userId) {
+        return orderService.findByCustomerId(userId);
     }
 
     @GetMapping("/{id}")
     OrderDto findById(@PathVariable("id") int id) {
         return orderService.findById(id);
-    }
+    }*/
 
-    @PutMapping("/{id}")
-    OrderDto update(@PathVariable("id") int id, @RequestBody OrderDto orderDto) {
+    /*@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    OrderDto create(
+            @PathVariable("userId") int userId,
+            @RequestBody OrderDto orderDto
+    ) {
+        orderDto.setCustomerID(userId);
+        return orderService.create(orderDto);
+    }*/
+
+    /*@PutMapping("/{id}")
+    OrderDto update(
+            @PathVariable("id") int id,
+            @PathVariable("userId") int userId,
+            @RequestBody OrderDto orderDto
+    ) {
         orderDto.setOrderID(id);
+        orderDto.setCustomerID(userId);
         orderService.update(orderDto);
         return findById(id);
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    OrderDto create(@RequestBody OrderDto orderDto) {
-        orderService.create(orderDto);
-        return orderDto;
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     void remove(@PathVariable("id") int id) {

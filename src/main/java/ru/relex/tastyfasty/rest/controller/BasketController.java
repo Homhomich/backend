@@ -23,15 +23,15 @@ public class BasketController {
     }
 
 
-    @GetMapping
+    /*@GetMapping
     List<BasketDto> getBaskets(@RequestParam(name = "search", required = false) String search) {
         return basketService.findBaskets(search);
-    }
+    }*/
 
-    @GetMapping("/{user_id}")
+    /*@GetMapping("/{user_id}")
     BasketDto getBasketByUserId(@PathVariable("userID") int userID) {
         return basketService.findBasketByUserId(userID);
-    }
+    }*/
 
     @PutMapping("/{number_of_persons}")
     BasketDto update(@PathVariable("numberOfPersons") int id, @RequestBody BasketDto basketDto) {
@@ -46,9 +46,9 @@ public class BasketController {
         return basketDto;
     }
 
-    @DeleteMapping("/{basket_id}")
+    /*@DeleteMapping("/{basket_id}")
     void remove(@PathVariable("basketID") int basketID) {
         basketService.remove(basketID);
-    }
+    }*/
 }
 

@@ -30,11 +30,6 @@ public class BreakfastController {
         return breakfastService.findBreakfastsByRestaurantId(restaurantId);
     }
 
-    @GetMapping("/{id}")
-    BreakfastDto getBreakfastById(@PathVariable("id") int id) {
-        return breakfastService.findBreakfastById(id);
-    }
-
     @GetMapping("/{tag}")
     List<BreakfastDto> getBreakfastByTag(
             @PathVariable("restaurantId") int restaurantId,
@@ -43,8 +38,16 @@ public class BreakfastController {
         return breakfastService.findBreakfastsByTag(tag, restaurantId);
     }
 
+    @GetMapping("/{id}")
+    BreakfastDto getBreakfastById(@PathVariable("id") int id) {
+        return breakfastService.findBreakfastById(id);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    BreakfastDto create(@RequestBody BreakfastDto breakfastDto, @PathVariable("restaurantId") int restaurantId) {
+    BreakfastDto create(
+            @PathVariable("restaurantId") int restaurantId,
+            @RequestBody BreakfastDto breakfastDto
+    ) {
         breakfastDto.setRestaurantId(restaurantId);
         return breakfastService.create(breakfastDto);
     }

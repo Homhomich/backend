@@ -9,7 +9,7 @@ import org.springframework.web.context.WebApplicationContext;
 import ru.relex.commons.model.CurrentUser;
 
 @Configuration
-public class CurrentUserConfig {
+public class CurrentUserConfiguration {
     @Bean
     @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
     CurrentUser currentUser() {

@@ -18,7 +18,8 @@ public class UserPermissionTypeHandler implements TypeHandler<UserPermission> {
     @Override
     public void setParameter(
             PreparedStatement ps,
-            int i, UserPermission parameter,
+            int i,
+            UserPermission parameter,
             JdbcType jdbcType
     ) throws SQLException {
         if (parameter != null) {

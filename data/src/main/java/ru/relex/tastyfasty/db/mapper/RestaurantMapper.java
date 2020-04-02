@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface RestaurantMapper {
-    @Select(
+
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "restaurant_id, " +
                     "name, "  +
@@ -22,21 +23,37 @@ public interface RestaurantMapper {
     )
     List<Restaurant> getRestaurants(@Param("search") String search);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "restaurant_id, " +
-                    "name, " +
+                    "name, "  +
+                    "rating, " +
                     "open_time, " +
                     "close_time, " +
-                    "rating, " +
                     "address_id AS address, " +
                     "tags " +
                     "FROM restaurants " +
-                    "WHERE restaurant_id = #{id}")
+                    "WHERE name = #{name:VARCHAR} " +
+                    "OR CONCAT_WS('$', name) LIKE CONCAT('%', #{name:VARCHAR}, '%')"
+    )
+    List<Restaurant> getRestaurantsByName(@Param("name") String name);
 
-    Restaurant findById(@Param("id") int id);
+    @Select(//language=PostgreSQL
+            "SELECT " +
+                    "restaurant_id, " +
+                    "name, "  +
+                    "rating, " +
+                    "open_time, " +
+                    "close_time, " +
+                    "address_id AS address, " +
+                    "tags " +
+                    "FROM restaurants " +
+                    "WHERE tags = #{tags:VARCHAR} " +
+                    "OR CONCAT_WS('$', tags) LIKE CONCAT('%', #{tags:VARCHAR}, '%')"
+    )
+    List<Restaurant> getRestaurantsByTags(@Param("tags") String tags);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "restaurant_id, " +
                     "name, " +
@@ -54,7 +71,21 @@ public interface RestaurantMapper {
             @Param("building") int building
     );
 
-    @Update(
+    @Select(//language=PostgreSQL
+            "SELECT " +
+                    "restaurant_id, " +
+                    "name, " +
+                    "open_time, " +
+                    "close_time, " +
+                    "rating, " +
+                    "address_id AS address, " +
+                    "tags " +
+                    "FROM restaurants " +
+                    "WHERE restaurant_id = #{id}")
+
+    Restaurant findById(@Param("id") int id);
+
+    @Update(//language=PostgreSQL
             "UPDATE restaurants " +
                     "SET name = #{name}, " +
                     "open_time= #{openTime}, " +
@@ -66,13 +97,13 @@ public interface RestaurantMapper {
     )
     void update(Restaurant restaurant);
 
-    @Delete(
+    @Delete(//language=PostgreSQL
             "DELETE FROM restaurants " +
                     "WHERE restaurant_id = #{id}"
     )
     void delete(@Param("id") int id);
 
-    @Insert(
+    @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO restaurants " +
                     "(name, open_time, close_time, rating, address_id, tags)" +

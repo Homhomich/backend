@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface BreakfastMapper {
-    @Select(
+
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "breakfast_id AS id, " +
                     "name, " +
@@ -15,23 +16,12 @@ public interface BreakfastMapper {
                     "price, " +
                     "restaurant_id " +
                     "FROM breakfasts " +
-                    "WHERE #{search:VARCHAR} IS NULL "
+                    "WHERE #{search:VARCHAR} IS NULL " +
+                    "OR CONCAT_WS('$', name, tag) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
     )
     List<Breakfast> getBreakfasts(@Param("search") String search);
 
-    @Select(
-            "SELECT " +
-                    "breakfast_id AS id, " +
-                    "name, " +
-                    "tag, " +
-                    "price, " +
-                    "restaurant_id " +
-                    "FROM breakfasts " +
-                    "WHERE breakfast_id = #{id}"
-    )
-    Breakfast findById(@Param("id") int id);
-
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "breakfast_id AS id, " +
                     "name, " +
@@ -43,7 +33,7 @@ public interface BreakfastMapper {
     )
     List<Breakfast> findByRestaurantID(@Param("id") int id);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "breakfast_id AS id, " +
                     "name, " +
@@ -51,11 +41,12 @@ public interface BreakfastMapper {
                     "price, " +
                     "restaurant_id " +
                     "FROM breakfasts " +
-                    "WHERE tag = #{tag} AND restaurant_id = #{restaurantId}"
+                    "WHERE restaurant_id = #{restaurantId} " +
+                    "AND CONCAT_WS('$', tag) LIKE CONCAT('%', #{tag:VARCHAR}, '%')"
     )
     List<Breakfast> findByTag(@Param("tag") String tag, @Param("restaurantId") int restaurantId);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "breakfast_id AS id, " +
                     "name, " +
@@ -63,11 +54,24 @@ public interface BreakfastMapper {
                     "price, " +
                     "restaurant_id " +
                     "FROM breakfasts " +
-                    "WHERE name = #{name}"
+                    "WHERE name = #{name} " +
+                    "OR CONCAT_WS('$', name) LIKE CONCAT('%', #{name:VARCHAR}, '%')"
     )
     List<Breakfast> findByName(@Param("name") String name);
 
-    @Update(
+    @Select(//language=PostgreSQL
+            "SELECT " +
+                    "breakfast_id AS id, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id " +
+                    "FROM breakfasts " +
+                    "WHERE breakfast_id = #{id}"
+    )
+    Breakfast findById(@Param("id") int id);
+
+    @Update(//language=PostgreSQL
             "UPDATE breakfasts " +
                     "SET " +
                     "breakfast_id = #{id}, " +
@@ -79,14 +83,14 @@ public interface BreakfastMapper {
     )
     void update(Breakfast breakfast);
 
-    @Delete(
+    @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts " +
                     "WHERE breakfast_id = #{id}"
     )
     void delete(@Param("id") int id);
 
 
-    @Insert(
+    @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO breakfasts " +
                     "(name, tag, price, restaurant_id)" +

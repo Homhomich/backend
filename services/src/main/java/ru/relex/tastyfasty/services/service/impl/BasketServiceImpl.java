@@ -28,18 +28,18 @@ public class BasketServiceImpl  implements IBasketService {
         this.basketStruct = basketStruct;
     }
 
-    @Override
+
+    /*@Override
     public List<BasketDto> findBaskets(final String search) {
         var baskets = basketMapper.getBaskets(search);
         return basketStruct.toDto(baskets);
-    }
+    }*/
 
     @Override
-    public BasketDto findBasketByUserId(final int userID) {
-        var basket = basketMapper.findByBasketId(userID);
-        return basketStruct.toDto(basket);
+    public List<BasketDto> findBasketByUserId(final int userID) {
+        var baskets = basketMapper.findByUserId(userID);
+        return basketStruct.toDto(baskets);
     }
-
 
     @Override
     public BasketDto findBasketById(final int basketID) {
@@ -62,8 +62,13 @@ public class BasketServiceImpl  implements IBasketService {
     }
 
     @Override
-    public void remove(int basketID) {
+    public void removeByBasketId(int basketID) {
+        basketMapper.deleteByBasketId(basketID);
+    }
 
+    @Override
+    public void removeByUserId(int userId) {
+        basketMapper.deleteByBasketId(userId);
     }
 
 }

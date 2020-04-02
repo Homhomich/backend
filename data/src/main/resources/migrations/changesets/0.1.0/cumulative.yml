@@ -114,3 +114,30 @@ databaseChangeLog:
         - sqlFile:
             path: TASTY-020.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_7
+      author: puliaevevgenii
+      comment: add foreign key constraint to orders table
+      changes:
+        - sqlFile:
+            path: add-cons-to-orders-0-1-0.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_8
+      author: puliaevevgenii
+      comment: add foreign key constraint to orders table
+      changes:
+        - sqlFile:
+            path: add-cons-to-orders-0-1-1.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_9
+      author: puliaevevgenii
+      comment: insert values into statuses
+      changes:
+        - sqlFile:
+            path: set-statuses.sql
+            relativeToChangelogFile: true

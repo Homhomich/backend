@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service;
 import ru.relex.tastyfasty.services.service.IPasswordEncoderService;
 
 @Service
-public class PasswordEncoderService implements IPasswordEncoderService {
+public class PasswordEncoderServiceImpl implements IPasswordEncoderService {
 
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public PasswordEncoderService(final PasswordEncoder passwordEncoder) {
+    public PasswordEncoderServiceImpl(final PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
