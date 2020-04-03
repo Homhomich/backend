@@ -9,6 +9,10 @@ public interface IRestaurantService {
 
     List<RestaurantDto> findRestaurants(String search);
 
+    List<RestaurantDto> findRestaurantsByName(String name);
+
+    List<RestaurantDto> findRestaurantsByTags(String tags);
+
     List<RestaurantDto> findRestaurantByAddress(String city, String street, int building);
 
     RestaurantDto findRestaurantById(int id);

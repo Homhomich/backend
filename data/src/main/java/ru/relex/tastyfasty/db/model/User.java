@@ -3,7 +3,9 @@ package ru.relex.tastyfasty.db.model;
 import lombok.Data;
 import ru.relex.commons.model.Role;
 
- 
+import java.sql.Blob;
+
+
 @Data
 public class User {
     private int id;
@@ -15,4 +17,5 @@ public class User {
     private String username;
     private String password;
     private Integer phoneNumber;
+    private byte[] img;
 }

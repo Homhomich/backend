@@ -34,17 +34,20 @@ public class RestaurantController {
         return restaurantService.findRestaurantById(id);
     }
 
-    @GetMapping("/{city}/{street}/{building}")  // TODO: 24.03.2020 is it working????))
+    @GetMapping("/{address}")
     List<RestaurantDto> findByAddress(
-            @PathVariable("city") String city,
-            @PathVariable("street") String street,
-            @PathVariable("building") int building
+            @RequestParam(name = "city") String city,
+            @RequestParam(name = "street", required = false) String street,
+            @RequestParam(name = "building", required = false) int building
     ) {
         return restaurantService.findRestaurantByAddress(city, street, building);
     }
 
     @PutMapping("/{id}")
-    RestaurantDto update(@PathVariable("id") int id, @RequestBody RestaurantDto restaurantDto) {
+    RestaurantDto update(
+            @PathVariable("id") int id,
+            @RequestBody RestaurantDto restaurantDto
+    ) {
         restaurantDto.setRestaurantId(id);
         restaurantService.update(restaurantDto);
         return findById(id);

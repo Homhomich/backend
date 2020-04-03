@@ -20,7 +20,8 @@ public class StatusTypeHandler implements TypeHandler<Status> {
     @Override
     public void setParameter(
             PreparedStatement ps,
-            int i, Status parameter,
+            int i,
+            Status parameter,
             JdbcType jdbcType
     ) throws SQLException {
         if (parameter != null) {

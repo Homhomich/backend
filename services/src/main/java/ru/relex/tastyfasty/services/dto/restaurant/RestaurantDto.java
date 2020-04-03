@@ -9,6 +9,7 @@ import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Field;
 
 @Data
 public class RestaurantDto {
+
     private int restaurantId;
 
     @Valid

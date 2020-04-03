@@ -9,49 +9,75 @@ import java.util.List;
 
 @Mapper
 public interface BasketMapper {
-    @Select(
+
+    /*@Select(//language=PostgreSQL
             "SELECT " +
                     "basket_id AS basketID, " +
                     "full_price AS fullPrice, " +
                     "number_of_persons AS numberOfPersons, " +
                     "user_id AS userID " +
+                    "FROM baskets " +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
-    List<Basket> getBaskets(@Param("search") String search);
+    List<Basket> getBaskets(@Param("search") String search);*/
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "basket_id AS basketID, " +
                     "full_price AS fullPrice, " +
                     "number_of_persons AS numberOfPersons, " +
                     "user_id AS userID " +
+                    "FROM baskets " +
+                    "WHERE user_id = #{id}"
+    )
+    Basket findByUserId(@Param("id") int id);
+
+    @Select(//language=PostgreSQL
+            "SELECT " +
+                    "basket_id AS basketID, " +
+                    "full_price AS fullPrice, " +
+                    "number_of_persons AS numberOfPersons, " +
+                    "user_id AS userID " +
+                    "FROM baskets " +
                     "WHERE basket_id = #{id}"
     )
     Basket findByBasketId(@Param("id") int id);
 
-    @Update(
+    @Update(//language=PostgreSQL
             "UPDATE baskets " +
                     "SET " +
                     "basket_id = #{basketID}, " +
                     "full_price = #{fullPrice}, " +
                     "number_of_persons = #{numberOfPersons}, " +
-                    "user_id AS userID " +
-                    "WHERE basket_id = #{id}"
+                    "user_id = #{userID} " +
+                    "WHERE basket_id = #{basketID}"
     )
     void update(Basket basket);
 
-    @Delete(
+    @Delete(//language=PostgreSQL
             "DELETE FROM baskets " +
-                    "WHERE basket_id = #{basketID}"
+                    "WHERE basket_id = #{basketId}"
     )
-    void delete(@Param("basketID") int basketID);
+    void deleteByBasketId(@Param("basketId") int basketId);
 
-    @Insert(
+    @Delete(//language=PostgreSQL
+            "DELETE FROM baskets " +
+                    "WHERE user_id = #{userId}"
+    )
+    void deleteByUserId(@Param("userId") int userId);
+
+    @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO baskets " +
-                    "(basket_id, full_price, number_of_persons, user_id)" +
+                    "(full_price, number_of_persons, user_id)" +
                     "VALUES " +
-                    "(#{basketID}, #{fullPrice}, #{numberOfPersons}, #{userID})"
+                    "(#{fullPrice}, #{numberOfPersons}, #{userID})"
     )
+    @SelectKey(
+            before = false,
+            keyProperty = "id",
+            keyColumn = "basket_id",
+            statement = "select currval('baskets_basket_id_seq')",
+            resultType = Integer.class)
     void insert(Basket basket);
 }

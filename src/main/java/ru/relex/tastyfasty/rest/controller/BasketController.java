@@ -8,11 +8,10 @@ import ru.relex.tastyfasty.services.service.IBasketService;
 
 import java.util.List;
 
-
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/basket",
+        path = "/users/{userId}/basket",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class BasketController {
@@ -26,31 +25,37 @@ public class BasketController {
 
 
     @GetMapping
-    List<BasketDto> getBaskets(@RequestParam(name = "search", required = false) String search) {
-        return basketService.findBaskets(search);
+    BasketDto getBasketByUserId(@PathVariable("userId") int userId) {
+        return basketService.findBasketByUserId(userId);
     }
 
-    @GetMapping("/{user_id}")
-    BasketDto getBasketByUserId(@PathVariable("userID") int userID) {
-        return basketService.findBasketByUserId(userID);
-    }
-
-    @PutMapping("/{number_of_persons}")
-    BasketDto update(@PathVariable("numberOfPersons") int id, @RequestBody BasketDto basketDto) {
-        basketDto.setNumberOfPersons(id);
-        basketService.update(basketDto);
-        return basketService.update(basketDto);
+    @GetMapping("/{basketId}")
+    BasketDto getBasketByBasketId(@PathVariable("basketId") int basketId) {
+        return basketService.findBasketById(basketId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     BasketDto create(@RequestBody BasketDto basketDto) {
-        basketService.create(basketDto);
-        return basketDto;
+        return basketService.create(basketDto);
     }
 
-    @DeleteMapping("/{basket_id}")
-    void remove(@PathVariable("basketID") int basketID) {
-        basketService.remove(basketID);
+    @PutMapping("/{id}")
+    BasketDto update(
+            @PathVariable("id") int id,
+            @RequestBody BasketDto basketDto
+    ) {
+        basketDto.setBasketID(id);
+        return basketService.update(basketDto);
+    }
+
+    @DeleteMapping
+    void removeByUserId(@PathVariable("userId") int userId) {
+        basketService.removeByUserId(userId);
+    }
+
+    @DeleteMapping("/{basketId}")
+    void removeByBasketId(@PathVariable("basketId") int basketId) {
+        basketService.removeByBasketId(basketId);
     }
 }
 

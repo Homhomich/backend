@@ -8,62 +8,88 @@ import java.util.List;
 
 @Mapper
 public interface BreakfastsInBasketMapper {
-    @Select(
+
+    /*@Select(//language=PostgreSQL
             "SELECT " +
                     "breakfasts_in_basket_id AS breakfastsInBasketID, " +
                     "basket_id AS basketID, " +
-                    "user_ID AS userID " +
+                    "breakfast_id AS breakfastID " +
+                    "FROM breakfasts_in_basket " +
                     "WHERE #{search:VARCHAR} IS NULL "
     )
-    List<Breakfast> getBreakfastsInBasket(@Param("search") String search);
+    List<BreakfastInBasket> getBreakfastsInBasket(@Param("search") String search);*/
 
-    @Select(
+    /*@Select(//language=PostgreSQL
             "SELECT " +
-            "breakfasts_in_basket_id AS breakfastsInBasketID, " +
-            "basket_id AS basketID, " +
-            "user_id AS userID " +
-            "WHERE breakfast_in_basket_id = #{id}"
+                    "breakfasts_in_basket_id AS breakfastsInBasketID, " +
+                    "basket_id AS basketID, " +
+                    "breakfast_id AS breakfastID " +
+                    "FROM breakfasts_in_basket " +
+                    "WHERE breakfast_id = #{id}"
     )
-    Breakfast findByBreakfastInBasketId(@Param("id") int id);
+    List<BreakfastInBasket> findByBreakfastId(@Param("id") int id);*/
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
-            "breakfasts_in_basket_id AS breakfastsInBasketID, " +
-            "basket_id AS basketID, " +
-            "user_id AS userID " +
-            "WHERE basket_id = #{id}"
+                    "bb.breakfast_id AS id, " +
+                    "name, " +
+                    "tag, " +
+                    "price, " +
+                    "restaurant_id " +
+                    "FROM breakfasts_in_basket bb RIGHT JOIN breakfasts br ON bb.breakfast_id = br.breakfast_id " +
+                    "WHERE bb.basket_id = #{basketId}"
     )
-    Breakfast findByBasketId(@Param("id") int id);
+    List<Breakfast> findByBasketId(@Param("basketId") int basketId);
 
-    @Select(
+    /*@Select(//language=PostgreSQL
             "SELECT " +
-            "breakfasts_in_basket_id AS breakfastsInBasketID, " +
-            "basket_id AS basketID, " +
-            "user_id AS userID " +
-            "WHERE user_id = #{id}"
+                    "breakfasts_in_basket_id AS breakfastsInBasketID, " +
+                    "basket_id AS basketID, " +
+                    "breakfast_id AS breakfastID " +
+                    "FROM breakfasts_in_basket " +
+                    "WHERE breakfasts_in_basket_id = #{id}"
     )
-    Breakfast findByUserId(@Param("id") int id);
+    BreakfastsInBasket findByBreakfastInBasketId(@Param("id") int id);*/
 
-    @Update(
+    @Update(//language=PostgreSQL
             "UPDATE breakfasts_in_basket " +
-            "SET breakfasts_in_basket_id = #{breakfastsInBasketID}, " +
-            "basket_id = #{basketID}, " +
-            "user_id= #{userID} " +
-            "WHERE order_id = #{id}"
+                    "SET breakfasts_in_basket_id = #{breakfastsInBasketID}, " +
+                    "basket_id = #{basketID}, " +
+                    "breakfast_id = #{breakfastID} " +
+                    "WHERE breakfasts_in_basket_id = #{id}"
     )
     void update(BreakfastsInBasket breakfastsInBasket);
 
-    @Delete(
+    /*@Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
-                    "WHERE breakfasts_basket_id = #{breakfastsInBasketID}"
+                    "WHERE breakfasts_in_basket_id = #{breakfastsInBasketID}"
     )
-    void delete(@Param("breakfastsInBasketID") int breakfastsInBasketID);
+    void deleteById(@Param("breakfastsInBasketID") int breakfastsInBasketID);*/
 
-    @Insert(
+    @Delete(//language=PostgreSQL
+            "DELETE FROM breakfasts_in_basket " +
+                    "WHERE basket_id = #{basketID}"
+    )
+    void deleteBreakfastsByBasketId(@Param("basketID") int basketID);
+
+    @Delete(//language=PostgreSQL
+            "DELETE FROM breakfasts_in_basket " +
+                    "WHERE basket_id = #{basketID} AND breakfast_id = #{breakfastId}"
+    )
+    void deleteOneBreakfastByBasketId(@Param("basketId") int basketId, @Param("breakfastId") int breakfastId);
+
+    @Insert(//language=PostgreSQL
             "INSERT INTO breakfasts_in_basket " +
-                    "(breakfasts_in_basket_id, basket_id, user_id)" +
+                    "(basket_id, breakfast_id)" +
             "VALUES " +
-                    "(#{breakfastsInBasketID}, #{basketID}, #{userID})")
+                    "(#{basketID}, #{breakfastID})"
+    )
+    @SelectKey(
+            before = false,
+            keyProperty = "breakfastsInBasketID",
+            keyColumn = "breakfasts_in_basket_id",
+            statement = "select currval('breakfasts_in_basket_breakfasts_in_basket_seq')",
+            resultType = Integer.class)
     void insert(BreakfastsInBasket breakfastsInBasket);
 
 

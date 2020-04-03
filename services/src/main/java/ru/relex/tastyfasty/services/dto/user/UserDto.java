@@ -13,6 +13,7 @@ import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Field;
 
 @Data
 public class UserDto {
+
     private Integer id;
 
     @NotBlank(message = Field.USERNAME + Constraint.IS_EMPTY)

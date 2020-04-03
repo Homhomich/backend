@@ -38,15 +38,15 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public OrderDto findByCustomerId(int id) {
-        var order = orderMapper.findByCustomerId(id);
-        return orderStruct.toDto(order);
+    public List<OrderDto> findByCustomerId(int id) {
+        var orders = orderMapper.findByCustomerId(id);
+        return orderStruct.toDto(orders);
     }
 
     @Override
-    public OrderDto findByDeliverymanId(int id) {
-        var order = orderMapper.findByDeliverymanId(id);
-        return orderStruct.toDto(order);
+    public List<OrderDto> findByDeliverymanId(int id) {
+        var orders = orderMapper.findByDeliverymanId(id);
+        return orderStruct.toDto(orders);
     }
 
     @Override

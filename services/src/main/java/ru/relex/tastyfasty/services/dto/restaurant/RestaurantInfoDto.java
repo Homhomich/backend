@@ -15,7 +15,6 @@ import static ru.relex.tastyfasty.services.constraint.ConstraintMessage.Field;
 @Data
 public class RestaurantInfoDto {
 
-
     @NotBlank(message = Field.RESTAURANT_TAGS + Constraint.IS_EMPTY)
     @Size(max = 100, message = Field.RESTAURANT_TAGS + Constraint.TOO_LONG)
     private String tags;

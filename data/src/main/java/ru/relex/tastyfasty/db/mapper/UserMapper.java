@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Select(
+
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "user_id AS id," +
                     "first_name, " +
@@ -17,13 +18,14 @@ public interface UserMapper {
                     "phone_number, " +
                     "address_id AS address, " +
                     "role_id AS role " +
+                    "blob_img AS img" +
                     "FROM users " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', first_name, last_name, username) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
     )
     List<User> getUsers(@Param("search") String search);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "user_id AS id, " +
                     "first_name, " +
@@ -31,6 +33,7 @@ public interface UserMapper {
                     "middle_name, " +
                     "username, " +
                     "phone_number, " +
+                    "blob_img AS img" +
                     "address_id AS address, " +
                     "role_id AS role " +
                     "FROM users " +
@@ -38,14 +41,15 @@ public interface UserMapper {
     )
     User findById(@Param("id") int id);
 
-    @Update(
+    @Update(//language=PostgreSQL
             "UPDATE users " +
                     "SET " +
                     "first_name = #{firstName}, " +
                     "last_name = #{lastName}, " +
                     "middle_name = #{middleName}, " +
                     "address_id= #{address}, " +
-                    "phone_number=#{phoneNumber}, " +
+                    "blob_img = #{img}" +
+                    "phone_number = #{phoneNumber}, " +
                     "username = #{username}, " +
                     "password = #{password}, " +
                     "role_id = #{role} " +
@@ -53,7 +57,7 @@ public interface UserMapper {
     )
     void update(User user);
 
-    @Delete(
+    @Delete(//language=PostgreSQL
             "DELETE FROM users " +
                     "WHERE user_id = #{id}"
     )
@@ -65,12 +69,12 @@ public interface UserMapper {
      *
      * @param user
      */
-    @Insert(
+    @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO users " +
-                    "(first_name, last_name, middle_name, username, password, role_id, address_id, phone_number) " +
+                    "(first_name, last_name, middle_name, username, password, role_id, address_id, blob_img, phone_number) " +
                     "VALUES " +
-                    "(#{firstName}, #{lastName}, #{middleName}, #{username}, #{password}, #{role}, #{address}, #{phoneNumber})"
+                    "(#{firstName}, #{lastName}, #{middleName}, #{username}, #{password}, #{role}, #{address}, #{img}, #{phoneNumber})"
     )
     @SelectKey(
             before = false,

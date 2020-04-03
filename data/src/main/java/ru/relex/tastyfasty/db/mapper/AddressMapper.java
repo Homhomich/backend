@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AddressMapper {
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "address_id AS id, " +
                     "city, " +
@@ -18,7 +18,7 @@ public interface AddressMapper {
     )
     List<Address> getAddresses(@Param("search") String search);
 
-    @Select(
+    @Select(//language=PostgreSQL
             "SELECT " +
                     "address_id AS id, " +
                     "city, " +
@@ -29,7 +29,7 @@ public interface AddressMapper {
     )
     Address getAddressById(@Param("id") int id);
 
-    @Update(
+    @Update(//language=PostgreSQL
             "UPDATE addresses " +
                     "SET city = #{city}, " +
                     "street = #{street}, " +
@@ -39,13 +39,13 @@ public interface AddressMapper {
     )
     void update(Address address);
 
-    @Delete(
+    @Delete(//language=PostgreSQL
             "DELETE FROM addresses " +
                     "WHERE address_id = #{id}"
     )
     void delete(@Param("id") int id);
 
-    @Insert(
+    @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO addresses " +
                     "(city, street, building) " +

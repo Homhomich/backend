@@ -18,10 +18,11 @@ import ru.relex.tastyfasty.security.handler.TastyFastySuccessHandler;
 
 @Configuration
 @EnableWebSecurity
-@Import(CurrentUserConfig.class)
+@Import(CurrentUserConfiguration.class)
 @ComponentScan({
         "ru.relex.tastyfasty.security.service",
-        "ru.relex.tastyfasty.security.handler"})
+        "ru.relex.tastyfasty.security.handler"
+})
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
@@ -39,6 +40,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected UserDetailsService userDetailsService() {
+        return userDetailsService;
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder builder) {
         final var daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
@@ -48,18 +54,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected UserDetailsService userDetailsService() {
-        return userDetailsService;
-    }
-
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()/*authenticated()*/
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/auth/login")

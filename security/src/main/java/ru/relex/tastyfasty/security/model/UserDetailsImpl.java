@@ -7,14 +7,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.relex.commons.model.CurrentUser;
 import ru.relex.commons.model.Role;
-import ru.relex.tastyfasty.db.model.SecurityUserDetails;
+import ru.relex.tastyfasty.db.model.UserSecurityDetails;
 
 
 public class UserDetailsImpl implements UserDetails, CurrentUser {
 
-    private final SecurityUserDetails user;
+    private final UserSecurityDetails user;
 
-    public UserDetailsImpl(SecurityUserDetails user) {
+    public UserDetailsImpl(UserSecurityDetails user) {
         this.user = user;
     }
 

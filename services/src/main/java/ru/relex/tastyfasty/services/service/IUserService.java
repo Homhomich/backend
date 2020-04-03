@@ -1,6 +1,5 @@
 package ru.relex.tastyfasty.services.service;
 
-import ru.relex.tastyfasty.services.dto.breakfast.BreakfastDto;
 import ru.relex.tastyfasty.services.dto.user.UserDto;
 
 import javax.validation.Valid;

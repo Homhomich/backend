@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class OrderInfoDto {
+
     @NotBlank(message = ConstraintMessage.Field.ORDER_NAME + ConstraintMessage.Constraint.IS_EMPTY)
     @Size(max = 50, message = ConstraintMessage.Field.ORDER_NAME + ConstraintMessage.Constraint.TOO_LONG)
     private String name;
@@ -16,7 +17,7 @@ public class OrderInfoDto {
     @Size(max = 20, message = ConstraintMessage.Field.ORDER_TAG + ConstraintMessage.Constraint.TOO_LONG)
     private String tag;
 
-    @NotBlank(message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.IS_EMPTY)
-    @Size(max = 20, message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.TOO_LONG)
+//    @NotBlank(message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.IS_EMPTY)
+//    @Size(max = 20, message = ConstraintMessage.Field.PRICE + ConstraintMessage.Constraint.TOO_LONG)
     private Integer price;
 }

@@ -22,6 +22,7 @@ public abstract class UserStruct {
     @Mapping(target = "personalInfo.middleName", source = "middleName")
     @Mapping(target = "personalInfo.address", source = "address")
     @Mapping(target = "personalInfo.phoneNumber", source = "phoneNumber")
+    @Mapping(target = "personalInfo.img", source = "img")
     public abstract UserDto toDto(User user);
 
     @Mapping(target = "firstName", source = "personalInfo.firstName")
@@ -29,6 +30,7 @@ public abstract class UserStruct {
     @Mapping(target = "middleName", source = "personalInfo.middleName")
     @Mapping(target = "address", source = "personalInfo.address.id")
     @Mapping(target = "phoneNumber", source = "personalInfo.phoneNumber")
+    @Mapping(target = "img", source = "personalInfo.img")
     public abstract User fromDto(UserDto userDto);
 
     public abstract List<UserDto> toDto(List<User> user);

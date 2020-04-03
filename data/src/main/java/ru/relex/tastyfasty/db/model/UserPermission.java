@@ -1,8 +1,5 @@
 package ru.relex.tastyfasty.db.model;
 
-import ru.relex.commons.model.Role;
-
-import java.security.Permission;
 import java.util.Optional;
 
 public enum  UserPermission {
@@ -10,8 +7,8 @@ public enum  UserPermission {
     CREATE_USERS(2),
     DELETE_USERS(3),
     UPDATE_USERS(4),
-
     ;
+
     private final int id;
 
 
@@ -19,13 +16,9 @@ public enum  UserPermission {
         this.id=id;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String asString()
     {
-        return "ROLE_"+this.id;
+        return "ROLE_" + this.id;
     }
 
     public static Optional<UserPermission> of(final Integer id) {
@@ -40,4 +33,7 @@ public enum  UserPermission {
         return Optional.empty();
     }
 
+    public int getId() {
+        return id;
+    }
 }

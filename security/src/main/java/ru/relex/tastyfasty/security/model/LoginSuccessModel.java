@@ -1,8 +1,10 @@
 package ru.relex.tastyfasty.security.model;
 
+import lombok.Data;
 import ru.relex.commons.model.CurrentUser;
 import ru.relex.commons.model.Role;
 
+@Data
 public class LoginSuccessModel implements CurrentUser {
 
     private int id;
@@ -13,30 +15,6 @@ public class LoginSuccessModel implements CurrentUser {
         this.id = info.getId();
         this.username = info.getUsername();
         this.role = info.getRole();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
 }

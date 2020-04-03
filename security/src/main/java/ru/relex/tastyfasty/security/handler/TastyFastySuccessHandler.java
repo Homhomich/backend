@@ -16,10 +16,16 @@ import java.io.IOException;
 
 @Component
 public class TastyFastySuccessHandler implements AuthenticationSuccessHandler {
+
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+    public void onAuthenticationSuccess(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            Authentication authentication
+    ) throws IOException {
+
         if (!(authentication.getPrincipal() instanceof CurrentUser)) {
             throw new AuthenticationServiceException("User instance not of LoginInfo!");
         }
@@ -28,6 +34,7 @@ public class TastyFastySuccessHandler implements AuthenticationSuccessHandler {
         LoginSuccessModel loginSuccessModel = new LoginSuccessModel(principal);
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().print(OBJECT_MAPPER.writeValueAsString(loginSuccessModel));
+
     }
 
 }

@@ -109,8 +109,44 @@ databaseChangeLog:
   - changeSet:
       id: yankevich_5
       author: AnyaYankevich
-      comment: security modifications
+      comment: add security modifications
       changes:
         - sqlFile:
-            path: permissions.sql
+            path: TASTY-020.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_7
+      author: puliaevevgenii
+      comment: add foreign key constraint to orders table
+      changes:
+        - sqlFile:
+            path: add-cons-to-orders-0-1-0.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_8
+      author: puliaevevgenii
+      comment: add foreign key constraint to orders table
+      changes:
+        - sqlFile:
+            path: add-cons-to-orders-0-1-1.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_9
+      author: puliaevevgenii
+      comment: insert values into statuses
+      changes:
+        - sqlFile:
+            path: set-statuses.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: yankevich_6
+      author: AnyaYankevich
+      comment: add img to users
+      changes:
+        - sqlFile:
+            path: modify-user-img.sql
             relativeToChangelogFile: true

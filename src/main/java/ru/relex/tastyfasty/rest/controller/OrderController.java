@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/orders",
+        path = "/user/{userId}/orders",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class OrderController {
@@ -30,22 +30,40 @@ public class OrderController {
         return orderService.findOrders(search);
     }
 
+    @GetMapping("/{customers}")
+    List<OrderDto> getOrdersByCustomerId(@RequestParam(name = "customerId") int customerId) {
+        return orderService.findByCustomerId(customerId);
+    }
+
+    @GetMapping("/{deliverymen}")
+    List<OrderDto> getOrdersByDeliverymanId(@RequestParam(name = "deliverymanId") int deliverymanId) {
+        return orderService.findByDeliverymanId(deliverymanId);
+    }
+
     @GetMapping("/{id}")
     OrderDto findById(@PathVariable("id") int id) {
         return orderService.findById(id);
     }
 
-    @PutMapping("/{id}")
-    OrderDto update(@PathVariable("id") int id, @RequestBody OrderDto orderDto) {
-        orderDto.setOrderID(id);
-        orderService.update(orderDto);
-        return findById(id);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    OrderDto create(
+            @PathVariable("userId") int userId,
+            @RequestBody OrderDto orderDto
+    ) {
+        orderDto.setCustomerID(userId);
+        return orderService.create(orderDto);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    OrderDto create(@RequestBody OrderDto orderDto) {
-        orderService.create(orderDto);
-        return orderDto;
+    @PutMapping("/{id}")
+    OrderDto update(
+            @PathVariable("id") int id,
+            @PathVariable("userId") int userId,
+            @RequestBody OrderDto orderDto
+    ) {
+        orderDto.setOrderID(id);
+        orderDto.setCustomerID(userId);
+        orderService.update(orderDto);
+        return findById(id);
     }
 
     @DeleteMapping("/{id}")
