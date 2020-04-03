@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationServiceExceptio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 import ru.relex.commons.model.CurrentUser;
 import ru.relex.tastyfasty.security.model.LoginSuccessModel;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component
 public class TastyFastySuccessHandler implements AuthenticationSuccessHandler {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

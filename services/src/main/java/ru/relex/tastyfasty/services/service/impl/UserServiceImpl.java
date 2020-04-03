@@ -22,13 +22,15 @@ public class UserServiceImpl implements IUserService {
     private final UserStruct userStruct;
     private final IPasswordEncoderService passwordEncoderService;
     private final CurrentUser currentUser;
-
-
     private final IAddressService addressService;
 
+
     @Autowired
-    public UserServiceImpl(final UserMapper userMapper, final UserStruct userStruct, final
-    IPasswordEncoderService passwordEncoderService, final CurrentUser currentUser, IAddressService addressService) {
+    public UserServiceImpl(final UserMapper userMapper,
+                           final UserStruct userStruct,
+                           final IPasswordEncoderService passwordEncoderService,
+                           final CurrentUser currentUser,
+                           IAddressService addressService) {
         this.userMapper = userMapper;
         this.userStruct = userStruct;
         this.passwordEncoderService = passwordEncoderService;

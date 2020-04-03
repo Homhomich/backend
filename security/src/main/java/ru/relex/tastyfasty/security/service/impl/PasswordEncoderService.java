@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.relex.tastyfasty.services.service.IPasswordEncoderService;
 
+
 @Service
 public class PasswordEncoderService implements IPasswordEncoderService {
 

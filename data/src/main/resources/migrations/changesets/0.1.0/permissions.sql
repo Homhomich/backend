@@ -1,15 +1,15 @@
 CREATE TABLE permissions(
 permission_id INT PRIMARY KEY,
 name VARCHAR(30)
-)
+);
 
 CREATE TABLE role_permissions(
 role_id INT NOT NULL,
 permission_id INT NOT NULL,
 PRIMARY KEY  (role_id, permission_id),
-CONSTRAINT FOREIGN KEY (role_id) REFERENCES  roles(role_id) ON  DELETE  CASCADE,
-CONSTRAINT FOREIGN KEY (permission_id) REFERENCES  permissions(permission_id, name) ON DELETE CASCADE
-)
+CONSTRAINT role_permissions_role_id_fk FOREIGN KEY (role_id) REFERENCES  roles(role_id) ON DELETE CASCADE,
+CONSTRAINT role_permissions_perm_id_fk FOREIGN KEY (permission_id) REFERENCES  permissions(permission_id) ON DELETE CASCADE
+);
 
 INSERT INTO permissions VALUES
 (1, 'GET_USERS'),

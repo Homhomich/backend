@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import ru.relex.tastyfasty.db.mapper.RestaurantMapper;
+import ru.relex.tastyfasty.db.model.Restaurant;
 import ru.relex.tastyfasty.services.dto.restaurant.RestaurantDto;
 import ru.relex.tastyfasty.services.mapstruct.RestaurantStruct;
 import ru.relex.tastyfasty.services.service.IAddressService;

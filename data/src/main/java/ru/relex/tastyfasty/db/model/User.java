@@ -3,6 +3,7 @@ package ru.relex.tastyfasty.db.model;
 import lombok.Data;
 import ru.relex.commons.model.Role;
 
+ 
 @Data
 public class User {
     private int id;

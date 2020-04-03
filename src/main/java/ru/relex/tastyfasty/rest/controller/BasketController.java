@@ -8,6 +8,8 @@ import ru.relex.tastyfasty.services.service.IBasketService;
 
 import java.util.List;
 
+
+@CrossOrigin
 @RestController
 @RequestMapping(
         path = "/basket",
