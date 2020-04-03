@@ -40,7 +40,10 @@ public class BasketController {
     }
 
     @PutMapping("/{id}")
-    BasketDto update(@PathVariable("id") int id, @RequestBody BasketDto basketDto) {
+    BasketDto update(
+            @PathVariable("id") int id,
+            @RequestBody BasketDto basketDto
+    ) {
         basketDto.setBasketID(id);
         return basketService.update(basketDto);
     }

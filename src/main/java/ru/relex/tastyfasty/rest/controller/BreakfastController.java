@@ -30,10 +30,10 @@ public class BreakfastController {
         return breakfastService.findBreakfastsByRestaurantId(restaurantId);
     }
 
-    @GetMapping("/{tag}")
+    @GetMapping("/{tags}")
     List<BreakfastDto> getBreakfastByTag(
             @PathVariable("restaurantId") int restaurantId,
-            @RequestParam(value = "tag") String tag
+            @RequestParam(name = "tag") String tag
     ) {
         return breakfastService.findBreakfastsByTag(tag, restaurantId);
     }

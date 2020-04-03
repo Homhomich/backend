@@ -9,11 +9,11 @@ public interface IBasketFillingService {
 
     List<BreakfastDto> getBreakfastsInUserBasket(int basketId);
 
-    BreakfastDto addBreakfastToBasket(@Valid BreakfastDto breakfastDto);
+    BreakfastDto addBreakfastToBasket(int basketId, @Valid BreakfastDto breakfastDto);
 
-    BreakfastDto updateBreakfastInBasket(@Valid BreakfastDto breakfastDto);
+    BreakfastDto updateBreakfastInBasket(int basketId, @Valid BreakfastDto breakfastDto);
 
     void removeBreakfastsFromBasket(int basketId);
 
-    void removeBreakfastFromBasket(int basketId, int breakfastId);
+    void removeOneBreakfastFromBasket(int basketId, int breakfastId);
 }
