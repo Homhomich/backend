@@ -150,3 +150,22 @@ databaseChangeLog:
         - sqlFile:
             path: modify-user-img.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: yankevich_7
+      author: AnyaYankevich
+      comment: add img to restaurants
+      changes:
+        - sqlFile:
+            path: modify-restaurants-img.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: yankevich_9
+      author: AnyaYankevich
+      comment: add img to breakfasts
+      changes:
+        - sqlFile:
+            path: modify-breakfasts-img.sql
+            relativeToChangelogFile: true
+

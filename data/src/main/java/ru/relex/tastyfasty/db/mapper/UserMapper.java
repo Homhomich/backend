@@ -18,7 +18,7 @@ public interface UserMapper {
                     "phone_number, " +
                     "address_id AS address, " +
                     "role_id AS role " +
-                    "blob_img AS img" +
+                    "blob_img AS img " +
                     "FROM users " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', first_name, last_name, username) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
@@ -33,7 +33,7 @@ public interface UserMapper {
                     "middle_name, " +
                     "username, " +
                     "phone_number, " +
-                    "blob_img AS img" +
+                    "blob_img AS img, " +
                     "address_id AS address, " +
                     "role_id AS role " +
                     "FROM users " +
@@ -48,7 +48,7 @@ public interface UserMapper {
                     "last_name = #{lastName}, " +
                     "middle_name = #{middleName}, " +
                     "address_id= #{address}, " +
-                    "blob_img = #{img}" +
+                    "blob_img = #{img}, " +
                     "phone_number = #{phoneNumber}, " +
                     "username = #{username}, " +
                     "password = #{password}, " +

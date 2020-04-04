@@ -14,4 +14,5 @@ public class Restaurant {
     private LocalTime closeTime;
     private int address;
     private String tags;
+    private byte[] img;
 }

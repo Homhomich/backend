@@ -34,4 +34,6 @@ public class RestaurantInfoDto {
     private int closeTime;
 
     private AddressDto address;
+
+    private byte [] img;
 }

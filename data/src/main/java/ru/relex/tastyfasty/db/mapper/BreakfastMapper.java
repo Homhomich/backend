@@ -14,7 +14,8 @@ public interface BreakfastMapper {
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id " +
+                    "restaurant_id, " +
+                    "img " +
                     "FROM breakfasts " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', name, tag) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
@@ -27,7 +28,8 @@ public interface BreakfastMapper {
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id " +
+                    "restaurant_id, " +
+                    "img "+
                     "FROM breakfasts " +
                     "WHERE restaurant_id = #{id}"
     )
@@ -39,7 +41,8 @@ public interface BreakfastMapper {
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id " +
+                    "restaurant_id, " +
+                    "img "+
                     "FROM breakfasts " +
                     "WHERE restaurant_id = #{restaurantId} " +
                     "AND CONCAT_WS('$', tag) LIKE CONCAT('%', #{tag:VARCHAR}, '%')"
@@ -52,7 +55,8 @@ public interface BreakfastMapper {
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id " +
+                    "restaurant_id, " +
+                    "img "+
                     "FROM breakfasts " +
                     "WHERE name = #{name} " +
                     "OR CONCAT_WS('$', name) LIKE CONCAT('%', #{name:VARCHAR}, '%')"
@@ -65,7 +69,8 @@ public interface BreakfastMapper {
                     "name, " +
                     "tag, " +
                     "price, " +
-                    "restaurant_id " +
+                    "restaurant_id, " +
+                    "img "+
                     "FROM breakfasts " +
                     "WHERE breakfast_id = #{id}"
     )
@@ -78,7 +83,8 @@ public interface BreakfastMapper {
                     "name = #{name}, " +
                     "tag = #{tag}, " +
                     "price = #{price}, " +
-                    "restaurant_id = #{restaurantId} " +
+                    "restaurant_id = #{restaurantId}, " +
+                    "img = #{img} "+
                     "WHERE breakfast_id = #{id}"
     )
     void update(Breakfast breakfast);
@@ -93,9 +99,9 @@ public interface BreakfastMapper {
     @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO breakfasts " +
-                    "(name, tag, price, restaurant_id)" +
+                    "(name, tag, price, restaurant_id, img)" +
                     "VALUES " +
-                    "(#{name}, #{tag}, #{price}, #{restaurantId})")
+                    "(#{name}, #{tag}, #{price}, #{restaurantId}, #{img})")
     @SelectKey(
             before = false,
             keyProperty = "id",

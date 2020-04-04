@@ -16,7 +16,8 @@ public interface RestaurantMapper {
                     "open_time, " +
                     "close_time, " +
                     "address_id AS address, " +
-                    "tags " +
+                    "tags, " +
+                    "img " +
                     "FROM restaurants " +
                     "WHERE #{search:VARCHAR} IS NULL " +
                     "OR CONCAT_WS('$', name, rating, tags) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
@@ -31,7 +32,8 @@ public interface RestaurantMapper {
                     "open_time, " +
                     "close_time, " +
                     "address_id AS address, " +
-                    "tags " +
+                    "tags, " +
+                    "img "+
                     "FROM restaurants " +
                     "WHERE name = #{name:VARCHAR} " +
                     "OR CONCAT_WS('$', name) LIKE CONCAT('%', #{name:VARCHAR}, '%')"
@@ -46,7 +48,8 @@ public interface RestaurantMapper {
                     "open_time, " +
                     "close_time, " +
                     "address_id AS address, " +
-                    "tags " +
+                    "tags, " +
+                    "img "+
                     "FROM restaurants " +
                     "WHERE tags = #{tags:VARCHAR} " +
                     "OR CONCAT_WS('$', tags) LIKE CONCAT('%', #{tags:VARCHAR}, '%')"
@@ -61,7 +64,8 @@ public interface RestaurantMapper {
                     "close_time, " +
                     "rating, " +
                     "address_id AS address, " +
-                    "tags " +
+                    "tags, " +
+                    "img "+
                     "FROM restaurants rest NATURAL JOIN addresses addr " +
                     "WHERE addr.city = #{city} AND addr.street = #{street} AND addr.building = #{building}"
     )
@@ -79,20 +83,22 @@ public interface RestaurantMapper {
                     "close_time, " +
                     "rating, " +
                     "address_id AS address, " +
-                    "tags " +
+                    "tags, " +
+                    "img "+
                     "FROM restaurants " +
                     "WHERE restaurant_id = #{id}")
 
     Restaurant findById(@Param("id") int id);
 
     @Update(//language=PostgreSQL
-            "UPDATE restaurants " +
+            value = "UPDATE restaurants " +
                     "SET name = #{name}, " +
                     "open_time= #{openTime}, " +
                     "close_time= #{closeTime}, " +
                     "rating = #{rating}, " +
                     "address_id = #{address}, " +
-                    "tags = #{tags} " +
+                    "tags = #{tags}, " +
+                    "img = #{img} " +
                     "WHERE restaurant_id = #{restaurantId}"
     )
     void update(Restaurant restaurant);
@@ -106,9 +112,9 @@ public interface RestaurantMapper {
     @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO restaurants " +
-                    "(name, open_time, close_time, rating, address_id, tags)" +
+                    "(name, open_time, close_time, rating, address_id, tags, img)" +
                     "VALUES " +
-                    "(#{name}, #{openTime}, #{closeTime}, #{rating}, #{address}, #{tags})"
+                    "(#{name}, #{openTime}, #{closeTime}, #{rating}, #{address}, #{tags}, #{img})"
     )
     @SelectKey(
             before = false,

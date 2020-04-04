@@ -27,6 +27,7 @@ public abstract class RestaurantStruct {
     @Mapping(target = "restaurantInfo.openTime", source = "openTime")
     @Mapping(target = "restaurantInfo.closeTime", source = "closeTime")
     @Mapping(target = "restaurantInfo.address", source = "address")
+    @Mapping(target = "restaurantInfo.img", source = "img")
     public abstract RestaurantDto toDto(Restaurant restaurant);
 
     @Mapping(target = "tags", source = "restaurantInfo.tags")
@@ -35,6 +36,7 @@ public abstract class RestaurantStruct {
     @Mapping(target = "openTime", source = "restaurantInfo.openTime")
     @Mapping(target = "closeTime", source = "restaurantInfo.closeTime")
     @Mapping(target = "address", source = "restaurantInfo.address.id")
+    @Mapping(target = "img", source = "restaurantInfo.img")
     public abstract Restaurant fromDto(RestaurantDto RestaurantDto);
 
     public abstract List<RestaurantDto> toDto(List<Restaurant> restaurants);

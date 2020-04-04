@@ -23,4 +23,6 @@ public class BreakfastDto {
     private double price;
 
     private int restaurantId;
+
+    private byte[] img;
 }

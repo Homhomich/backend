@@ -9,4 +9,5 @@ public class  Breakfast {
     private String tag;
     private double price;
     private int restaurantId;
+    private byte[] img;
 }
