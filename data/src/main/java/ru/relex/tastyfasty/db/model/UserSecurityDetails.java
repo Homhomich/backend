@@ -3,8 +3,7 @@ package ru.relex.tastyfasty.db.model;
 import lombok.Data;
 import ru.relex.commons.model.Role;
 
-import java.security.Permission;
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class UserSecurityDetails {
@@ -12,5 +11,5 @@ public class UserSecurityDetails {
     private String username;
     private Role role;
     private String password;
-    private List<UserPermission> permissions;
+    private Set<UserPermission> permissions;
 }

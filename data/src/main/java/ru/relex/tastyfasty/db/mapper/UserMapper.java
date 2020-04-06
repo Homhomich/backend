@@ -17,7 +17,7 @@ public interface UserMapper {
                     "username, " +
                     "phone_number, " +
                     "address_id AS address, " +
-                    "role_id AS role " +
+                    "role_id AS role, " +
                     "blob_img AS img " +
                     "FROM users " +
                     "WHERE #{search:VARCHAR} IS NULL " +

@@ -1,13 +1,16 @@
 package ru.relex.tastyfasty.security.model;
 
-import java.util.Collection;
-import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.relex.commons.model.CurrentUser;
 import ru.relex.commons.model.Role;
+import ru.relex.tastyfasty.db.model.UserPermission;
 import ru.relex.tastyfasty.db.model.UserSecurityDetails;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class UserDetailsImpl implements UserDetails, CurrentUser {
@@ -20,18 +23,18 @@ public class UserDetailsImpl implements UserDetails, CurrentUser {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-                /*return user.getPermissions()
-                        .stream()
-                        .map(UserPermission::asString)
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toUnmodifiableSet());
-            */
-        return Set.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+        Set<SimpleGrantedAuthority> authorities = user.getPermissions()
+                .stream()
+                .map(UserPermission::asString)
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toUnmodifiableSet());
+        System.err.println(authorities);
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword().strip();
+        return user.getPassword().strip(); // TODO: 06.04.2020 убрать strip
     }
 
     @Override

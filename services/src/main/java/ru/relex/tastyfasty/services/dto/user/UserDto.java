@@ -1,5 +1,6 @@
 package ru.relex.tastyfasty.services.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -19,6 +20,7 @@ public class UserDto {
     @NotBlank(message = Field.USERNAME + Constraint.IS_EMPTY)
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 8, message = Field.PASSWORD + Constraint.TOO_SHORT)
     private String password;
 
