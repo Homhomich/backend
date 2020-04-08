@@ -27,7 +27,7 @@ public class TastyFastySuccessHandler implements AuthenticationSuccessHandler {
     ) throws IOException {
 
         if (!(authentication.getPrincipal() instanceof CurrentUser)) {
-            throw new AuthenticationServiceException("User instance not of LoginInfo!");
+            throw new AuthenticationServiceException("User instance not of CurrentUser!");
         }
         CurrentUser principal = (CurrentUser) authentication.getPrincipal();
 

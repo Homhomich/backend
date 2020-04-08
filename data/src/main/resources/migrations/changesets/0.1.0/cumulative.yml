@@ -169,3 +169,11 @@ databaseChangeLog:
             path: modify-breakfasts-img.sql
             relativeToChangelogFile: true
 
+  - changeSet:
+      id: evgenii_10
+      author: puliaevevgenii
+      comment: modify password column in users, char 60 instead of varchar 80
+      changes:
+        - sqlFile:
+            path: modify-users-password.sql
+            relativeToChangelogFile: true

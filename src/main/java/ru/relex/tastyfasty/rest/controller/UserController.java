@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.relex.tastyfasty.services.dto.user.UserDto;
 import ru.relex.tastyfasty.services.service.IUserService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @CrossOrigin
@@ -25,28 +26,33 @@ public class UserController {
 
 
     @GetMapping
+    @RolesAllowed("ROLE_1")
     List<UserDto> getUsers(@RequestParam(name = "search", required = false) String search) {
         return userService.findUsers(search);
     }
 
     @GetMapping("/{id}")
+    @RolesAllowed("ROLE_GET_1")
     UserDto findById(@PathVariable("id") int id) {
         return userService.findUserById(id);
     }
 
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RolesAllowed("ROLE_2")
+    UserDto create(@RequestBody UserDto userDto) {
+        return userService.create(userDto);
+    }
+
     @PutMapping("/{id}")
+    @RolesAllowed("ROLE_4")
     UserDto update(@PathVariable("id") int id, @RequestBody UserDto userDto) {
         userDto.setId(id);
         userService.update(userDto);
         return findById(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    UserDto create(@RequestBody UserDto userDto) {
-        return userService.create(userDto);
-    }
-
     @DeleteMapping("/{id}")
+    @RolesAllowed("ROLE_3")
     void remove(@PathVariable("id") int id) {
         userService.remove(id);
     }

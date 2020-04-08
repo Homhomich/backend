@@ -36,9 +36,8 @@ dependencies {
     implementation(project(":security"))
     implementation(project(":services"))
 
-    implementation("org.hibernate.validator:hibernate-validator:6.1.2.Final") /* тоже надо будет удалить когда перейдем на сервисы*/
+    //implementation("org.hibernate.validator:hibernate-validator:6.1.2.Final") /* тоже надо будет удалить когда перейдем на сервисы*/
     implementation("org.springframework.boot:spring-boot-starter-web:2.2.5.RELEASE")
-    testCompile("junit:junit:4.12")
 }
 
 springBoot {
