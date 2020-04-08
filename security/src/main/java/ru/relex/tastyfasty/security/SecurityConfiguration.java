@@ -63,7 +63,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/restaurants", "/restaurants/{restaurantId}/breakfasts")
+                .permitAll()
+                .antMatchers("/auth/login")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .cors()
