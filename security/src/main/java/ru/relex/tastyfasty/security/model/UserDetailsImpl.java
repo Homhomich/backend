@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.relex.commons.model.CurrentUser;
+import ru.relex.commons.model.LoggingModelInfo;
 import ru.relex.commons.model.Role;
 import ru.relex.tastyfasty.db.model.UserSecurityDetails;
 
@@ -34,19 +35,10 @@ public class UserDetailsImpl implements UserDetails, CurrentUser {
         return user.getPassword().strip();
     }
 
-    @Override
-    public int getId() {
-        return user.getId();
-    }
 
     @Override
     public String getUsername() {
         return user.getUsername();
-    }
-
-    @Override
-    public Role getRole() {
-        return user.getRole();
     }
 
     @Override
@@ -66,6 +58,16 @@ public class UserDetailsImpl implements UserDetails, CurrentUser {
 
     @Override
     public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public LoggingModelInfo getInfo() {
+        return new LoggingModelInfo(user.getId(), user.getUsername(), user.getRole());
+    }
+
+    @Override
+    public boolean isAuthenticated() {
         return true;
     }
 }

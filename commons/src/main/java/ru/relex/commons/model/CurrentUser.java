@@ -2,10 +2,15 @@ package ru.relex.commons.model;
 
 public interface CurrentUser {
 
-    int getId();
+   /* int getId();
 
     String getUsername();
 
-    Role getRole();
+    Role getRole();*/
+
+   LoggingModelInfo getInfo();
+   boolean isAuthenticated();
+
+
 
 }

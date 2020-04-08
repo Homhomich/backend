@@ -13,4 +13,6 @@ public class UserSecurityDetails {
     private Role role;
     private String password;
     private List<UserPermission> permissions;
+
+
 }

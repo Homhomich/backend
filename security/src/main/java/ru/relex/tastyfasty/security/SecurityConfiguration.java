@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.relex.tastyfasty.security.handler.TastyFastyFailHandler;
+import ru.relex.tastyfasty.security.handler.TastyFastyUnauthorizedEntryPoint;
 import ru.relex.tastyfasty.security.handler.TastyFastyLogoutSuccessHandler;
 import ru.relex.tastyfasty.security.handler.TastyFastySuccessHandler;
 
@@ -27,12 +29,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final TastyFastySuccessHandler successHandler;
+    private final TastyFastyUnauthorizedEntryPoint failHandler;
 
     @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService, TastyFastySuccessHandler successHandler) {
+    public SecurityConfiguration(UserDetailsService userDetailsService, TastyFastySuccessHandler successHandler, TastyFastyUnauthorizedEntryPoint failHandler) {
         this.userDetailsService = userDetailsService;
         this.successHandler = successHandler;
+        this.failHandler = failHandler;
     }
+
 
     @Bean
     PasswordEncoder passwordEncoder() {
@@ -59,18 +64,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
-                .anyRequest().permitAll()/*authenticated()*/
+                .anyRequest().authenticated()
+                .and()
+                .cors()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/auth/login")
                 .successHandler(successHandler)
+                .failureHandler(new TastyFastyFailHandler())
                 .and()
                 .logout()
                 .logoutUrl("/auth/logout")
                 .logoutSuccessHandler(new TastyFastyLogoutSuccessHandler())
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(new TastyFastyEntryPoint())
+                //.authenticationEntryPoint(new TastyFastyEntryPoint())
+                .authenticationEntryPoint(new TastyFastyUnauthorizedEntryPoint())
                 .and()
                 .sessionManagement()
                 .sessionFixation()

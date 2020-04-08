@@ -33,8 +33,8 @@ public class TastyFastySuccessHandler implements AuthenticationSuccessHandler {
 
         LoginSuccessModel loginSuccessModel = new LoginSuccessModel(principal);
         response.setStatus(HttpServletResponse.SC_OK);
+        response.addHeader("Access-Control-Allow-Origin", "*");
         response.getWriter().print(OBJECT_MAPPER.writeValueAsString(loginSuccessModel));
-
     }
 
 }
