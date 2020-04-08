@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/restaurants",
+        path = "/api/restaurants",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class RestaurantController {

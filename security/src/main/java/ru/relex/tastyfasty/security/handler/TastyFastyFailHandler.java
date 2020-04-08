@@ -21,6 +21,7 @@ public class TastyFastyFailHandler implements AuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+        System.out.println("fail");
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.getWriter().print(OBJECT_MAPPER.writeValueAsString(new LoginFailModel()));

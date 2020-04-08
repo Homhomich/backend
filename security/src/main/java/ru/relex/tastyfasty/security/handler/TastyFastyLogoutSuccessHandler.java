@@ -16,7 +16,7 @@ public class TastyFastyLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        System.out.println("hohoohohohoho");
+        System.out.println("logout");
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().print(OBJECT_MAPPER.writeValueAsString(new LoginFailModel()));

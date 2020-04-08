@@ -25,7 +25,6 @@ public class TastyFastyUnauthorizedEntryPoint implements AuthenticationEntryPoin
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         if (response.getStatus() != HttpServletResponse.SC_FORBIDDEN) {
-//          response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().print(OBJECT_MAPPER.writeValueAsString(new LoginFailModel()));
         }
     }
