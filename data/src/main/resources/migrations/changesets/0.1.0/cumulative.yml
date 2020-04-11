@@ -177,3 +177,12 @@ databaseChangeLog:
         - sqlFile:
             path: modify-users-password.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_11
+      author: puliaevevgenii
+      comment: modify statuses
+      changes:
+        - sqlFile:
+            path: modify-statuses.sql
+            relativeToChangelogFile: true

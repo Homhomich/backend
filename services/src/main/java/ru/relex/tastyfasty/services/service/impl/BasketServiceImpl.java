@@ -44,7 +44,7 @@ public class BasketServiceImpl  implements IBasketService {
     @Override
     public BasketDto create(@Valid final BasketDto basketDto) {
         var basket = basketStruct.fromDto(basketDto);
-        basketMapper.update(basket);
+        basketMapper.insert(basket);
         return basketStruct.toDto(basket);
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/basket/{basketId}/",
+        path = "/api/basket/{basketId}",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class BasketFillingController {

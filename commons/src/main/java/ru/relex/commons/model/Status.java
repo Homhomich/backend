@@ -3,11 +3,13 @@ package ru.relex.commons.model;
 import java.util.Optional;
 
 public enum Status {
-    TO_RESTAURANT(1),
-    GET_THE_ORDER(2),
-    ON_THE_WAY_TO_CUSTOMER(3),
-    WAITING_FOR_CUSTOMER(4),
-    READY(5),
+    STARTED_MAKING(1),
+    WAITING_FOR_DELIVERYMAN(2),
+    TO_RESTAURANT(3),
+    GET_THE_ORDER(4),
+    ON_THE_WAY_TO_CUSTOMER(5),
+    WAITING_FOR_CUSTOMER(6),
+    READY(7),
     ;
 
     private final int id;

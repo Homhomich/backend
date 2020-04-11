@@ -3,13 +3,14 @@ package ru.relex.tastyfasty.security.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.stereotype.Component;
 import ru.relex.tastyfasty.security.model.LoginFailModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+@Component
 public class TastyFastyLogoutSuccessHandler implements LogoutSuccessHandler {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();

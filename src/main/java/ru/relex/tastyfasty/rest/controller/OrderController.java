@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/api/user/{userId}/orders",
+        path = "/api/users/{userId}/orders",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class OrderController {
