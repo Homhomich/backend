@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.relex.tastyfasty.services.dto.basket.BasketDto;
 import ru.relex.tastyfasty.services.service.IBasketService;
 
-import java.util.List;
-
 @CrossOrigin
 @RestController
 @RequestMapping(
@@ -36,7 +34,9 @@ public class BasketController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     BasketDto create(@RequestBody BasketDto basketDto) {
-        return basketService.create(basketDto);
+        BasketDto basketDto1 = basketService.create(basketDto);
+        System.out.println(basketDto1.getBasketID());
+        return basketDto1;
     }
 
     @PutMapping("/{id}")

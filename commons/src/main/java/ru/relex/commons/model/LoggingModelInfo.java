@@ -1,7 +1,5 @@
 package ru.relex.commons.model;
 
-import ru.relex.commons.model.Role;
-
 public class LoggingModelInfo {
     private int id;
     private String username;

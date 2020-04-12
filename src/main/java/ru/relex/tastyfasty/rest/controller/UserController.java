@@ -32,13 +32,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    @RolesAllowed("ROLE_GET_1")
+    //@RolesAllowed("ROLE_GET_1")
     UserDto findById(@PathVariable("id") int id) {
         return userService.findUserById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @RolesAllowed("ROLE_2")
+    //@RolesAllowed("ROLE_2")
     UserDto create(@RequestBody UserDto userDto) {
         System.out.println(userDto.toString());
         System.out.println("create");
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @RolesAllowed("ROLE_4")
+    //@RolesAllowed("ROLE_4")
     UserDto update(@PathVariable("id") int id, @RequestBody UserDto userDto) {
         userDto.setId(id);
         userService.update(userDto);
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    @RolesAllowed("ROLE_3")
+    //@RolesAllowed("ROLE_3")
     void remove(@PathVariable("id") int id) {
         userService.remove(id);
     }

@@ -29,13 +29,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final TastyFastySuccessHandler successHandler;
-    private final TastyFastyUnauthorizedEntryPoint failHandler;
+    private final TastyFastyUnauthorizedEntryPoint unauthorizedEntryPoint;
 
     @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService, TastyFastySuccessHandler successHandler, TastyFastyUnauthorizedEntryPoint failHandler) {
+    public SecurityConfiguration(
+            UserDetailsService userDetailsService,
+            TastyFastySuccessHandler successHandler,
+            TastyFastyUnauthorizedEntryPoint unauthorizedEntryPoint
+    ) {
         this.userDetailsService = userDetailsService;
         this.successHandler = successHandler;
-        this.failHandler = failHandler;
+        this.unauthorizedEntryPoint = unauthorizedEntryPoint;
     }
 
 

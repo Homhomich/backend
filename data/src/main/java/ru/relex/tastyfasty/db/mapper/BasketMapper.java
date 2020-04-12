@@ -75,7 +75,7 @@ public interface BasketMapper {
     )
     @SelectKey(
             before = false,
-            keyProperty = "id",
+            keyProperty = "basketID",
             keyColumn = "basket_id",
             statement = "select currval('baskets_basket_id_seq')",
             resultType = Integer.class)
