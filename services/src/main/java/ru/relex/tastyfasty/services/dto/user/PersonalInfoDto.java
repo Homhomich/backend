@@ -27,6 +27,5 @@ public class PersonalInfoDto {
 
     private byte[] img;
 
-    //@NotBlank(message = Field.PHONE_NUMBER + Constraint.IS_EMPTY)
     private Integer phoneNumber;
 }

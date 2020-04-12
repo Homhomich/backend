@@ -40,6 +40,8 @@ public class UserController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @RolesAllowed("ROLE_2")
     UserDto create(@RequestBody UserDto userDto) {
+        System.out.println(userDto.toString());
+        System.out.println("create");
         return userService.create(userDto);
     }
 
