@@ -2,12 +2,12 @@ package ru.relex.tastyfasty.db.mapper;
 
 import org.apache.ibatis.annotations.*;
 import ru.relex.tastyfasty.db.model.Breakfast;
-import ru.relex.tastyfasty.db.model.OrderBreakfasts;
+import ru.relex.tastyfasty.db.model.OrderedBreakfast;
 
 import java.util.List;
 
 @Mapper
-public interface OrderBreakfastsMapper {
+public interface OrderedBreakfastMapper {
 
     /*@Select(//language=PostgreSQL
             "SELECT " +
@@ -48,7 +48,7 @@ public interface OrderBreakfastsMapper {
                     "breakfast_id= #{breakfastID} " +
                     "WHERE order_breakfast_id = #{orderBreakfastID}"
     )
-    void update(OrderBreakfasts orderBreakfasts);
+    void update(OrderedBreakfast orderedBreakfast);
 
     @Delete(//language=PostgreSQL
             "DELETE FROM orders_breakfasts " +
@@ -73,5 +73,5 @@ public interface OrderBreakfastsMapper {
             keyColumn = "order_breakfast_id",
             statement = "select currval('orders_breakfasts_order_breakfast_id_seq')",
             resultType = Integer.class)
-    void insert(OrderBreakfasts orderBreakfasts);
+    void insert(OrderedBreakfast orderedBreakfast);
 }

@@ -186,3 +186,12 @@ databaseChangeLog:
         - sqlFile:
             path: modify-statuses.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_12
+      author: puliaevevgenii
+      comment: modify basket item
+      changes:
+        - sqlFile:
+            path: modify-breakfasts-in-basket.sql
+            relativeToChangelogFile: true
