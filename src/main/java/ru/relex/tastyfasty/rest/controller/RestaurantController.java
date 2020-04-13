@@ -26,6 +26,7 @@ public class RestaurantController {
 
     @GetMapping
     List<RestaurantDto> getRestaurants(@RequestParam(name = "search", required = false) String search) {
+        System.out.println("search");
         return restaurantService.findRestaurants(search);
     }
 
