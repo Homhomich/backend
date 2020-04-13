@@ -51,6 +51,7 @@ public class OrderController {
             @RequestBody OrderDto orderDto
     ) {
         orderDto.setCustomerID(userId);
+        orderDto.setDeliverymanID(-1);
         return orderService.create(orderDto);
     }
 
