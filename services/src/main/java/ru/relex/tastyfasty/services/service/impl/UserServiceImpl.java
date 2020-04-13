@@ -75,6 +75,7 @@ public class UserServiceImpl implements IUserService {
         userDto.getPersonalInfo().setAddress(addressDto);
 
         var user = userStruct.fromDto(userDto);
+        user.setPassword(passwordEncoderService.encode(user.getPassword()));
         userMapper.update(user);
         return userStruct.toDto(user);
     }
