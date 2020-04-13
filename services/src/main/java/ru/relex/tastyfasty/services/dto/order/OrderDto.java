@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class OrderDto {
 
-    private int orderID;
+    private int id;
 
     @Valid
     @NotNull(message = ConstraintMessage.Field.ORDER_INFO + ConstraintMessage.Constraint.IS_NULL)

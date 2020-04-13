@@ -10,7 +10,7 @@ public interface OrderMapper {
 
     @Select(//language=PostgreSQL
             "SELECT " +
-                    "order_id AS orderID, " +
+                    "order_id AS id, " +
                     "name, " +
                     "tag, " +
                     "status_id AS status, " +
@@ -24,7 +24,7 @@ public interface OrderMapper {
 
     @Select(//language=PostgreSQL
             "SELECT " +
-                    "order_id AS orderID, " +
+                    "order_id AS id, " +
                     "name, " +
                     "tag, " +
                     "status_id AS status, " +
@@ -38,7 +38,7 @@ public interface OrderMapper {
 
     @Select(//language=PostgreSQL
             "SELECT " +
-                    "order_id AS orderID, " +
+                    "order_id AS id, " +
                     "name, " +
                     "tag, " +
                     "status_id AS status, " +
@@ -52,7 +52,7 @@ public interface OrderMapper {
 
     @Select(//language=PostgreSQL
             "SELECT " +
-                    "order_id AS orderID, " +
+                    "order_id AS id, " +
                     "name, " +
                     "tag, " +
                     "status_id AS status, " +
@@ -66,29 +66,29 @@ public interface OrderMapper {
 
     @Update(//language=PostgreSQL
             "UPDATE orders " +
-                    "SET order_id = #{orderID}, " +
+                    "SET " +
                     "name = #{name}, " +
                     "tag = #{tag}, " +
                     "price = #{price}, " +
                     "status_id= #{status}, " +
                     "customer_id = #{customerID}, " +
                     "deliveryman_id = #{deliverymanID} " +
-                    "WHERE order_id = #{orderID}"
+                    "WHERE order_id = #{id}"
     )
     void update(Order order);
 
     @Delete(//language=PostgreSQL
             "DELETE FROM orders " +
-                    "WHERE order_id = #{orderID}"
+                    "WHERE order_id = #{id}"
     )
-    void delete(@Param("orderID") int orderID);
+    void delete(@Param("id") int id);
 
     @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO orders " +
-                    "(name, tag, status_id, customer_id, deliveryman_id, price) " +
+                    "(restaurant_id, status_id, name, tag, customer_id, deliveryman_id, price) " +
                     "VALUES " +
-                    "(#{name}, #{tag}, #{status}, #{customerID}, #{deliverymanID}, #{price})")
+                    "(#{restaurantID}, #{status}, #{name}, #{tag},#{customerID}, #{deliverymanID}, #{price})")
     @SelectKey(
             before = false,
             keyProperty = "id",

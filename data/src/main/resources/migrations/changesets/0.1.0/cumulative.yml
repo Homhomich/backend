@@ -195,3 +195,12 @@ databaseChangeLog:
         - sqlFile:
             path: modify-breakfasts-in-basket.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: dkorelov_4
+      author: dkorelov
+      comment: delivery role added
+      changes:
+        - sqlFile:
+            path: add-delivery-role.sql
+            relativeToChangelogFile: true

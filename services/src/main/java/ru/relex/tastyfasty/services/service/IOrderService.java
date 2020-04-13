@@ -1,6 +1,7 @@
 package ru.relex.tastyfasty.services.service;
 
 import ru.relex.tastyfasty.services.dto.order.OrderDto;
+import ru.relex.tastyfasty.services.dto.order.OrderInfoDto;
 
 import javax.validation.Valid;
 import java.util.List;
