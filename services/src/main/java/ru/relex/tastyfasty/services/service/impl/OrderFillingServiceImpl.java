@@ -3,11 +3,11 @@ package ru.relex.tastyfasty.services.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import ru.relex.tastyfasty.db.mapper.OrderBreakfastsMapper;
-import ru.relex.tastyfasty.db.model.BreakfastsInBasket;
-import ru.relex.tastyfasty.db.model.OrderBreakfasts;
+import ru.relex.tastyfasty.db.mapper.OrderedBreakfastMapper;
 import ru.relex.tastyfasty.services.dto.breakfast.BreakfastDto;
+import ru.relex.tastyfasty.services.dto.order.OrderedBreakfastDto;
 import ru.relex.tastyfasty.services.mapstruct.BreakfastStruct;
+import ru.relex.tastyfasty.services.mapstruct.OrderedBreakfastStruct;
 import ru.relex.tastyfasty.services.service.IOrderFillingService;
 
 import javax.validation.Valid;
@@ -17,47 +17,47 @@ import java.util.List;
 @Validated
 public class OrderFillingServiceImpl implements IOrderFillingService {
 
+    private final OrderedBreakfastStruct orderedBreakfastStruct;
     private final BreakfastStruct breakfastStruct;
-    private final OrderBreakfastsMapper orderBreakfastsMapper;
+    private final OrderedBreakfastMapper orderedBreakfastMapper;
 
     @Autowired
-    public OrderFillingServiceImpl(BreakfastStruct breakfastStruct, OrderBreakfastsMapper orderBreakfastsMapper) {
+    public OrderFillingServiceImpl(
+            OrderedBreakfastStruct orderedBreakfastStruct,
+            BreakfastStruct breakfastStruct,
+            OrderedBreakfastMapper orderedBreakfastMapper
+    ) {
+        this.orderedBreakfastStruct = orderedBreakfastStruct;
         this.breakfastStruct = breakfastStruct;
-        this.orderBreakfastsMapper = orderBreakfastsMapper;
+        this.orderedBreakfastMapper = orderedBreakfastMapper;
     }
 
 
     @Override
     public List<BreakfastDto> getBreakfastsInOrder(int orderId) {
-        var breakfasts = orderBreakfastsMapper.findByOrderId(orderId);
+        var breakfasts = orderedBreakfastMapper.findByOrderId(orderId);
         return breakfastStruct.toDto(breakfasts);
     }
 
     @Override
-    public BreakfastDto addBreakfastToOrder(int orderId, @Valid BreakfastDto breakfastDto) {
-        OrderBreakfasts orderBreakfasts = new OrderBreakfasts();
-        orderBreakfasts.setBreakfastID(breakfastDto.getId());
-        orderBreakfasts.setOrderID(orderId);
-        orderBreakfastsMapper.insert(orderBreakfasts);
-        return breakfastDto;
+    public OrderedBreakfastDto addBreakfastToOrder(@Valid OrderedBreakfastDto orderedBreakfastDto) {
+        orderedBreakfastMapper.insert(orderedBreakfastStruct.fromDto(orderedBreakfastDto));
+        return orderedBreakfastDto;
     }
 
     @Override
-    public BreakfastDto updateBreakfastInOrder(int orderId, @Valid BreakfastDto breakfastDto) {
-        OrderBreakfasts orderBreakfasts = new OrderBreakfasts();
-        orderBreakfasts.setBreakfastID(breakfastDto.getId());
-        orderBreakfasts.setOrderID(orderId);
-        orderBreakfastsMapper.update(orderBreakfasts);
-        return breakfastDto;
+    public OrderedBreakfastDto updateBreakfastInOrder(@Valid OrderedBreakfastDto orderedBreakfastDto) {
+        orderedBreakfastMapper.update(orderedBreakfastStruct.fromDto(orderedBreakfastDto));
+        return orderedBreakfastDto;
     }
 
     @Override
     public void removeBreakfastsByOrderId(int orderId) {
-        orderBreakfastsMapper.deleteByOrderId(orderId);
+        orderedBreakfastMapper.deleteByOrderId(orderId);
     }
 
     @Override
     public void removeBreakfastFromOrder(int orderId, int breakfastId) {
-        orderBreakfastsMapper.deleteBreakfastFromOrder(orderId, breakfastId);
+        orderedBreakfastMapper.deleteBreakfastFromOrder(orderId, breakfastId);
     }
 }

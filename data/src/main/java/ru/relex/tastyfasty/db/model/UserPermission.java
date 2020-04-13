@@ -7,6 +7,10 @@ public enum  UserPermission {
     CREATE_USERS(2),
     DELETE_USERS(3),
     UPDATE_USERS(4),
+    GET_ORDERS(5),
+    CREATE_ORDERS(6),
+    DELETE_ORDERS(7),
+    UPDATE_ORDERS(8),
     ;
 
     private final int id;

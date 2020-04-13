@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping(
         path = "/api/users",
         produces = MediaType.APPLICATION_JSON_VALUE
+
 )
 public class UserController {
 
@@ -26,7 +27,7 @@ public class UserController {
 
 
     @GetMapping
-    @RolesAllowed("ROLE_1")
+    @RolesAllowed({"ROLE_1"})
     List<UserDto> getUsers(@RequestParam(name = "search", required = false) String search) {
         return userService.findUsers(search);
     }

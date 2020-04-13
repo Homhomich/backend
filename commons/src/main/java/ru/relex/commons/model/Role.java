@@ -5,6 +5,7 @@ import java.util.Optional;
 public enum Role {
     ADMIN(1),
     USER(2),
+    DELIVERY(3)
     ;
 
     private final int id;

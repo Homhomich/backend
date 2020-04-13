@@ -15,4 +15,5 @@ public class  TastyFasty {
     public static void main(String[] args) {
         SpringApplication.run(TastyFasty.class, args);
     }
+
 }

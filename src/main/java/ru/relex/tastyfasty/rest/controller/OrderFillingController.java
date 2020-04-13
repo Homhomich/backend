@@ -3,7 +3,9 @@ package ru.relex.tastyfasty.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.relex.tastyfasty.services.dto.basket.BasketItemDto;
 import ru.relex.tastyfasty.services.dto.breakfast.BreakfastDto;
+import ru.relex.tastyfasty.services.dto.order.OrderedBreakfastDto;
 import ru.relex.tastyfasty.services.service.IBasketFillingService;
 import ru.relex.tastyfasty.services.service.IOrderFillingService;
 
@@ -31,21 +33,17 @@ public class OrderFillingController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    BreakfastDto addBreakfastToBasket(
-            @PathVariable("orderId") int orderId,
-            @RequestBody BreakfastDto breakfastDto
+    OrderedBreakfastDto addBreakfastToBasket(
+            @RequestBody OrderedBreakfastDto orderedBreakfastDto
     ) {
-        return orderFillingService.addBreakfastToOrder(orderId, breakfastDto);
+        return orderFillingService.addBreakfastToOrder(orderedBreakfastDto);
     }
 
     @PutMapping("/{breakfastId}")
-    BreakfastDto updateBreakfastInBasket(
-            @PathVariable("orderId") int orderId,
-            @PathVariable int breakfastId,
-            @RequestBody BreakfastDto breakfastDto
+    OrderedBreakfastDto updateBreakfastInBasket(
+            @RequestBody OrderedBreakfastDto orderedBreakfastDto
     ) {
-        breakfastDto.setId(breakfastId);
-        return orderFillingService.updateBreakfastInOrder(orderId, breakfastDto);
+        return orderFillingService.updateBreakfastInOrder(orderedBreakfastDto);
     }
 
     @DeleteMapping

@@ -1,5 +1,6 @@
 package ru.relex.tastyfasty.services.service;
 
+import ru.relex.tastyfasty.services.dto.basket.BasketItemDto;
 import ru.relex.tastyfasty.services.dto.breakfast.BreakfastDto;
 
 import javax.validation.Valid;
@@ -9,9 +10,11 @@ public interface IBasketFillingService {
 
     List<BreakfastDto> getBreakfastsInUserBasket(int basketId);
 
-    BreakfastDto addBreakfastToBasket(int basketId, @Valid BreakfastDto breakfastDto);
+    List<BasketItemDto> getBasketItemsInUserBasket(int basketId);
 
-    BreakfastDto updateBreakfastInBasket(int basketId, @Valid BreakfastDto breakfastDto);
+    BasketItemDto addBreakfastToBasket(@Valid BasketItemDto basketItemDto);
+
+    BasketItemDto updateBreakfastInBasket(@Valid BasketItemDto basketItemDto);
 
     void removeBreakfastsFromBasket(int basketId);
 

@@ -2,10 +2,6 @@ package ru.relex.tastyfasty.db.mapper;
 
 import org.apache.ibatis.annotations.*;
 import ru.relex.tastyfasty.db.model.Basket;
-import ru.relex.tastyfasty.db.model.Breakfast;
-import ru.relex.tastyfasty.db.model.BreakfastsInBasket;
-
-import java.util.List;
 
 @Mapper
 public interface BasketMapper {

@@ -4,70 +4,63 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.relex.tastyfasty.services.dto.order.OrderDto;
-import ru.relex.tastyfasty.services.service.impl.OrderServiceImpl;
-
+import ru.relex.tastyfasty.services.service.IOrderService;
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
-
 
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/api/users/{userId}/orders",
+        path = "/api/orders",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
-public class OrderController {
+public class DeliveryOrdersController {
 
-    private final OrderServiceImpl orderService;
+    private final IOrderService orderService;
 
     @Autowired
-    public OrderController(final OrderServiceImpl orderService) {
+    public DeliveryOrdersController(final IOrderService orderService) {
         this.orderService = orderService;
     }
 
 
     @GetMapping
+    @RolesAllowed({"ROLE_5"})
     List<OrderDto> getOrders(@RequestParam(name = "search", required = false) String search) {
         return orderService.findOrders(search);
     }
 
-    @GetMapping("/{customers}")
-    List<OrderDto> getOrdersByCustomerId(@RequestParam(name = "customerId") int customerId) {
-        return orderService.findByCustomerId(customerId);
-    }
-
-    @GetMapping("/{deliverymen}")
-    List<OrderDto> getOrdersByDeliverymanId(@RequestParam(name = "deliverymanId") int deliverymanId) {
-        return orderService.findByDeliverymanId(deliverymanId);
-    }
-
     @GetMapping("/{id}")
+        //@RolesAllowed("ROLE_5")
     OrderDto findById(@PathVariable("id") int id) {
         return orderService.findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    OrderDto create(
-            @PathVariable("userId") int userId,
-            @RequestBody OrderDto orderDto
-    ) {
-        orderDto.setCustomerID(userId);
+        //@RolesAllowed("ROLE_6")
+    OrderDto create(@RequestBody OrderDto orderDto) {
         return orderService.create(orderDto);
     }
 
+
     @PutMapping("/{id}")
+        //@RolesAllowed("ROLE_8")
     OrderDto update(
             @PathVariable("id") int id,
-            @PathVariable("userId") int userId,
             @RequestBody OrderDto orderDto
     ) {
         orderDto.setId(id);
-        orderDto.setCustomerID(userId);
         orderService.update(orderDto);
         return findById(id);
     }
 
     @DeleteMapping("/{id}")
+        //@RolesAllowed("ROLE_7")
     void remove(@PathVariable("id") int id) {
         orderService.remove(id);
     }
 }
+
+
+
+

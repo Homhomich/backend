@@ -3,9 +3,11 @@ package ru.relex.tastyfasty.services.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import ru.relex.tastyfasty.db.mapper.BreakfastsInBasketMapper;
-import ru.relex.tastyfasty.db.model.BreakfastsInBasket;
+import ru.relex.tastyfasty.db.mapper.BasketItemMapper;
+import ru.relex.tastyfasty.db.model.BasketItem;
+import ru.relex.tastyfasty.services.dto.basket.BasketItemDto;
 import ru.relex.tastyfasty.services.dto.breakfast.BreakfastDto;
+import ru.relex.tastyfasty.services.mapstruct.BasketItemStruct;
 import ru.relex.tastyfasty.services.mapstruct.BreakfastStruct;
 import ru.relex.tastyfasty.services.service.IBasketFillingService;
 
@@ -17,46 +19,48 @@ import java.util.List;
 public class BasketFillingServiceImpl implements IBasketFillingService {
 
     private final BreakfastStruct breakfastStruct;
-    private final BreakfastsInBasketMapper breakfastsInBasketMapper;
+    private final BasketItemStruct basketItemStruct;
+    private final BasketItemMapper basketItemMapper;
 
     @Autowired
-    public BasketFillingServiceImpl(BreakfastStruct breakfastStruct, BreakfastsInBasketMapper breakfastsInBasketMapper) {
+    public BasketFillingServiceImpl(BreakfastStruct breakfastStruct, BasketItemStruct basketItemStruct, BasketItemMapper basketItemMapper) {
         this.breakfastStruct = breakfastStruct;
-        this.breakfastsInBasketMapper = breakfastsInBasketMapper;
+        this.basketItemStruct = basketItemStruct;
+        this.basketItemMapper = basketItemMapper;
     }
 
 
     @Override
     public List<BreakfastDto> getBreakfastsInUserBasket(int basketId) {
-        var breakfasts = breakfastsInBasketMapper.findByBasketId(basketId);
+        var breakfasts = basketItemMapper.findBreakfastsByBasketId(basketId);
         return breakfastStruct.toDto(breakfasts);
     }
 
     @Override
-    public BreakfastDto addBreakfastToBasket(int basketId, @Valid BreakfastDto breakfastDto) {
-        BreakfastsInBasket breakfastsInBasket = new BreakfastsInBasket();
-        breakfastsInBasket.setBreakfastID(breakfastDto.getId());
-        breakfastsInBasket.setBasketID(basketId);
-        breakfastsInBasketMapper.insert(breakfastsInBasket);
-        return breakfastDto;
+    public List<BasketItemDto> getBasketItemsInUserBasket(int basketId) {
+        var basketItems = basketItemMapper.findBasketItemsByBasketId(basketId);
+        return basketItemStruct.toDto(basketItems);
     }
 
     @Override
-    public BreakfastDto updateBreakfastInBasket(int basketId, @Valid BreakfastDto breakfastDto) {
-        BreakfastsInBasket breakfastsInBasket = new BreakfastsInBasket();
-        breakfastsInBasket.setBreakfastID(breakfastDto.getId());
-        breakfastsInBasket.setBasketID(basketId);
-        breakfastsInBasketMapper.update(breakfastsInBasket);
-        return breakfastDto;
+    public BasketItemDto addBreakfastToBasket(@Valid BasketItemDto basketItemDto) {
+        basketItemMapper.insert(basketItemStruct.fromDto(basketItemDto));
+        return basketItemDto;
+    }
+
+    @Override
+    public BasketItemDto updateBreakfastInBasket(@Valid BasketItemDto basketItemDto) {
+        basketItemMapper.update(basketItemStruct.fromDto(basketItemDto));
+        return basketItemDto;
     }
 
     @Override
     public void removeBreakfastsFromBasket(int basketId) {
-        breakfastsInBasketMapper.deleteBreakfastsByBasketId(basketId);
+        basketItemMapper.deleteBreakfastsByBasketId(basketId);
     }
 
     @Override
     public void removeOneBreakfastFromBasket(int basketId, int breakfastId) {
-        breakfastsInBasketMapper.deleteOneBreakfastByBasketId(basketId, breakfastId);
+        basketItemMapper.deleteOneBreakfastByBasketId(basketId, breakfastId);
     }
 }

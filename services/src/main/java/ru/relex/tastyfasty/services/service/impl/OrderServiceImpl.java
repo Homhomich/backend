@@ -19,7 +19,8 @@ public class OrderServiceImpl implements IOrderService {
     private final OrderStruct orderStruct;
 
     @Autowired
-    public OrderServiceImpl(OrderMapper orderMapper, OrderStruct orderStruct) {
+    public OrderServiceImpl(OrderMapper orderMapper,
+                            OrderStruct orderStruct) {
         this.orderMapper = orderMapper;
         this.orderStruct = orderStruct;
     }
@@ -57,8 +58,8 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void remove(int orderID) {
-        orderMapper.delete(orderID);
+    public void remove(int id) {
+        orderMapper.delete(id);
     }
 
     @Override

@@ -5,7 +5,7 @@ import ru.relex.commons.model.Status;
 
 @Data
 public class Order {
-    private int orderID;
+    private int id;
     private int restaurantID;
     private Status status;
     private String name;
@@ -13,4 +13,6 @@ public class Order {
     private int customerID;
     private int deliverymanID;
     private Integer price;
+
+
 }

@@ -2,12 +2,12 @@ package ru.relex.tastyfasty.db.mapper;
 
 import org.apache.ibatis.annotations.*;
 import ru.relex.tastyfasty.db.model.Breakfast;
-import ru.relex.tastyfasty.db.model.BreakfastsInBasket;
+import ru.relex.tastyfasty.db.model.BasketItem;
 
 import java.util.List;
 
 @Mapper
-public interface BreakfastsInBasketMapper {
+public interface BasketItemMapper {
 
     /*@Select(//language=PostgreSQL
             "SELECT " +
@@ -39,7 +39,19 @@ public interface BreakfastsInBasketMapper {
                     "FROM breakfasts_in_basket bb RIGHT JOIN breakfasts br ON bb.breakfast_id = br.breakfast_id " +
                     "WHERE bb.basket_id = #{basketId}"
     )
-    List<Breakfast> findByBasketId(@Param("basketId") int basketId);
+    List<Breakfast> findBreakfastsByBasketId(@Param("basketId") int basketId);
+
+    @Select(//language=PostgreSQL
+            "SELECT " +
+                    "breakfasts_in_basket_id AS basketItemID, " +
+                    "basket_id, " +
+                    "breakfast_id, " +
+                    "num_of_items AS numberOfItems, " +
+                    "ready_to_order " +
+                    "FROM breakfasts_in_basket " +
+                    "WHERE basket_id = #{basketId}"
+    )
+    List<BasketItem> findBasketItemsByBasketId(@Param("basketId") int basketId);
 
     /*@Select(//language=PostgreSQL
             "SELECT " +
@@ -53,18 +65,20 @@ public interface BreakfastsInBasketMapper {
 
     @Update(//language=PostgreSQL
             "UPDATE breakfasts_in_basket " +
-                    "SET breakfasts_in_basket_id = #{breakfastsInBasketID}, " +
+                    "SET breakfasts_in_basket_id = #{basketItemID}, " +
                     "basket_id = #{basketID}, " +
-                    "breakfast_id = #{breakfastID} " +
-                    "WHERE breakfasts_in_basket_id = #{id}"
+                    "breakfast_id = #{breakfastID}, " +
+                    "num_of_items = #{numberOfItems}, " +
+                    "ready_to_order = #{readyToOrder} " +
+                    "WHERE breakfasts_in_basket_id = #{basketItemID}"
     )
-    void update(BreakfastsInBasket breakfastsInBasket);
+    void update(BasketItem basketItem);
 
     /*@Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
-                    "WHERE breakfasts_in_basket_id = #{breakfastsInBasketID}"
+                    "WHERE breakfasts_in_basket_id = #{basketItemID}"
     )
-    void deleteById(@Param("breakfastsInBasketID") int breakfastsInBasketID);*/
+    void deleteById(@Param("basketItemID") int basketItemID);*/
 
     @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
@@ -74,23 +88,23 @@ public interface BreakfastsInBasketMapper {
 
     @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
-                    "WHERE basket_id = #{basketId} AND breakfast_id = #{breakfastId}"
+                    "WHERE basket_id = #{basketID} AND breakfast_id = #{breakfastID}"
     )
     void deleteOneBreakfastByBasketId(@Param("basketId") int basketId, @Param("breakfastId") int breakfastId);
 
     @Insert(//language=PostgreSQL
             "INSERT INTO breakfasts_in_basket " +
-                    "(basket_id, breakfast_id)" +
+                    "(basket_id, breakfast_id, num_of_items, ready_to_order)" +
             "VALUES " +
-                    "(#{basketID}, #{breakfastID})"
+                    "(#{basketID}, #{breakfastID}, #{numberOfItems}, #{readyToOrder})"
     )
     @SelectKey(
             before = false,
-            keyProperty = "breakfastsInBasketID",
+            keyProperty = "basketItemID",
             keyColumn = "breakfasts_in_basket_id",
             statement = "select currval('breakfasts_in_basket_breakfasts_in_basket_seq')",
             resultType = Integer.class)
-    void insert(BreakfastsInBasket breakfastsInBasket);
+    void insert(BasketItem basketItem);
 
 
 
