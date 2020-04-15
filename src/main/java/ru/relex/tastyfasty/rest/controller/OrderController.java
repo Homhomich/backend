@@ -41,8 +41,8 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    OrderDto findById(@PathVariable("id") int id) {
-        return orderService.findById(id);
+    OrderDto findById(@PathVariable("id") int id)
+    { return orderService.findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

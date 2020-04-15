@@ -57,6 +57,7 @@ public interface OrderMapper {
                     "tag, " +
                     "status_id AS status, " +
                     "price AS price, " +
+                    "restaurant_id AS restaurantID, " +
                     "customer_id AS customerID, " +
                     "deliveryman_id AS deliverymanID " +
                     "FROM orders " +

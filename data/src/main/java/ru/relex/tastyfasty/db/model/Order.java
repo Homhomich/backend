@@ -13,6 +13,4 @@ public class Order {
     private int customerID;
     private int deliverymanID;
     private Integer price;
-
-
 }

@@ -34,7 +34,7 @@ public class RestaurantController {
     RestaurantDto findById(@PathVariable("id") int id) {
         return restaurantService.findRestaurantById(id);
     }
-
+/*
     @GetMapping("/{address}")
     List<RestaurantDto> findByAddress(
             @RequestParam(name = "city") String city,
@@ -42,7 +42,7 @@ public class RestaurantController {
             @RequestParam(name = "building", required = false) int building
     ) {
         return restaurantService.findRestaurantByAddress(city, street, building);
-    }
+    }*/
 
     @PutMapping("/{id}")
     RestaurantDto update(
