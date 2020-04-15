@@ -30,15 +30,15 @@ public class OrderController {
         return orderService.findOrders(search);
     }
 
-    @GetMapping("/{customers}")
-    List<OrderDto> getOrdersByCustomerId(@RequestParam(name = "customerId") int customerId) {
-        return orderService.findByCustomerId(customerId);
+    @GetMapping("/byCustomer")
+    List<OrderDto> getOrdersByCustomerId(@PathVariable("userId") int userId) {
+        return orderService.findByCustomerId(userId);
     }
 
-    @GetMapping("/{deliverymen}")
+    /*@GetMapping("/{deliverymen}")
     List<OrderDto> getOrdersByDeliverymanId(@RequestParam(name = "deliverymanId") int deliverymanId) {
         return orderService.findByDeliverymanId(deliverymanId);
-    }
+    }*/
 
     @GetMapping("/{id}")
     OrderDto findById(@PathVariable("id") int id) {

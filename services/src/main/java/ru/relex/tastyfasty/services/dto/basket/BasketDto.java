@@ -13,7 +13,7 @@ public class BasketDto {
     private int basketID;
 
     @NotNull(message = ConstraintMessage.Field.NUMBER_OF_PERSONS + ConstraintMessage.Constraint.IS_NULL)
-    @Min(message = ConstraintMessage.Field.NUMBER_OF_PERSONS + ConstraintMessage.Constraint.LESS_THAN_ONE, value = 1)
+    //@Min(message = ConstraintMessage.Field.NUMBER_OF_PERSONS + ConstraintMessage.Constraint.LESS_THAN_ONE, value = 1)
 //    @Size(max = 100, message = ConstraintMessage.Field.NUMBER_OF_PERSONS + ConstraintMessage.Constraint.TOO_LONG)
     private int numberOfPersons;
 
