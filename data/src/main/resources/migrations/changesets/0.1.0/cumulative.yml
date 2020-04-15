@@ -204,3 +204,12 @@ databaseChangeLog:
         - sqlFile:
             path: add-delivery-role.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: evgenii_13
+      author: puliaevevgenii
+      comment: modify orders table
+      changes:
+        - sqlFile:
+            path: drop-cons-orders.sql
+            relativeToChangelogFile: true

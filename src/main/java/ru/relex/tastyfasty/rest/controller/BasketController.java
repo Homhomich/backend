@@ -34,9 +34,7 @@ public class BasketController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     BasketDto create(@RequestBody BasketDto basketDto) {
-        BasketDto basketDto1 = basketService.create(basketDto);
-        System.out.println(basketDto1.getBasketID());
-        return basketDto1;
+        return basketService.create(basketDto);
     }
 
     @PutMapping("/{id}")

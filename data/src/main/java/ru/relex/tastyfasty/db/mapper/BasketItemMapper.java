@@ -82,13 +82,13 @@ public interface BasketItemMapper {
 
     @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
-                    "WHERE basket_id = #{basketID}"
+                    "WHERE basket_id = #{basketId}"
     )
-    void deleteBreakfastsByBasketId(@Param("basketID") int basketID);
+    void deleteBreakfastsByBasketId(@Param("basketID") int basketId);
 
     @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +
-                    "WHERE basket_id = #{basketID} AND breakfast_id = #{breakfastID}"
+                    "WHERE basket_id = #{basketId} AND breakfast_id = #{breakfastId}"
     )
     void deleteOneBreakfastByBasketId(@Param("basketId") int basketId, @Param("breakfastId") int breakfastId);
 

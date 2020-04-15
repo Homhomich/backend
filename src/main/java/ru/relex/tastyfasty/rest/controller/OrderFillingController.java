@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(
-        path = "/api/order/{orderId}/",
+        path = "/api/order/{orderId}",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class OrderFillingController {
@@ -33,26 +33,26 @@ public class OrderFillingController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    OrderedBreakfastDto addBreakfastToBasket(
+    OrderedBreakfastDto addBreakfastToOrder(
             @RequestBody OrderedBreakfastDto orderedBreakfastDto
     ) {
         return orderFillingService.addBreakfastToOrder(orderedBreakfastDto);
     }
 
     @PutMapping("/{breakfastId}")
-    OrderedBreakfastDto updateBreakfastInBasket(
+    OrderedBreakfastDto updateBreakfastInOrder(
             @RequestBody OrderedBreakfastDto orderedBreakfastDto
     ) {
         return orderFillingService.updateBreakfastInOrder(orderedBreakfastDto);
     }
 
     @DeleteMapping
-    void removeBreakfastsFromBasket(@PathVariable("orderId") int orderId) {
+    void removeBreakfastsFromOrder(@PathVariable("orderId") int orderId) {
         orderFillingService.removeBreakfastsByOrderId(orderId);
     }
 
     @DeleteMapping("/{breakfastId}")
-    void removeOneBreakfastFromBasket(
+    void removeOneBreakfastFromOrder(
             @PathVariable("orderId") int orderId,
             @PathVariable("breakfastId") int breakfastId
     ) {
