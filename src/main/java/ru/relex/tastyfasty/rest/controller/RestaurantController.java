@@ -35,7 +35,7 @@ public class RestaurantController {
         return restaurantService.findRestaurantById(id);
     }
 
-    @GetMapping("/{address}")
+    //@GetMapping("/{address}") - to fix
     List<RestaurantDto> findByAddress(
             @RequestParam(name = "city") String city,
             @RequestParam(name = "street", required = false) String street,
