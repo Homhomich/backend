@@ -91,9 +91,9 @@ public interface OrderMapper {
     @Insert(//language=PostgreSQL
             "INSERT " +
                     "INTO orders " +
-                    "(restaurant_id, status_id, name, tag, customer_id, restaurant_id, deliveryman_id, price) " +
+                    "(restaurant_id, status_id, name, tag, customer_id, deliveryman_id, price) " +
                     "VALUES " +
-                    "(#{restaurantID}, #{status}, #{name}, #{tag},#{customerID}, #{restaurantID}, #{deliverymanID}, #{price})")
+                    "(#{restaurantID}, #{status}, #{name}, #{tag},#{customerID}, #{deliverymanID}, #{price})")
     @SelectKey(
             before = false,
             keyProperty = "id",
