@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,16 +29,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final TastyFastySuccessHandler successHandler;
+    private final TastyFastyLogoutSuccessHandler logoutSuccessHandler;
+    private final TastyFastyFailHandler failHandler;
     private final TastyFastyUnauthorizedEntryPoint unauthorizedEntryPoint;
 
     @Autowired
     public SecurityConfiguration(
             UserDetailsService userDetailsService,
             TastyFastySuccessHandler successHandler,
+            TastyFastyLogoutSuccessHandler logoutSuccessHandler,
+            TastyFastyFailHandler failHandler,
             TastyFastyUnauthorizedEntryPoint unauthorizedEntryPoint
     ) {
         this.userDetailsService = userDetailsService;
         this.successHandler = successHandler;
+        this.logoutSuccessHandler = logoutSuccessHandler;
+        this.failHandler = failHandler;
         this.unauthorizedEntryPoint = unauthorizedEntryPoint;
     }
 
@@ -70,22 +75,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/restaurants", "/api/restaurants/*", "/api/restaurants/*/breakfasts").permitAll()
                 .antMatchers("/auth/login").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .cors()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/auth/login")
                 .successHandler(successHandler)
-                .failureHandler(new TastyFastyFailHandler())
+                .failureHandler(failHandler)
                 .and()
                 .logout()
                 .logoutUrl("/auth/logout")
-                .logoutSuccessHandler(new TastyFastyLogoutSuccessHandler())
+                .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .exceptionHandling()
-                //.authenticationEntryPoint(new TastyFastyEntryPoint())
-                .authenticationEntryPoint(new TastyFastyUnauthorizedEntryPoint())
+                .authenticationEntryPoint(unauthorizedEntryPoint)
                 .and()
                 .sessionManagement()
                 .sessionFixation()

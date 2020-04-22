@@ -22,7 +22,7 @@ public enum  UserPermission {
 
     public String asString()
     {
-        return "ROLE_" + this.id;
+        return "ROLE_" + this.name();
     }
 
     public static Optional<UserPermission> of(final Integer id) {
