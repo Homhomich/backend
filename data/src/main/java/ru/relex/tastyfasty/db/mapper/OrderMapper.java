@@ -16,6 +16,7 @@ public interface OrderMapper {
                     "status_id AS status, " +
                     "price AS price, " +
                     "customer_id AS customerID, " +
+                    "restaurant_id AS restaurantID, " +
                     "deliveryman_id AS deliverymanID " +
                     "FROM orders " +
                     "WHERE #{search:VARCHAR} IS NULL "
@@ -30,6 +31,7 @@ public interface OrderMapper {
                     "status_id AS status, " +
                     "price AS price, " +
                     "customer_id AS customerID, " +
+                    "restaurant_id AS restaurantID, " +
                     "deliveryman_id AS deliverymanID " +
                     "FROM orders " +
                     "WHERE customer_id = #{id}"
@@ -44,6 +46,7 @@ public interface OrderMapper {
                     "status_id AS status, " +
                     "price AS price, " +
                     "customer_id AS customerID, " +
+                    "restaurant_id AS restaurantID, " +
                     "deliveryman_id AS deliverymanID " +
                     "FROM orders " +
                     "WHERE deliveryman_id = #{id}"
@@ -59,6 +62,7 @@ public interface OrderMapper {
                     "price AS price, " +
                     "restaurant_id AS restaurantID, " +
                     "customer_id AS customerID, " +
+                    "restaurant_id AS restaurantID, " +
                     "deliveryman_id AS deliverymanID " +
                     "FROM orders " +
                     "WHERE order_id = #{id}"
@@ -73,6 +77,7 @@ public interface OrderMapper {
                     "price = #{price}, " +
                     "status_id= #{status}, " +
                     "customer_id = #{customerID}, " +
+                    "restaurant_id = #{restaurantID}, " +
                     "deliveryman_id = #{deliverymanID} " +
                     "WHERE order_id = #{id}"
     )
