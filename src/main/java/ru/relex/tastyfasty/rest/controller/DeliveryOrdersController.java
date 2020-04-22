@@ -25,26 +25,22 @@ public class DeliveryOrdersController {
 
 
     @GetMapping
-    @RolesAllowed({"ROLE_5"})
     List<OrderDto> getOrders(@RequestParam(name = "search", required = false) String search) {
         return orderService.findOrders(search);
     }
 
     @GetMapping("/{id}")
-        //@RolesAllowed("ROLE_5")
     OrderDto findById(@PathVariable("id") int id) {
         return orderService.findById(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-        //@RolesAllowed("ROLE_6")
     OrderDto create(@RequestBody OrderDto orderDto) {
         return orderService.create(orderDto);
     }
 
 
     @PutMapping("/{id}")
-        //@RolesAllowed("ROLE_8")
     OrderDto update(
             @PathVariable("id") int id,
             @RequestBody OrderDto orderDto
@@ -55,7 +51,6 @@ public class DeliveryOrdersController {
     }
 
     @DeleteMapping("/{id}")
-        //@RolesAllowed("ROLE_7")
     void remove(@PathVariable("id") int id) {
         orderService.remove(id);
     }

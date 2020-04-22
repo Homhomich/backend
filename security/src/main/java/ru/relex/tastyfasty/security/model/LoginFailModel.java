@@ -10,7 +10,7 @@ public class LoginFailModel implements CurrentUser {
 
     public LoginFailModel() {
         this.authenticated = false;
-        this.info = new LoggingModelInfo(-1, "fail", Role.ADMIN);
+        this.info = null;
     }
 
     public boolean isAuthenticated() {
