@@ -12,7 +12,7 @@ public class BreakfastDto {
     private int id;
 
     @NotBlank(message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.IS_EMPTY)
-    @Size(max = 30, message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.TOO_LONG)
+    @Size(max = 100, message = ConstraintMessage.Field.BREAKFAST_NAME + ConstraintMessage.Constraint.TOO_LONG)
     private String name;
 
     @NotBlank(message = ConstraintMessage.Field.BREAKFAST_TAG + ConstraintMessage.Constraint.IS_EMPTY)
