@@ -37,6 +37,11 @@ public class DeliveryOrdersController {
         return orderService.findById(id);
     }
 
+    @GetMapping("/deliveryman")
+    List<OrderDto> getOrdersByDeliverymanId(@RequestParam(name = "deliverymanId") int deliverymanId) {
+        return orderService.findByDeliverymanId(deliverymanId);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
         //@RolesAllowed("ROLE_6")
     OrderDto create(@RequestBody OrderDto orderDto) {
@@ -46,10 +51,8 @@ public class DeliveryOrdersController {
 
     @PutMapping("/{id}")
         //@RolesAllowed("ROLE_8")
-    OrderDto update(
-            @PathVariable("id") int id,
-            @RequestBody OrderDto orderDto
-    ) {
+    OrderDto update(@PathVariable("id") int id, @RequestBody OrderDto orderDto) {
+        System.out.println(orderDto);
         orderDto.setId(id);
         orderService.update(orderDto);
         return findById(id);
