@@ -29,7 +29,6 @@ public class UserDetailsImpl implements UserDetails, CurrentUser {
                 .map(UserPermission::asString)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toUnmodifiableSet());
-        System.err.println(authorities);
         return authorities;
     }
 

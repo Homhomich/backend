@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,16 +29,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final TastyFastySuccessHandler successHandler;
+    private final TastyFastyLogoutSuccessHandler logoutSuccessHandler;
+    private final TastyFastyFailHandler failHandler;
     private final TastyFastyUnauthorizedEntryPoint unauthorizedEntryPoint;
 
     @Autowired
     public SecurityConfiguration(
             UserDetailsService userDetailsService,
             TastyFastySuccessHandler successHandler,
+            TastyFastyLogoutSuccessHandler logoutSuccessHandler,
+            TastyFastyFailHandler failHandler,
             TastyFastyUnauthorizedEntryPoint unauthorizedEntryPoint
     ) {
         this.userDetailsService = userDetailsService;
         this.successHandler = successHandler;
+        this.logoutSuccessHandler = logoutSuccessHandler;
+        this.failHandler = failHandler;
         this.unauthorizedEntryPoint = unauthorizedEntryPoint;
     }
 
@@ -68,26 +73,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/restaurants", "/api/restaurants/{id}", "/api/users", "/api/users/{id}",
-                        "/api/restaurants/{restaurantId}/breakfasts", "/api/orders", "api/orders/deliveryman","/api/orders/{id}")
-                .permitAll()
-                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/api/restaurants", "/api/restaurants/*", "/api/restaurants/*/breakfasts").permitAll()
+                .antMatchers("/api/auth/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .cors()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/auth/login")
+                .loginProcessingUrl("/api/auth/login")
                 .successHandler(successHandler)
-                .failureHandler(new TastyFastyFailHandler())
+                .failureHandler(failHandler)
                 .and()
                 .logout()
-                .logoutUrl("/auth/logout")
-                .logoutSuccessHandler(new TastyFastyLogoutSuccessHandler())
+                .logoutUrl("/api/auth/logout")
+                .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
                 .exceptionHandling()
-                //.authenticationEntryPoint(new TastyFastyEntryPoint())
-                .authenticationEntryPoint(new TastyFastyUnauthorizedEntryPoint())
+                .authenticationEntryPoint(unauthorizedEntryPoint)
                 .and()
                 .sessionManagement()
                 .sessionFixation()

@@ -27,7 +27,6 @@ public abstract class GenericCollectionTypeHandler<I, T, C extends Collection<T>
         C collect = Arrays.stream(array)
                 .map(this::fromValue)
                 .collect(this::newCollection, Collection::add, Collection::addAll);
-        System.err.println(collect);
         return collect;
     }
 

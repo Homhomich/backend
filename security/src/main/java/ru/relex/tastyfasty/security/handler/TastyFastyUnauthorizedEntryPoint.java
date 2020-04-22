@@ -17,8 +17,13 @@ public class TastyFastyUnauthorizedEntryPoint implements AuthenticationEntryPoin
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AuthenticationException authException
+    ) throws IOException, ServletException {
         if (response.getStatus() != HttpServletResponse.SC_FORBIDDEN) {
+            System.out.println("unauth");
             response.getWriter().print(OBJECT_MAPPER.writeValueAsString(new LoginFailModel()));
         }
     }
