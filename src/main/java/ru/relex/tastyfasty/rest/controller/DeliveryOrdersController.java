@@ -34,6 +34,11 @@ public class DeliveryOrdersController {
         return orderService.findById(id);
     }
 
+    @GetMapping("/deliveryman")
+    List<OrderDto> getOrdersByDeliverymanId(@RequestParam(name = "deliverymanId") int deliverymanId) {
+        return orderService.findByDeliverymanId(deliverymanId);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     OrderDto create(@RequestBody OrderDto orderDto) {
         return orderService.create(orderDto);

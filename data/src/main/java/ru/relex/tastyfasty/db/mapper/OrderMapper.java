@@ -19,7 +19,9 @@ public interface OrderMapper {
                     "restaurant_id AS restaurantID, " +
                     "deliveryman_id AS deliverymanID " +
                     "FROM orders " +
-                    "WHERE #{search:VARCHAR} IS NULL "
+                    "WHERE #{search:VARCHAR} IS NULL " +
+                    "OR CONCAT_WS('$', deliveryman_id, restaurant_id, name, tag, customer_id) LIKE CONCAT('%', #{search:VARCHAR}, '%')"
+
     )
     List<Order> getOrders(@Param("search") String search);
 
@@ -60,6 +62,7 @@ public interface OrderMapper {
                     "tag, " +
                     "status_id AS status, " +
                     "price AS price, " +
+                    "restaurant_id AS restaurantID, " +
                     "customer_id AS customerID, " +
                     "restaurant_id AS restaurantID, " +
                     "deliveryman_id AS deliverymanID " +
