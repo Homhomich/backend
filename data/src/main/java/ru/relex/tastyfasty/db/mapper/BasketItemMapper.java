@@ -84,7 +84,7 @@ public interface BasketItemMapper {
             "DELETE FROM breakfasts_in_basket " +
                     "WHERE basket_id = #{basketId}"
     )
-    void deleteBreakfastsByBasketId(@Param("basketID") int basketId);
+    void deleteBreakfastsByBasketId(@Param("basketId") int basketId);
 
     @Delete(//language=PostgreSQL
             "DELETE FROM breakfasts_in_basket " +

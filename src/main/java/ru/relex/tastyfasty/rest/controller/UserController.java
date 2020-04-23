@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping(
         path = "/api/users",
         produces = MediaType.APPLICATION_JSON_VALUE
-
 )
 public class UserController {
 
